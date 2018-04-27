@@ -1,4 +1,4 @@
-package com.gaolei.mvpmodel;
+package com.gaolei.mvpmodel.activity;
 
 import android.support.v4.app.FragmentActivity;
 

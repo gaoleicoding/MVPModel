@@ -2,18 +2,16 @@ package com.gaolei.mvpmodel;
 
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.gaolei.mvpmodel.activity.BaseActivity;
+import com.gaolei.mvpmodel.fragment.BaseMVPFragment;
 import com.gaolei.mvpmodel.fragment.KnowledgeFragment;
-import com.gaolei.mvpmodel.fragment.MainFragment;
+import com.gaolei.mvpmodel.fragment.HomeFragment;
 import com.gaolei.mvpmodel.fragment.NavigationFragment;
 import com.gaolei.mvpmodel.fragment.ProjectFragment;
 
@@ -21,7 +19,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends BaseActivity {
 
-    private ArrayList<BaseFragment> mFragments;
+    private ArrayList<BaseMVPFragment> mFragments;
     private int mLastFgIndex=0;
     TextView  title;
     BottomNavigationView bottomNavigationView;
@@ -32,10 +30,10 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
          bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation_view);
         BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
-        mFragments=new ArrayList<BaseFragment>();
+        mFragments=new ArrayList<BaseMVPFragment>();
         title = (TextView) findViewById(R.id.title);
 
-        mFragments.add(new MainFragment());
+        mFragments.add(new HomeFragment());
         mFragments.add(new KnowledgeFragment());
         mFragments.add(new NavigationFragment());
         mFragments.add(new ProjectFragment());
