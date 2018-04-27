@@ -7,6 +7,8 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 /**
  * Created by liuhaiyang on 2016/9/6.
@@ -32,6 +34,9 @@ public interface RestService {
 //                                   @Field("password") String pwd
 //    );
 
-        @GET("users")
-        Call<List<ProjectInfo>> getUsers();
+//    http://www.wanandroid.com/project/list/1/json?cid=294
+//    方法：GET
+//    参数：cid 分类的id，页码：拼接在链接中，从1开始。
+        @GET("project/list/{page}/json")
+        Call<List<ProjectInfo>> getProjectList(@Path("page") int page, @Query("cid") int cid);
 }

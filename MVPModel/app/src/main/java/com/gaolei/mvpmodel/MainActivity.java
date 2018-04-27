@@ -9,7 +9,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.gaolei.mvpmodel.activity.BaseActivity;
-import com.gaolei.mvpmodel.fragment.BaseMVPFragment;
+import com.gaolei.mvpmodel.fragment.BaseMvpFragment;
 import com.gaolei.mvpmodel.fragment.KnowledgeFragment;
 import com.gaolei.mvpmodel.fragment.HomeFragment;
 import com.gaolei.mvpmodel.fragment.NavigationFragment;
@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends BaseActivity {
 
-    private ArrayList<BaseMVPFragment> mFragments;
+    private ArrayList<BaseMvpFragment> mFragments;
     private int mLastFgIndex=0;
     TextView  title;
     BottomNavigationView bottomNavigationView;
@@ -30,7 +30,7 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
          bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation_view);
         BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
-        mFragments=new ArrayList<BaseMVPFragment>();
+        mFragments=new ArrayList<BaseMvpFragment>();
         title = (TextView) findViewById(R.id.title);
 
         mFragments.add(new HomeFragment());

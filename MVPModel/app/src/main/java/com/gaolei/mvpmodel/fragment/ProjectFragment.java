@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.gaolei.mvpmodel.R;
+import com.gaolei.mvpmodel.mpresenter.BasePresenter;
 
 
 /**
@@ -13,11 +14,15 @@ import com.gaolei.mvpmodel.R;
  * @date 2018/2/11
  */
 
-public class ProjectFragment extends BaseMVPFragment {
+public class ProjectFragment extends BaseMvpFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View fragment1 = inflater.inflate(R.layout.fragment_project, null);
         return fragment1;
     }
 
+    @Override
+    public BasePresenter initPresenter() {
+        return null;
+    }
 }
