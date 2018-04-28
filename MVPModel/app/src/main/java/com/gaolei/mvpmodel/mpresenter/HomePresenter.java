@@ -60,38 +60,38 @@ public class HomePresenter extends BasePresenter<BankListView> {
 //            .addConverterFactory(GsonConverterFactory.create())
 //            .build();
 //    IUserBiz userBiz = retrofit.create(IUserBiz.class);
-    public void getProjectInfo(int page,int cid) {
-    Call<List<ProjectInfo>> mCall = mRestService.getProjectList(page,cid);
-        mView.showLoading();
-        mCall.enqueue(new Callback<List<ProjectInfo>>()
+    public void getProjectInfo(int page, int cid) {
 
-        {
+        mCall = mRestService.getProjectList(page, cid);
+        mView.showLoading();
+        mCall.enqueue(new Callback<List<ProjectInfo>>() {
             public void onResponse(Call<List<ProjectInfo>> call, Response<List<ProjectInfo>> response) {
                 mView.hideLoading();
+//                try {
+//                    Log.d("gaolei", "response-------------:" + response.toString());
+//
+//                    JSONObject object = new JSONObject(response.toString());
+//                    JSONObject object2 = object.getJSONObject("data");
+//                    Log.d("gaolei", "object2-------------:" + object2.toString());
+//                    JSONObject object3 = object2.getJSONObject("datas");
+//                    Log.d("gaolei", "object3-------------:" + object3.toString());
+//
+//                    List<ProjectInfo> projectInfoList = new Gson().fromJson(object3.toString(), new TypeToken<List<ProjectInfo>>() {
+//                    }.getType());
+//
+//                    mView.requstBankList(projectInfoList);
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                    Log.d("gaolei", "JSONException.toString-------------:" +e.toString());
+//
+//                }
 
-                try {
-                    Log.d("gaolei", "response-------------:" + response.toString());
-
-                    JSONObject object=new JSONObject(response.toString());
-                    JSONObject object2=object.getJSONObject("data");
-                    Log.d("gaolei", "object2-------------:" + object2.toString());
-                    JSONObject object3=object2.getJSONObject("datas");
-                    Log.d("gaolei", "object3-------------:" + object3.toString());
-
-                    List<ProjectInfo> projectInfoList = new Gson().fromJson(object3.toString(), new TypeToken<List<ProjectInfo>>(){}.getType());
-
-                    mView.requstBankList(projectInfoList);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-                Log.d("gaolei", "response-------------:" + response.body() + "");
             }
 
             public void onFailure(Call<List<ProjectInfo>> call, Throwable t) {
                 mView.hideLoading();
 
-                Log.d("gaolei", "t.toString-------------:" + t.toString());
+                Log.d("gaolei", "mCall-error.toString-------------:" + t.toString());
 
             }
         });

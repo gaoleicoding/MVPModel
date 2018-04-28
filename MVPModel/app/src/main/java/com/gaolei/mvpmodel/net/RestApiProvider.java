@@ -51,7 +51,7 @@ public final class RestApiProvider {
             mRetrofit = new Retrofit.Builder()
                     .client(mOkHttpClient)
                     .baseUrl(UrlConfig.BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create())
+//                    .addConverterFactory(GsonConverterFactory.create())
                     //.addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                     .build();
         }

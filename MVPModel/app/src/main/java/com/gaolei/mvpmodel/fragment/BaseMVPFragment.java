@@ -21,13 +21,14 @@ public abstract class BaseMvpFragment<V, P extends BasePresenter<V>> extends Fra
         super.onCreate(savedInstanceState);
 
         mPresenter = initPresenter();
-
-        mPresenter.attach((V) this);
+        if (mPresenter != null)
+            mPresenter.attach((V) this);
     }
 
     @Override
     public void onDestroy() {
-        mPresenter.dettach();
+        if (mPresenter != null)
+            mPresenter.dettach();
         super.onDestroy();
     }
 
