@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.gaolei.mvpmodel.R;
-import com.gaolei.mvpmodel.mmodel.ProjectInfo;
+import com.gaolei.mvpmodel.mmodel.FeedArticleData;
 
 import java.util.List;
 
@@ -17,9 +17,9 @@ public class MyRouteAdapter extends RecyclerView.Adapter<MyRouteAdapter.MyViewHo
     public Context context;
     int selectPosition = 0;
     OnItemClickListener listener;
-    List<ProjectInfo> list;
+    List<FeedArticleData> list;
 
-    public MyRouteAdapter(Context context, List<ProjectInfo> list) {
+    public MyRouteAdapter(Context context, List<FeedArticleData> list) {
         this.context = context;
         this.list = list;
     }
@@ -42,11 +42,11 @@ public class MyRouteAdapter extends RecyclerView.Adapter<MyRouteAdapter.MyViewHo
 
     public void onBindViewHolder(MyViewHolder holder, int position) {
         holder.itemView.setTag(position);
-        ProjectInfo projectInfo=list.get(position);
-        holder.item_project_list_title_tv.setText(projectInfo.title);
-        holder.item_project_list_content_tv.setText(projectInfo.desc);
-        holder.item_project_list_time_tv.setText(projectInfo.title);
-        holder.item_project_list_author_tv.setText(projectInfo.author);
+        FeedArticleData projectInfo=list.get(position);
+        holder.item_project_list_title_tv.setText(projectInfo.getTitle());
+        holder.item_project_list_content_tv.setText(projectInfo.getDesc());
+        holder.item_project_list_time_tv.setText(projectInfo.getNiceDate());
+        holder.item_project_list_author_tv.setText(projectInfo.getAuthor());
     }
 
     @Override

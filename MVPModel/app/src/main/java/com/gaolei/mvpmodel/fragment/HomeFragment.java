@@ -1,8 +1,8 @@
 package com.gaolei.mvpmodel.fragment;
 
-import android.app.ActivityOptions;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +10,8 @@ import android.view.ViewGroup;
 import com.gaolei.mvpmodel.R;
 import com.gaolei.mvpmodel.adapter.MyRouteAdapter;
 import com.gaolei.mvpmodel.adapter.MyRouteDividerDecoration;
-import com.gaolei.mvpmodel.mmodel.ProjectInfo;
-import com.gaolei.mvpmodel.mpresenter.BasePresenter;
+import com.gaolei.mvpmodel.mmodel.FeedArticleData;
+import com.gaolei.mvpmodel.mmodel.ProjectListData;
 import com.gaolei.mvpmodel.mpresenter.HomePresenter;
 import com.gaolei.mvpmodel.mview.BankListView;
 
@@ -53,8 +53,12 @@ public class HomeFragment extends BaseMvpFragment<BankListView, HomePresenter> i
     }
 
     @Override
-    public void requstBankList(List<ProjectInfo> itemBeans) {
-        MyRouteAdapter routeAdapter = new MyRouteAdapter(getActivity(), itemBeans);
+    public void requstBankList(ProjectListData listData) {
+        MyRouteAdapter routeAdapter = new MyRouteAdapter(getActivity(), listData.getDatas());
+        Log.d("gaolei","getSize-----------"+listData.getSize());
+        Log.d("gaolei","getPageCount---------"+listData.getPageCount());
+        Log.d("gaolei","getCurPage-----------"+listData.getCurPage());
+        Log.d("gaolei",""+listData.getDatas().size());
         project_recyclerview.setAdapter(routeAdapter);
         project_recyclerview.addItemDecoration(new MyRouteDividerDecoration(10));
         routeAdapter.setOnItemClickListener(new MyRouteAdapter.OnItemClickListener() {

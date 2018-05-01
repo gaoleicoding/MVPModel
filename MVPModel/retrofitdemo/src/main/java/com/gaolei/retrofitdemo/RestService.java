@@ -1,7 +1,4 @@
-package com.gaolei.mvpmodel.net;
-
-
-import com.gaolei.mvpmodel.mmodel.ProjectListData;
+package com.gaolei.retrofitdemo;
 
 import java.util.List;
 
@@ -10,9 +7,6 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
-/**
- * Created by liuhaiyang on 2016/9/6.
- */
 public interface RestService {
 //    @GET
 //    Call<BaseServerResponse> loadHomeList(@Url String url, @Query("strRecord") int strRecord, @Query("pageSize") int pageSize);

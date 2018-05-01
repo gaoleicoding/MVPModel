@@ -1,7 +1,8 @@
 package com.gaolei.mvpmodel.mview;
 
 
-import com.gaolei.mvpmodel.mmodel.ProjectInfo;
+import com.gaolei.mvpmodel.mmodel.FeedArticleData;
+import com.gaolei.mvpmodel.mmodel.ProjectListData;
 
 import java.util.List;
 
@@ -12,9 +13,6 @@ import java.util.List;
 
 public interface BankListView extends BaseView {
 
-    /**
-     * 银行列表
-     * @param itemBeans
-     */
-    void requstBankList(List<ProjectInfo> itemBeans);
+
+    void requstBankList(ProjectListData itemBeans);
 }

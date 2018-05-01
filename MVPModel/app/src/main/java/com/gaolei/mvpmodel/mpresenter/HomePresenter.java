@@ -3,17 +3,8 @@ package com.gaolei.mvpmodel.mpresenter;
 
 import android.util.Log;
 
-import com.gaolei.mvpmodel.JsonUtil;
-import com.gaolei.mvpmodel.mmodel.ProjectInfo;
+import com.gaolei.mvpmodel.mmodel.ProjectListData;
 import com.gaolei.mvpmodel.mview.BankListView;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.reflect.TypeToken;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -62,10 +53,10 @@ public class HomePresenter extends BasePresenter<BankListView> {
 //    IUserBiz userBiz = retrofit.create(IUserBiz.class);
     public void getProjectInfo(int page, int cid) {
 
-        mCall = mRestService.getProjectList(page, cid);
+        mCall = mRestService.getProjectListData(page, cid);
         mView.showLoading();
-        mCall.enqueue(new Callback<List<ProjectInfo>>() {
-            public void onResponse(Call<List<ProjectInfo>> call, Response<List<ProjectInfo>> response) {
+        mCall.enqueue(new Callback<ProjectListData>() {
+            public void onResponse(Call<ProjectListData> call, Response<ProjectListData> response) {
                 mView.hideLoading();
 //                try {
 //                    Log.d("gaolei", "response-------------:" + response.toString());
@@ -79,7 +70,7 @@ public class HomePresenter extends BasePresenter<BankListView> {
 //                    List<ProjectInfo> projectInfoList = new Gson().fromJson(object3.toString(), new TypeToken<List<ProjectInfo>>() {
 //                    }.getType());
 //
-//                    mView.requstBankList(projectInfoList);
+                    mView.requstBankList(response.body());
 //                } catch (JSONException e) {
 //                    e.printStackTrace();
 //                    Log.d("gaolei", "JSONException.toString-------------:" +e.toString());
@@ -88,7 +79,7 @@ public class HomePresenter extends BasePresenter<BankListView> {
 
             }
 
-            public void onFailure(Call<List<ProjectInfo>> call, Throwable t) {
+            public void onFailure(Call<ProjectListData> call, Throwable t) {
                 mView.hideLoading();
 
                 Log.d("gaolei", "mCall-error.toString-------------:" + t.toString());
