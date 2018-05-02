@@ -37,9 +37,9 @@ public class MainActivity extends AppCompatActivity {
 //                Log.d("gaolei","getPageCount---------"+response.body().getPageCount());
 //                Log.d("gaolei","getCurPage-----------"+response.body().getCurPage());
                 ProjectListData projectListData=response.body();
-                Log.d("gaolei","projectListData.getSize()------------"+projectListData.getSize());
+                Log.d("gaolei","projectListData.getSize()------------"+projectListData.data.getSize());
 
-                List<FeedArticleData> articleDataList=response.body().getDatas();
+                List<FeedArticleData> articleDataList=response.body().data.getDatas();
                 Log.d("gaolei","articleDataList.size()------------"+articleDataList.size());
             }
 

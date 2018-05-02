@@ -63,7 +63,9 @@ public class GithubActivity extends AppCompatActivity {
 //              Type conListType=new TypeToken<List<Contributor>>(){}.getType();
 //                Gson gson=new Gson();
 //               String resultString= gson.toJson(conList,conListType);
-                Log.d("gaolei", "response.body().size()-------------------" + response.body().getSize());
+                Log.d("gaolei", "response.body().size()-------------------" + response.body().data.getSize());
+                Log.d("gaolei", "response.body().getCurPage()-------------------" + response.body().data.getCurPage());
+                Log.d("gaolei", "response.body().getPageCount()-------------------" + response.body().data.getPageCount());
 //                ProjectListData[] myArray = conList.toArray(new ProjectListData[0]);
 //                textView.setText(Arrays.toString(myArray));
             }

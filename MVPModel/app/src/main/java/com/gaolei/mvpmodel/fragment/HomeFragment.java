@@ -1,6 +1,7 @@
 package com.gaolei.mvpmodel.fragment;
 
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -54,13 +55,15 @@ public class HomeFragment extends BaseMvpFragment<BankListView, HomePresenter> i
 
     @Override
     public void requstBankList(ProjectListData listData) {
-        MyRouteAdapter routeAdapter = new MyRouteAdapter(getActivity(), listData.getDatas());
-        Log.d("gaolei","getSize-----------"+listData.getSize());
-        Log.d("gaolei","getPageCount---------"+listData.getPageCount());
-        Log.d("gaolei","getCurPage-----------"+listData.getCurPage());
-        Log.d("gaolei",""+listData.getDatas().size());
+        MyRouteAdapter routeAdapter = new MyRouteAdapter(getActivity(), listData.data.getDatas());
+        Log.d("gaolei","getSize-----------"+listData.data.getSize());
+        Log.d("gaolei","getPageCount---------"+listData.data.getPageCount());
+        Log.d("gaolei","getCurPage-----------"+listData.data.getCurPage());
+        Log.d("gaolei",""+listData.data.getDatas().size());
         project_recyclerview.setAdapter(routeAdapter);
         project_recyclerview.addItemDecoration(new MyRouteDividerDecoration(10));
+        project_recyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
+
         routeAdapter.setOnItemClickListener(new MyRouteAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View v, int position) {

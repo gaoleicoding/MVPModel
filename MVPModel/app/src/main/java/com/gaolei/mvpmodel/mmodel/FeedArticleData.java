@@ -6,7 +6,8 @@ import java.io.Serializable;
  * Created by caiwancheng on 2017/8/29.
  */
 
-public class FeedArticleData implements Serializable {
+public class FeedArticleData implements Serializable
+{
 
     //    {
 //    "apkLink": "",

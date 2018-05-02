@@ -2,6 +2,7 @@ package com.gaolei.mvpmodel.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,6 +44,8 @@ public class MyRouteAdapter extends RecyclerView.Adapter<MyRouteAdapter.MyViewHo
     public void onBindViewHolder(MyViewHolder holder, int position) {
         holder.itemView.setTag(position);
         FeedArticleData projectInfo=list.get(position);
+        Log.d("gaolei","onBindViewHolder-----------"+position);
+        Log.d("gaolei","projectInfo.getTitle()-----------"+projectInfo.getTitle());
         holder.item_project_list_title_tv.setText(projectInfo.getTitle());
         holder.item_project_list_content_tv.setText(projectInfo.getDesc());
         holder.item_project_list_time_tv.setText(projectInfo.getNiceDate());

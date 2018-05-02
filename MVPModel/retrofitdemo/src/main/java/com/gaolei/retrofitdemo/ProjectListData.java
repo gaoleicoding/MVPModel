@@ -10,78 +10,82 @@ import java.util.List;
 
 public class ProjectListData {
 
-    /**
-     * "curPage": 1,
-     "datas": [],
-     "offset": 0,
-     "over": true,
-     "pageCount": 1,
-     "size": 15,
-     "total": 8
-     */
+    public ListData data;
 
-    private int curPage;
-    private List<FeedArticleData> datas;
-    private int offset;
-    private boolean over;
-    private int pageCount;
-    private int size;
-    private int total;
+    public class ListData {
+        /**
+         * "curPage": 1,
+         * "datas": [],
+         * "offset": 0,
+         * "over": true,
+         * "pageCount": 1,
+         * "size": 15,
+         * "total": 8
+         */
 
-    public int getCurPage() {
+        private int curPage;
+        private List<FeedArticleData> datas;
+        private int offset;
+        private boolean over;
+        private int pageCount;
+        private int size;
+        private int total;
 
-        return curPage;
-    }
+        public int getCurPage() {
 
-    public void setCurPage(int curPage) {
-        this.curPage = curPage;
-    }
+            return curPage;
+        }
 
-    public List<FeedArticleData> getDatas() {
-        return datas;
-    }
+        public void setCurPage(int curPage) {
+            this.curPage = curPage;
+        }
 
-    public void setDatas(List<FeedArticleData> datas) {
-        this.datas = datas;
-    }
+        public List<FeedArticleData> getDatas() {
+            return datas;
+        }
 
-    public int getOffset() {
-        return offset;
-    }
+        public void setDatas(List<FeedArticleData> datas) {
+            this.datas = datas;
+        }
 
-    public void setOffset(int offset) {
-        this.offset = offset;
-    }
+        public int getOffset() {
+            return offset;
+        }
 
-    public boolean isOver() {
-        return over;
-    }
+        public void setOffset(int offset) {
+            this.offset = offset;
+        }
 
-    public void setOver(boolean over) {
-        this.over = over;
-    }
+        public boolean isOver() {
+            return over;
+        }
 
-    public int getPageCount() {
-        return pageCount;
-    }
+        public void setOver(boolean over) {
+            this.over = over;
+        }
 
-    public void setPageCount(int pageCount) {
-        this.pageCount = pageCount;
-    }
+        public int getPageCount() {
+            return pageCount;
+        }
 
-    public int getSize() {
-        return size;
-    }
+        public void setPageCount(int pageCount) {
+            this.pageCount = pageCount;
+        }
 
-    public void setSize(int size) {
-        this.size = size;
-    }
+        public int getSize() {
+            return size;
+        }
 
-    public int getTotal() {
-        return total;
-    }
+        public void setSize(int size) {
+            this.size = size;
+        }
 
-    public void setTotal(int total) {
-        this.total = total;
+        public int getTotal() {
+            return total;
+        }
+
+        public void setTotal(int total) {
+            this.total = total;
+        }
     }
 }
