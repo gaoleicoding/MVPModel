@@ -11,7 +11,7 @@ import com.gaolei.mvpmodel.mpresenter.BasePresenter;
  */
 
 
-public abstract class BaseMvpFragment<V, P extends BasePresenter<V>> extends Fragment {
+public abstract class BaseMvpFragment<V, P extends BasePresenter<V>> extends BaseFragment {
 
     public P mPresenter;
 

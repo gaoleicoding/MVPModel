@@ -1,22 +1,23 @@
 package com.gaolei.mvpmodel.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.gaolei.mvpmodel.R;
-import com.gaolei.mvpmodel.adapter.MyRouteAdapter;
-import com.gaolei.mvpmodel.adapter.MyRouteDividerDecoration;
+import com.gaolei.mvpmodel.activity.ArticleDetailActivity;
+import com.gaolei.mvpmodel.adapter.DividerItemDecoration;
+import com.gaolei.mvpmodel.adapter.ProjectAdapter;
 import com.gaolei.mvpmodel.mmodel.FeedArticleData;
 import com.gaolei.mvpmodel.mmodel.ProjectListData;
 import com.gaolei.mvpmodel.mpresenter.HomePresenter;
-import com.gaolei.mvpmodel.mview.BankListView;
+import com.gaolei.mvpmodel.mview.ProjectListView;
 
 import java.util.List;
+
+import butterknife.BindView;
 
 
 /**
@@ -24,18 +25,26 @@ import java.util.List;
  * @date 2018/2/11
  */
 
-public class HomeFragment extends BaseMvpFragment<BankListView, HomePresenter> implements BankListView {
+public class HomeFragment extends BaseMvpFragment<ProjectListView, HomePresenter> implements ProjectListView {
 
-
+    @BindView(R.id.project_recyclerview)
     RecyclerView project_recyclerview;
+    ProjectAdapter projectAdapter;
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_main, null);
+    public void finishCreateView(Bundle bundle) {
+        mPresenter.getProjectInfo(1, 294);
+    }
 
-        project_recyclerview=view.findViewById(R.id.project_recyclerview);
-        mPresenter.getProjectInfo(1,294);
+    @Override
+    public int setContentLayout() {
+        return R.layout.fragment_home;
+    }
 
-        return view;
+    @Override
+    public void reload() {
+        mPresenter.getProjectInfo(1, 294);
+        ;
     }
 
     @Override
@@ -45,29 +54,31 @@ public class HomeFragment extends BaseMvpFragment<BankListView, HomePresenter> i
 
     @Override
     public void showLoading() {
-
+        setLoading(true);
     }
 
     @Override
     public void hideLoading() {
-
+        setLoading(false);
     }
 
     @Override
-    public void requstBankList(ProjectListData listData) {
-        MyRouteAdapter routeAdapter = new MyRouteAdapter(getActivity(), listData.data.getDatas());
-        Log.d("gaolei","getSize-----------"+listData.data.getSize());
-        Log.d("gaolei","getPageCount---------"+listData.data.getPageCount());
-        Log.d("gaolei","getCurPage-----------"+listData.data.getCurPage());
-        Log.d("gaolei",""+listData.data.getDatas().size());
-        project_recyclerview.setAdapter(routeAdapter);
-        project_recyclerview.addItemDecoration(new MyRouteDividerDecoration(10));
-        project_recyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
+    public void requstProjectList(ProjectListData listData) {
+       final List<FeedArticleData> articleDataList=listData.data.getDatas();
+        projectAdapter = new ProjectAdapter(getActivity(), articleDataList);
 
-        routeAdapter.setOnItemClickListener(new MyRouteAdapter.OnItemClickListener() {
+        project_recyclerview.addItemDecoration(new DividerItemDecoration(getActivity(),
+                DividerItemDecoration.VERTICAL_LIST));
+        project_recyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
+        project_recyclerview.setAdapter(projectAdapter);
+        projectAdapter.setOnItemClickListener(new ProjectAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View v, int position) {
-
+                Intent intent = new Intent(getActivity(), ArticleDetailActivity.class);
+                Bundle bundle=new Bundle();
+                bundle.putString("url",articleDataList.get(position).getLink());
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
         });
     }

@@ -15,10 +15,19 @@ import com.gaolei.mvpmodel.mpresenter.BasePresenter;
  */
 
 public class KnowledgeFragment extends BaseMvpFragment {
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View fragment1 = inflater.inflate(R.layout.fragment_knowledge, null);
-        return fragment1;
+    public void finishCreateView( Bundle bundle) {
+
+    }
+
+    @Override
+    public int setContentLayout() {
+        return R.layout.fragment_knowledge;
+    }
+
+    @Override
+    public void reload() {
     }
 
     @Override
