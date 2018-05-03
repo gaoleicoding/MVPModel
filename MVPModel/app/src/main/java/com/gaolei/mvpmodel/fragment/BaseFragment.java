@@ -34,12 +34,12 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View mParentView = inflater.inflate(R.layout.fragment_base, container, false);
         initBaseView(mParentView);
-        setContentView(inflater);
+        addContentView(inflater);
         Bundle bundle = getActivity().getIntent().getExtras();
         if (bundle == null) {
             bundle = savedInstanceState;
         }
-        finishCreateView(bundle);
+        initData(bundle);
         return mParentView;
     }
 
@@ -48,10 +48,10 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
      *
      * @param bundle
      */
-    public abstract void finishCreateView(Bundle bundle);
+    public abstract void initData(Bundle bundle);
 
     private void initBaseView(View view) {
-        mLlContent = view.findViewById(R.id.base_content);
+        mLlContent = view.findViewById(R.id.base_fragment_content);
         mErrorPageView = view.findViewById(R.id.ll_base_error_content);
         bt_error_refresh = view.findViewById(R.id.bt_error_refresh);
         mLlLoading = view.findViewById(R.id.ll_loading);
@@ -70,7 +70,7 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
     /**
      * 设置内容
      */
-    public void setContentView(LayoutInflater inflater) {
+    public void addContentView(LayoutInflater inflater) {
         subFragmentView = inflater.inflate(setContentLayout(), null);
         mLlContent.addView(subFragmentView);
         mBinder = ButterKnife.bind(this, subFragmentView);

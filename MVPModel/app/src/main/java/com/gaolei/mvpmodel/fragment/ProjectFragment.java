@@ -18,7 +18,7 @@ public class ProjectFragment extends BaseMvpFragment {
 
 
     @Override
-    public void finishCreateView( Bundle bundle) {
+    public void initData( Bundle bundle) {
 
     }
 

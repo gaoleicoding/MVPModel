@@ -6,6 +6,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import com.gaolei.mvpmodel.BottomNavigationViewHelper;
@@ -33,8 +34,9 @@ public class ArticleDetailActivity extends BaseActivity {
 
     @Override
     protected void initData(Bundle bundle) {
-
-        String url=bundle.getString("url");
+        title.setText(getString(R.string.article_detail));
+        iv_back.setVisibility(View.VISIBLE);
+        String url = bundle.getString("url");
         webview_article.loadUrl(url);
     }
 

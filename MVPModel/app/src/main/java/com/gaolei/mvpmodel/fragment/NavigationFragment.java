@@ -17,7 +17,7 @@ import com.gaolei.mvpmodel.mpresenter.BasePresenter;
 public class NavigationFragment extends BaseMvpFragment {
 
     @Override
-    public void finishCreateView( Bundle bundle) {
+    public void initData( Bundle bundle) {
 
     }
 

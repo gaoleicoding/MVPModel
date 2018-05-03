@@ -32,7 +32,7 @@ public class HomeFragment extends BaseMvpFragment<ProjectListView, HomePresenter
     ProjectAdapter projectAdapter;
 
     @Override
-    public void finishCreateView(Bundle bundle) {
+    public void initData(Bundle bundle) {
         mPresenter.getProjectInfo(1, 294);
     }
 

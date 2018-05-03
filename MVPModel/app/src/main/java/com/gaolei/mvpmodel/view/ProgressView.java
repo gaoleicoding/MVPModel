@@ -32,7 +32,7 @@ public class ProgressView extends View {
         mPaint.setDither(true);
         mPaint.setAntiAlias(true);
         mPaint.setStrokeWidth(5);
-        mPaint.setColor(Color.parseColor("#8000ff00"));
+        mPaint.setColor(Color.parseColor("#88b221"));
     }
 
     @Override

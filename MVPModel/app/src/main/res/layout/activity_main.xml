@@ -4,15 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:textSize="18sp"
-        android:background="@color/yellow"
-        android:textColor="#ffffff"
-        android:text="首页"
-        android:gravity="center" />
+    <!--<TextView-->
+        <!--android:id="@+id/title"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="45dp"-->
+        <!--android:textSize="18sp"-->
+        <!--android:background="@color/yellow"-->
+        <!--android:textColor="#ffffff"-->
+        <!--android:text="首页"-->
+        <!--android:gravity="center" />-->
 
     <FrameLayout
         android:id="@+id/fragment_group"
