@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.gaolei.mvpmodel.R;
-import com.gaolei.mvpmodel.mmodel.FeedArticleData;
+import com.gaolei.mvpmodel.mmodel.ProjectListData.FeedArticleData;
 
 import java.util.List;
 

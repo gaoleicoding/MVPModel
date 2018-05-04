@@ -39,4 +39,6 @@ public interface RestService {
 //    参数：cid 分类的id，页码：拼接在链接中，从1开始。
         @GET("project/list/{page}/json")
         Call<ProjectListData> getProjectListData(@Path("page") int page, @Query("cid") int cid);
+        @GET("banner/json")
+        Call<ProjectListData> getBannerListData();
 }
