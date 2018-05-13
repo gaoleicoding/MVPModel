@@ -46,7 +46,7 @@ public class Html5Webview extends WebView {
     private void init() {
         //初始化进度条
         progressView = new ProgressView(context);
-        progressView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp2px(context, 4)));
+        progressView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp2px(context, 3)));
 //        progressView.setColor(Color.BLUE);
 //        progressView.setProgress(10);
         //把进度条加到Webview中

@@ -1,6 +1,7 @@
 package com.gaolei.mvpmodel.net;
 
 
+import com.gaolei.mvpmodel.mmodel.BannerListData;
 import com.gaolei.mvpmodel.mmodel.ProjectListData;
 
 import java.util.List;
@@ -33,12 +34,18 @@ public interface RestService {
 //    Call<BaseServerResponse> login(@Url String url, @Field("username") String username,
 //                                   @Field("password") String pwd
 //    );
+/*
+    http://www.wanandroid.com/project/list/1/json?cid=294
+    方法：GET
+    参数：cid 分类的id，页码：拼接在链接中，从1开始。
+    */
+    @GET("project/list/{page}/json")
+    Call<ProjectListData> getProjectListData(@Path("page") int page, @Query("cid") int cid);
+/*
+    http://www.wanandroid.com/banner/json
+    广告栏数据
+*/
 
-//    http://www.wanandroid.com/project/list/1/json?cid=294
-//    方法：GET
-//    参数：cid 分类的id，页码：拼接在链接中，从1开始。
-        @GET("project/list/{page}/json")
-        Call<ProjectListData> getProjectListData(@Path("page") int page, @Query("cid") int cid);
-        @GET("banner/json")
-        Call<ProjectListData> getBannerListData();
+    @GET("banner/json")
+    Call<BannerListData> getBannerListData();
 }

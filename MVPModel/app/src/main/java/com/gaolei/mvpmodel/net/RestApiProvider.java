@@ -13,7 +13,7 @@ public final class RestApiProvider {
     private Retrofit mRetrofit;
     private OkHttpClient mOkHttpClient;
     private static volatile RestApiProvider sInstance;
-
+    private RestService restService;
 
     private RestApiProvider() {
     }
@@ -70,7 +70,8 @@ public final class RestApiProvider {
     }
 
     public RestService getApiService() {
-        RestService restService = mRetrofit.create(RestService.class);
+        if (restService == null)
+            restService = mRetrofit.create(RestService.class);
         return restService;
     }
 }
