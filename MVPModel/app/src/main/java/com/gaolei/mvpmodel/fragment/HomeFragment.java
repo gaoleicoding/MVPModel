@@ -22,6 +22,7 @@ import com.gaolei.mvpmodel.net.RestService;
 import com.gaolei.mvpmodel.net.UrlConfig;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
+import com.youth.banner.Transformer;
 import com.youth.banner.listener.OnBannerListener;
 
 import java.util.ArrayList;
@@ -123,9 +124,25 @@ public class HomeFragment extends BaseMvpFragment<ProjectListView, HomePresenter
             }
         });
 
-        banner.setBannerTitles(titleList);
-        banner.setImages(imageList);
-        banner.setDelayTime(3000);
+        //设置样式,默认为:Banner.NOT_INDICATOR(不显示指示器和标题)
+        //可选样式如下:
+        //1. Banner.CIRCLE_INDICATOR    显示圆形指示器
+        //2. Banner.NUM_INDICATOR   显示数字指示器
+        //3. Banner.NUM_INDICATOR_TITLE 显示数字指示器和标题
+        //4. Banner.CIRCLE_INDICATOR_TITLE  显示圆形指示器和标题
+        banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);//设置圆形指示器与标题
+        //设置banner动画效果
+//        Tansformer.CubeIn
+//        Transformer.CubeOut
+//        Transformer.DepthPage
+//        Transformer.FlipHorizontal
+//        Transformer.FlipVertical
+        banner.setBannerAnimation(Transformer.FlipHorizontal);
+        banner.setIndicatorGravity(BannerConfig.CENTER);//设置指示器位置
+        banner.setDelayTime(3000);//设置轮播时间
+        banner.setImages(imageList);//设置图片源
+        banner.setBannerTitles(titleList);//设置标题源
+
         banner.start();
 
 
