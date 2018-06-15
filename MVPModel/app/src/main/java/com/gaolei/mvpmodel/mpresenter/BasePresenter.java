@@ -1,16 +1,23 @@
 package com.gaolei.mvpmodel.mpresenter;
 
+import com.gaolei.mvpmodel.mmodel.ProjectListData;
 import com.gaolei.mvpmodel.net.RestApiProvider;
 import com.gaolei.mvpmodel.net.RestService;
+import com.gaolei.mvpmodel.rxjava.BaseObserver;
 
+
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.schedulers.Schedulers;
 import retrofit2.Call;
 
 public abstract class BasePresenter<V> {
 
     public V mView;
-    public Call mCall;
+//    public Observable observable;
     public RestService mRestService = RestApiProvider.getInstance().withNoInterceptor().builder().getApiService();
-
+    CompositeDisposable mCompositeDisposable ;
 
     /**
      * 绑定View
@@ -19,6 +26,9 @@ public abstract class BasePresenter<V> {
      */
     public void attach(V view) {
         this.mView = view;
+        if (mCompositeDisposable == null) {
+            mCompositeDisposable = new CompositeDisposable();
+        }
     }
 
     /**
@@ -26,8 +36,16 @@ public abstract class BasePresenter<V> {
      */
     public void dettach() {
         this.mView = null;
-        if (mCall != null) {
-            mCall.cancel();
+        if (mCompositeDisposable != null) {
+            mCompositeDisposable.clear();
         }
+    }
+
+    public void doSubscribe( Observable observable,BaseObserver observer){
+                mCompositeDisposable.add(observer);
+        observable.subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(observer);
     }
 }

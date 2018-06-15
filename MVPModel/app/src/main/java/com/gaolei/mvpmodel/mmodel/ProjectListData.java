@@ -38,15 +38,12 @@ public class ProjectListData {
             this.datas = datas;
         }
 //        public int getCurPage() {
-//
 //            return curPage;
 //        }
 //
 //        public void setCurPage(int curPage) {
 //            this.curPage = curPage;
 //        }
-//
-
 //
 //        public int getOffset() {
 //            return offset;
@@ -92,7 +89,7 @@ public class ProjectListData {
     public class FeedArticleData implements Serializable
     {
 
-        //    {
+//            {
 //    "apkLink": "",
 //        "author": "LiangLuDev",
 //        "chapterId": 294,

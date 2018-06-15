@@ -15,8 +15,8 @@ public class BannerListData {
 //        1, "order":0, "title":"最新项目上线啦~", "type":0, "url":"http://www.wanandroid.com/pindex"
 //    }
 
-    int errorCode;
-    String errorMsg;
+    public int errorCode;
+    public String errorMsg;
     public List<BannerData> data;
     public List<BannerData> getData() {
         return data;

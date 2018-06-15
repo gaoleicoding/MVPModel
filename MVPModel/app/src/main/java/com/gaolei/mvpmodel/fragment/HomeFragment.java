@@ -20,6 +20,7 @@ import com.gaolei.mvpmodel.mpresenter.HomePresenter;
 import com.gaolei.mvpmodel.mview.ProjectListView;
 import com.gaolei.mvpmodel.net.RestService;
 import com.gaolei.mvpmodel.net.UrlConfig;
+import com.gaolei.mvpmodel.utils.Utils;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
@@ -79,6 +80,11 @@ public class HomeFragment extends BaseMvpFragment<ProjectListView, HomePresenter
     @Override
     public void hideLoading() {
         setLoading(false);
+    }
+
+    @Override
+    public void showErrorMsg(String errorMsg) {
+        Utils.showToast(getActivity(),errorMsg);
     }
 
 
