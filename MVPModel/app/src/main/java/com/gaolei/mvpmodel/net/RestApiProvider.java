@@ -19,28 +19,6 @@ public final class RestApiProvider {
     }
 
 
-    public RestApiProvider withInterceptor(Interceptor intertor, CertificatePinner pinner) {
-        if (mOkHttpClient == null) {
-            mOkHttpClient = new OkHttpClient.Builder()
-                    .addNetworkInterceptor(new HttpLoggingInterceptor())
-                    .addInterceptor(intertor)
-                    .certificatePinner(pinner)
-                    .build();
-        }
-        return sInstance;
-    }
-
-    public RestApiProvider withNoInterceptor() {
-
-
-        if (mOkHttpClient == null) {
-            mOkHttpClient = new OkHttpClient.Builder()
-                    .addNetworkInterceptor(new HttpLoggingInterceptor())
-                    .build();
-        }
-        return sInstance;
-    }
-
     public RestApiProvider builder() {
         if (mOkHttpClient == null) {
             mOkHttpClient = new OkHttpClient.Builder()
