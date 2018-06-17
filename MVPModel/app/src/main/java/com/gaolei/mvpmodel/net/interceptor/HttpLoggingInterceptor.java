@@ -1,4 +1,4 @@
-package com.gaolei.mvpmodel.net;
+package com.gaolei.mvpmodel.net.interceptor;
 
 import android.support.v4.BuildConfig;
 import android.util.Log;

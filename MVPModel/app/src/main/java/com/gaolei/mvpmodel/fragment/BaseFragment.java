@@ -2,6 +2,7 @@ package com.gaolei.mvpmodel.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,8 +56,9 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
         mErrorPageView = view.findViewById(R.id.ll_base_error_content);
         bt_error_refresh = view.findViewById(R.id.bt_error_refresh);
         mLlLoading = view.findViewById(R.id.ll_loading);
+        Log.d("gaolei","network:"+NetworkUtil.isNetworkAvailable(getActivity()));
         if (!NetworkUtil.isNetworkAvailable(getActivity()))
-            mErrorPageView.setVisibility(View.VISIBLE);
+            showErrorPage(true);
         bt_error_refresh.setOnClickListener(this);
     }
 
@@ -93,7 +95,7 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
      * @param isShow
      */
     public void showErrorPage(boolean isShow) {
-//        mErrorPageView.setVisibility(isShow ? View.VISIBLE : View.GONE);
+        mErrorPageView.setVisibility(isShow ? View.VISIBLE : View.GONE);
     }
 
     @Override

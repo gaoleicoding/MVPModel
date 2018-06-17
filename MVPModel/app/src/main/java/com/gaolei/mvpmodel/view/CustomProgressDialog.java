@@ -13,13 +13,8 @@ import android.widget.TextView;
 import com.gaolei.mvpmodel.R;
 
 public class CustomProgressDialog{
-    /**
-     * 得到自定义的progressDialog
-     * @param context
-     * @param msg
-     * @return
-     */
-    public static Dialog createLoadingDialog(Context context, String msg) {
+
+    public static Dialog createLoadingDialog(Context context) {
 
         LayoutInflater inflater = LayoutInflater.from(context);
         View v = inflater.inflate(R.layout.dialog_loading, null);// 得到加载view
@@ -29,10 +24,9 @@ public class CustomProgressDialog{
         TextView tipTextView = (TextView) v.findViewById(R.id.tipTextView);// 提示文字
         // 加载动画
         Animation hyperspaceJumpAnimation = AnimationUtils.loadAnimation(
-                context, R.anim.anim_loading);
+                context, R.anim.anim_dialog_load);
         // 使用ImageView显示动画
         spaceshipImage.startAnimation(hyperspaceJumpAnimation);
-        tipTextView.setText(msg);// 设置加载信息
 
         Dialog loadingDialog = new Dialog(context, R.style.loading_dialog);// 创建自定义样式dialog
 

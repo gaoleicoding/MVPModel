@@ -1,6 +1,7 @@
 package com.gaolei.mvpmodel.mpresenter;
 
 
+import android.content.Context;
 import android.util.Log;
 
 import com.gaolei.mvpmodel.mmodel.BannerListData;
@@ -28,25 +29,22 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class HomePresenter extends BasePresenter<ProjectListView> {
 
-    public void getProjectInfo(int page, int cid) {
-        mView.showLoading();
+    public void getProjectInfo(int page, int cid, Context context) {
         Observable observable = mRestService.getProjectListData(page, cid);
-        doSubscribe(observable,new BaseObserver<ProjectListData>(mView) {
+        doSubscribe(observable,new BaseObserver<ProjectListData>(context) {
             @Override
             public void onNext(ProjectListData projectListData) {
                 mView.requstProjectList(projectListData);
-                mView.hideLoading();
             }
         });
     }
-    public void getBannerInfo() {
+    public void getBannerInfo(Context context) {
         Observable observable = mRestService.getBannerListData();
-        doSubscribe(observable,new BaseObserver<BannerListData>(mView) {
+        doSubscribe(observable,new BaseObserver<BannerListData>(context) {
 
             @Override
             public void onNext(BannerListData bannerListData) {
                 mView.requstBannerList(bannerListData);
-                mView.hideLoading();
             }
 
         });

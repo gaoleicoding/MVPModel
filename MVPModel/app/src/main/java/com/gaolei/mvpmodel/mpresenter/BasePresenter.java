@@ -16,7 +16,7 @@ public abstract class BasePresenter<V> {
 
     public V mView;
 //    public Observable observable;
-    public RestService mRestService = RestApiProvider.getInstance().withNoInterceptor().builder().getApiService();
+    public RestService mRestService = RestApiProvider.getInstance().builder().getApiService();
     CompositeDisposable mCompositeDisposable ;
 
     /**

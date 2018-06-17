@@ -1,8 +1,11 @@
 package com.gaolei.mvpmodel.net;
 
 
-import okhttp3.CertificatePinner;
-import okhttp3.Interceptor;
+import com.gaolei.mvpmodel.net.interceptor.HttpLoggingInterceptor;
+import com.gaolei.mvpmodel.net.interceptor.RetryIntercepter;
+
+import java.util.concurrent.TimeUnit;
+
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -20,33 +23,16 @@ public final class RestApiProvider {
     }
 
 
-    public RestApiProvider withInterceptor(Interceptor intertor, CertificatePinner pinner) {
-        if (mOkHttpClient == null) {
-            mOkHttpClient = new OkHttpClient.Builder()
-                    .addNetworkInterceptor(new HttpLoggingInterceptor())
-                    .addInterceptor(intertor)
-                    .certificatePinner(pinner)
-                    .build();
-        }
-        return sInstance;
-    }
-
-    public RestApiProvider withNoInterceptor() {
-
-
-        if (mOkHttpClient == null) {
-            mOkHttpClient = new OkHttpClient.Builder()
-                    .addNetworkInterceptor(new HttpLoggingInterceptor())
-                    .build();
-        }
-        return sInstance;
-    }
-
     public RestApiProvider builder() {
         if (mOkHttpClient == null) {
             mOkHttpClient = new OkHttpClient.Builder()
                     .addNetworkInterceptor(new HttpLoggingInterceptor())
+                    .addInterceptor(new RetryIntercepter(4))//重试
+                    .connectTimeout(5, TimeUnit.SECONDS)
+                    .readTimeout(5, TimeUnit.SECONDS)
+                    .writeTimeout(5, TimeUnit.SECONDS)
                     .build();
+
         }
         if (mRetrofit == null) {
             mRetrofit = new Retrofit.Builder()

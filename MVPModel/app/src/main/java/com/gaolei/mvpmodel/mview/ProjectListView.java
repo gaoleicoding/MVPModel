@@ -11,7 +11,7 @@ import java.util.List;
  * Created by caiwancheng on 2017/8/29.
  */
 
-public interface ProjectListView extends BaseView {
+public interface ProjectListView  {
 
 
     void requstProjectList(ProjectListData itemBeans);

@@ -52,8 +52,8 @@ public class HomeFragment extends BaseMvpFragment<ProjectListView, HomePresenter
 
     @Override
     public void initData(Bundle bundle) {
-        mPresenter.getProjectInfo(1, 294);
-        mPresenter.getBannerInfo();
+        mPresenter.getProjectInfo(1, 294,getActivity());
+        mPresenter.getBannerInfo(getActivity());
     }
 
     @Override
@@ -63,28 +63,13 @@ public class HomeFragment extends BaseMvpFragment<ProjectListView, HomePresenter
 
     @Override
     public void reload() {
-        mPresenter.getProjectInfo(1, 294);
-        mPresenter.getBannerInfo();
+        mPresenter.getProjectInfo(1, 294,getActivity());
+        mPresenter.getBannerInfo(getActivity());
     }
 
     @Override
     public HomePresenter initPresenter() {
         return new HomePresenter();
-    }
-
-    @Override
-    public void showLoading() {
-        setLoading(true);
-    }
-
-    @Override
-    public void hideLoading() {
-        setLoading(false);
-    }
-
-    @Override
-    public void showErrorMsg(String errorMsg) {
-        Utils.showToast(getActivity(),errorMsg);
     }
 
 
