@@ -1,8 +1,7 @@
 package com.gaolei.mvpmodel.mpresenter;
 
-import com.gaolei.mvpmodel.mmodel.ProjectListData;
-import com.gaolei.mvpmodel.net.RestApiProvider;
-import com.gaolei.mvpmodel.net.RestService;
+import com.gaolei.mvpmodel.net.RetrofitProvider;
+import com.gaolei.mvpmodel.net.ApiService;
 import com.gaolei.mvpmodel.rxjava.BaseObserver;
 
 
@@ -10,13 +9,12 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
-import retrofit2.Call;
 
 public abstract class BasePresenter<V> {
 
     public V mView;
 //    public Observable observable;
-    public RestService mRestService = RestApiProvider.getInstance().builder().getApiService();
+    public ApiService mRestService = RetrofitProvider.getInstance().builder().getApiService();
     CompositeDisposable mCompositeDisposable ;
 
     /**

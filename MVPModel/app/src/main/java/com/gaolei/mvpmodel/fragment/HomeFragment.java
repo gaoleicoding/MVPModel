@@ -14,13 +14,10 @@ import com.gaolei.mvpmodel.R;
 import com.gaolei.mvpmodel.activity.ArticleDetailActivity;
 import com.gaolei.mvpmodel.adapter.DividerItemDecoration;
 import com.gaolei.mvpmodel.adapter.ProjectAdapter;
+import com.gaolei.mvpmodel.contract.ProjectListContract;
 import com.gaolei.mvpmodel.mmodel.BannerListData;
 import com.gaolei.mvpmodel.mmodel.ProjectListData;
 import com.gaolei.mvpmodel.mpresenter.HomePresenter;
-import com.gaolei.mvpmodel.mview.ProjectListView;
-import com.gaolei.mvpmodel.net.RestService;
-import com.gaolei.mvpmodel.net.UrlConfig;
-import com.gaolei.mvpmodel.utils.Utils;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
@@ -30,11 +27,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 
 /**
@@ -42,7 +34,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * @date 2018/2/11
  */
 
-public class HomeFragment extends BaseMvpFragment<ProjectListView, HomePresenter> implements ProjectListView {
+public class HomeFragment extends BaseMvpFragment<ProjectListContract.View, HomePresenter> implements ProjectListContract.View {
 
     @BindView(R.id.project_recyclerview)
     RecyclerView project_recyclerview;
@@ -74,7 +66,7 @@ public class HomeFragment extends BaseMvpFragment<ProjectListView, HomePresenter
 
 
     @Override
-    public void requstProjectList(ProjectListData listData) {
+    public void showProjectInfo(ProjectListData listData) {
         final List<ProjectListData.FeedArticleData> articleDataList = listData.data.getDatas();
         projectAdapter = new ProjectAdapter(getActivity(), articleDataList);
 
@@ -95,7 +87,7 @@ public class HomeFragment extends BaseMvpFragment<ProjectListView, HomePresenter
     }
 
     @Override
-    public void requstBannerList(BannerListData itemBeans) {
+    public void showBannerInfo(BannerListData itemBeans) {
 
         final List<String> linkList = new ArrayList<String>();
         List imageList = new ArrayList();

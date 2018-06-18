@@ -12,18 +12,18 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
-public final class RestApiProvider {
+public final class RetrofitProvider {
 
     private Retrofit mRetrofit;
     private OkHttpClient mOkHttpClient;
-    private static volatile RestApiProvider sInstance;
-    private RestService restService;
+    private static volatile RetrofitProvider sInstance;
+    private ApiService restService;
 
-    private RestApiProvider() {
+    private RetrofitProvider() {
     }
 
 
-    public RestApiProvider builder() {
+    public RetrofitProvider builder() {
         if (mOkHttpClient == null) {
             mOkHttpClient = new OkHttpClient.Builder()
                     .addNetworkInterceptor(new HttpLoggingInterceptor())
@@ -45,20 +45,20 @@ public final class RestApiProvider {
         return sInstance;
     }
 
-    public static RestApiProvider getInstance() {
+    public static RetrofitProvider getInstance() {
         if (sInstance == null) {
-            synchronized (RestApiProvider.class) {
+            synchronized (RetrofitProvider.class) {
                 if (sInstance == null) {
-                    sInstance = new RestApiProvider();
+                    sInstance = new RetrofitProvider();
                 }
             }
         }
         return sInstance;
     }
 
-    public RestService getApiService() {
+    public ApiService getApiService() {
         if (restService == null)
-            restService = mRetrofit.create(RestService.class);
+            restService = mRetrofit.create(ApiService.class);
         return restService;
     }
 }

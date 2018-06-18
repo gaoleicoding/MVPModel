@@ -2,7 +2,6 @@ package com.gaolei.mvpmodel.rxjava;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.widget.Toast;
 
 import com.gaolei.mvpmodel.application.CustomApplication;
 import com.gaolei.mvpmodel.mview.BaseView;
@@ -11,8 +10,6 @@ import com.gaolei.mvpmodel.view.CustomProgressDialog;
 
 import java.io.IOException;
 
-import io.reactivex.Observer;
-import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.ResourceObserver;
 import retrofit2.HttpException;
 
