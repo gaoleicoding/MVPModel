@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.gaolei.mvpmodel.R;
 import com.gaolei.mvpmodel.mmodel.ProjectListData.FeedArticleData;
+import com.gaolei.mvpmodel.view.ImageLoader;
 
 import java.util.List;
 
@@ -55,10 +56,8 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.MyViewHo
         holder.item_project_list_content_tv.setText(projectInfo.getDesc());
         holder.item_project_list_time_tv.setText(projectInfo.getNiceDate());
         holder.item_project_list_author_tv.setText(projectInfo.getAuthor());
-        Glide.with(context)
-                .load(projectInfo.getEnvelopePic()) // 图片地址
-                .apply(options) // 参数
-                .into(holder.item_project_list_iv); // 需要显示的ImageView控件
+        ImageLoader.getInstance().load(context,projectInfo.getEnvelopePic(),holder.item_project_list_iv);
+
     }
 
     @Override

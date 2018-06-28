@@ -16,10 +16,7 @@ public class CustomApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-       options = new RequestOptions()
-//                .placeholder(R.drawable.ic_launcher)// 正在加载中的图片
-//                .error(R.drawable.video_error) // 加载失败的图片
-                .diskCacheStrategy(DiskCacheStrategy.ALL); // 磁盘缓存策略
+
         connectivityManager= (ConnectivityManager) getApplicationContext()
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
     }

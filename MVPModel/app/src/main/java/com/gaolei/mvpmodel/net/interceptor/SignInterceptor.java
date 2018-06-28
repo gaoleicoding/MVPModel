@@ -1,11 +1,11 @@
 package com.gaolei.mvpmodel.net.interceptor;
 
 import android.content.Context;
-import android.support.v4.BuildConfig;
 import android.support.v4.util.ArrayMap;
 import android.util.Log;
 import android.util.Pair;
 
+import com.gaolei.mvpmodel.BuildConfig;
 import com.gaolei.mvpmodel.utils.LogUtil;
 import com.gaolei.mvpmodel.utils.Utils;
 
