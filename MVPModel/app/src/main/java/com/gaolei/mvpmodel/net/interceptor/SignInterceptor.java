@@ -38,8 +38,7 @@ public final class SignInterceptor implements Interceptor {
     private static final String MD5KEY = "base64:FgBvWS7+m3BPRnKemuoOwXEf7kvldmM+VOmJS5Iccxs=";
     private Context mContext;
 
-    public SignInterceptor(Context context) {
-        this.mContext = context;
+    public SignInterceptor() {
     }
 
     @Override

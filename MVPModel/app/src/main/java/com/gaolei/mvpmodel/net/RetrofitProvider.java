@@ -1,11 +1,23 @@
 package com.gaolei.mvpmodel.net;
 
 
-import com.gaolei.mvpmodel.net.interceptor.HttpLoggingInterceptor;
-import com.gaolei.mvpmodel.net.interceptor.RetryIntercepter;
+import android.os.Environment;
 
+import com.gaolei.mvpmodel.application.CustomApplication;
+import com.gaolei.mvpmodel.net.interceptor.CacheInterceptor;
+import com.gaolei.mvpmodel.net.interceptor.DefaultHeaderInterceptor;
+import com.gaolei.mvpmodel.net.interceptor.GzipRequestInterceptor;
+import com.gaolei.mvpmodel.net.interceptor.HttpLoggingInterceptor;
+import com.gaolei.mvpmodel.net.interceptor.ProgressInterceptor;
+import com.gaolei.mvpmodel.net.interceptor.RetryIntercepter;
+import com.gaolei.mvpmodel.net.interceptor.SignInterceptor;
+import com.gaolei.mvpmodel.net.interceptor.TokenInterceptor;
+import com.gaolei.mvpmodel.net.interceptor.util.CacheProvide;
+
+import java.io.File;
 import java.util.concurrent.TimeUnit;
 
+import okhttp3.Cache;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -18,16 +30,26 @@ public final class RetrofitProvider {
     private OkHttpClient mOkHttpClient;
     private static volatile RetrofitProvider sInstance;
     private ApiService restService;
+    String  cacheDir;
 
     private RetrofitProvider() {
     }
 
 
     public RetrofitProvider builder() {
+
         if (mOkHttpClient == null) {
             mOkHttpClient = new OkHttpClient.Builder()
                     .addNetworkInterceptor(new HttpLoggingInterceptor())
+                    .addNetworkInterceptor(new CacheInterceptor())//缓存拦截器
+                    .cache(new Cache(new File(CustomApplication.cacheDir), 10240 * 1024))//缓存路径和空间设置
                     .addInterceptor(new RetryIntercepter(4))//重试
+//                    .addInterceptor(new DefaultHeaderInterceptor())//请求连接中添加头信息
+//                    .addInterceptor(new ProgressInterceptor())//请求url的进度
+//                    .addInterceptor(new TokenInterceptor())//token过期，自动刷新Token
+//                    .addInterceptor(new SignInterceptor())//所有的接口，默认需要带上sign,timestamp2个参数
+//                    .addInterceptor(new GzipRequestInterceptor())//开启Gzip压缩
+
                     .connectTimeout(5, TimeUnit.SECONDS)
                     .readTimeout(5, TimeUnit.SECONDS)
                     .writeTimeout(5, TimeUnit.SECONDS)

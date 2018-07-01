@@ -8,7 +8,6 @@ import com.bumptech.glide.load.DecodeFormat;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 
-import static com.gaolei.mvpmodel.application.CustomApplication.options;
 
 public class ImageLoader {
     public static ImageLoader instance;

@@ -4,19 +4,22 @@ import android.app.Application;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Environment;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.gaolei.mvpmodel.R;
 
+import java.io.File;
+
 
 public class CustomApplication extends Application {
     public static ConnectivityManager connectivityManager;
-    public static RequestOptions options;
+    public static String cacheDir;
     @Override
     public void onCreate() {
         super.onCreate();
-
+        cacheDir= Environment.getExternalStorageDirectory().getPath()+"/"+getPackageName()+"/net_cache";
         connectivityManager= (ConnectivityManager) getApplicationContext()
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
     }

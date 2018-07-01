@@ -17,7 +17,6 @@ import com.gaolei.mvpmodel.view.ImageLoader;
 
 import java.util.List;
 
-import static com.gaolei.mvpmodel.application.CustomApplication.options;
 
 public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.MyViewHolder> {
 
