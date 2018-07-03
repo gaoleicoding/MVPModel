@@ -16,12 +16,14 @@ import java.io.File;
 public class CustomApplication extends Application {
     public static ConnectivityManager connectivityManager;
     public static String cacheDir;
+    public static Context context;
     @Override
     public void onCreate() {
         super.onCreate();
         cacheDir= Environment.getExternalStorageDirectory().getPath()+"/"+getPackageName()+"/net_cache";
         connectivityManager= (ConnectivityManager) getApplicationContext()
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
+        context=this;
     }
     public static boolean isNetworkAvalible() {
         // 获得网络状态管理器
