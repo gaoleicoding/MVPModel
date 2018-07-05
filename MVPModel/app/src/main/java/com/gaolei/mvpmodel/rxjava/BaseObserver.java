@@ -44,9 +44,9 @@ public abstract class BaseObserver<T> extends ResourceObserver<T> {
             errMsg = "网络连接出错,请检查网络";
 
         } else if (e instanceof HttpException) {
-            errMsg = "请求服务器出错,";
+            errMsg = "服务器访问异常(HttpException)";
         } else if (e instanceof IOException) {
-            errMsg = "网络出错,";
+            errMsg = "服务器访问异常(IOException)";
         }
         if (isShowError) {
 //            mView.showErrorMsg(errMsg);

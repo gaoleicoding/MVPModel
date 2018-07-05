@@ -6,6 +6,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DecodeFormat;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestOptions;
 
 
@@ -37,6 +38,7 @@ public class ImageLoader {
      */
     public  void load(Context context, String url, ImageView iv) {
 
-        GlideApp.with(context).load(url).apply(options).into(iv);
+        GlideApp.with(context).load(url).apply(options).transition(new DrawableTransitionOptions().crossFade(1000))
+                .into(iv);
     }
 }

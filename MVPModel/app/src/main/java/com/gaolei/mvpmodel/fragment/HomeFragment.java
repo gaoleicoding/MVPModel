@@ -3,6 +3,8 @@ package com.gaolei.mvpmodel.fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Debug;
+import android.os.Trace;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -44,8 +46,14 @@ public class HomeFragment extends BaseMvpFragment<ProjectListContract.View, Home
 
     @Override
     public void initData(Bundle bundle) {
+
+        Debug.startMethodTracing("traceview");
+        Trace.beginSection("systrace");
+
         mPresenter.getProjectInfo(1, 294,getActivity());
         mPresenter.getBannerInfo(getActivity());
+        Debug.stopMethodTracing();
+        Trace.endSection();
     }
 
     @Override
@@ -140,5 +148,11 @@ public class HomeFragment extends BaseMvpFragment<ProjectListContract.View, Home
             }
         });
     }
+    public void onPause() {
+        super.onPause();
 
+    }
+    public void onDestroy() {
+        super.onDestroy();
+    }
 }
