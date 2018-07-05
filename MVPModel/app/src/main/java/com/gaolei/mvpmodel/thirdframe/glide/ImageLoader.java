@@ -1,13 +1,12 @@
-package com.gaolei.mvpmodel.view;
+package com.gaolei.mvpmodel.thirdframe.glide;
 
 import android.content.Context;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.DecodeFormat;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestOptions;
+import com.gaolei.mvpmodel.view.GlideApp;
 
 
 public class ImageLoader {
@@ -38,7 +37,7 @@ public class ImageLoader {
      */
     public  void load(Context context, String url, ImageView iv) {
 
-        GlideApp.with(context).load(url).apply(options).transition(new DrawableTransitionOptions().crossFade(1000))
+        GlideApp.with(context).load(url).apply(options).transition(new DrawableTransitionOptions().crossFade(500))
                 .into(iv);
     }
 }

@@ -101,8 +101,7 @@ public class HomeFragment extends BaseMvpFragment<ProjectListContract.View, Home
         List imageList = new ArrayList();
         List titleList = new ArrayList();
         int size = itemBeans.data.size();
-        Log.d("gaolei", "url--------------" + itemBeans.data.get(0).getUrl());
-        Log.d("gaolei", "title--------------" + itemBeans.data.get(0).getTitle());
+       
         for (int i = 0; i < size; i++) {
             imageList.add(itemBeans.data.get(i).getImagePath());
             titleList.add(itemBeans.data.get(i).getTitle());
