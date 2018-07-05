@@ -6,7 +6,7 @@ import android.content.Context;
 import com.gaolei.mvpmodel.mcontract.ProjectListContract;
 import com.gaolei.mvpmodel.mmodel.BannerListData;
 import com.gaolei.mvpmodel.mmodel.ProjectListData;
-import com.gaolei.mvpmodel.rxjava.BaseObserver;
+import com.gaolei.mvpmodel.thirdframe.rxjava.BaseObserver;
 
 import io.reactivex.Observable;
 

@@ -1,4 +1,4 @@
-package com.gaolei.mvpmodel.rxjava;
+package com.gaolei.mvpmodel.thirdframe.rxjava;
 
 import android.app.Dialog;
 import android.content.Context;

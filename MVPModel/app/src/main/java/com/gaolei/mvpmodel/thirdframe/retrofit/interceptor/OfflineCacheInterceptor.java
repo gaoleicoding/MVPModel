@@ -1,10 +1,14 @@
-package com.gaolei.mvpmodel.retrofit.interceptor;
+package com.gaolei.mvpmodel.thirdframe.retrofit.interceptor;
+
+import android.util.Log;
 
 import com.gaolei.mvpmodel.application.CustomApplication;
 import com.gaolei.mvpmodel.utils.NetworkUtil;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
+import okhttp3.CacheControl;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -14,17 +18,23 @@ public class OfflineCacheInterceptor implements Interceptor {
     public Response intercept(Chain chain) throws IOException {
         Request request = chain.request();
         if (!NetworkUtil.isNetworkAvailable(CustomApplication.context)) {
-            int offlineCacheTime = 60;//离线的时候的缓存的过期时间
+            int offlineCacheTime = Integer.MAX_VALUE;//离线的时候的缓存的过期时间
             request = request.newBuilder()
 //                        .cacheControl(new CacheControl
 //                                .Builder()
-//                                .maxStale(60,TimeUnit.SECONDS)
+//                                .maxStale(60, TimeUnit.SECONDS)
 //                                .onlyIfCached()
 //                                .build()
-//                        ) 两种方式结果是一样的，写法不同
+//                        )
+//            两种方式结果是一样的，写法不同
                     .header("Cache-Control", "public, only-if-cached, max-stale=" + offlineCacheTime)
                     .build();
         }
-        return chain.proceed(request);
+        Response response = chain.proceed(request);
+        Log.d("gaolei","OfflineCacheInterceptor------------response.code():"+response.code());
+        if (response.code() == 504) {
+            // 缓存已经不可使用
+        }
+        return response;
     }
 }

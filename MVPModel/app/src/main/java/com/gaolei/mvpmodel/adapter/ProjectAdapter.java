@@ -1,7 +1,6 @@
 package com.gaolei.mvpmodel.adapter;
 
 import android.content.Context;
-import android.media.Image;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,10 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.gaolei.mvpmodel.R;
 import com.gaolei.mvpmodel.mmodel.ProjectListData.FeedArticleData;
-import com.gaolei.mvpmodel.view.ImageLoader;
+import com.gaolei.mvpmodel.thirdframe.glide.ImageLoader;
 
 import java.util.List;
 

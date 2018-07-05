@@ -1,4 +1,4 @@
-package com.gaolei.mvpmodel.retrofit.interceptor;
+package com.gaolei.mvpmodel.thirdframe.retrofit.interceptor;
 
 import com.gaolei.mvpmodel.utils.LogUtil;
 

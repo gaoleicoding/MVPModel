@@ -1,7 +1,7 @@
-package com.gaolei.mvpmodel.retrofit.interceptor;
+package com.gaolei.mvpmodel.thirdframe.retrofit.interceptor;
 
-import com.gaolei.mvpmodel.retrofit.interceptor.util.ProgressListener;
-import com.gaolei.mvpmodel.retrofit.interceptor.util.ProgressResponseBody;
+import com.gaolei.mvpmodel.thirdframe.retrofit.interceptor.util.ProgressListener;
+import com.gaolei.mvpmodel.thirdframe.retrofit.interceptor.util.ProgressResponseBody;
 
 import java.io.IOException;
 import java.util.HashMap;
