@@ -1,7 +1,4 @@
-package com.gaolei.mvpmodel.net.interceptor;
-
-import com.gaolei.mvpmodel.application.CustomApplication;
-import com.gaolei.mvpmodel.utils.NetworkUtil;
+package com.gaolei.mvpmodel.retrofit.interceptor;
 
 import java.io.IOException;
 

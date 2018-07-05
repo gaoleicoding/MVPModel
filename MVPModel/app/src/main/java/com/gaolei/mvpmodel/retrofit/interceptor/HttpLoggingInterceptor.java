@@ -1,9 +1,7 @@
-package com.gaolei.mvpmodel.net.interceptor;
+package com.gaolei.mvpmodel.retrofit.interceptor;
 
 import android.util.Log;
 
-
-import com.gaolei.mvpmodel.BuildConfig;
 
 import java.io.IOException;
 

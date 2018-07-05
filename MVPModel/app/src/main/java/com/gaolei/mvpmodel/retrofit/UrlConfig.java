@@ -1,7 +1,5 @@
-package com.gaolei.mvpmodel.net;
+package com.gaolei.mvpmodel.retrofit;
 
-
-import retrofit2.http.GET;
 
 /**
  * Created by liuhaiyang on 2017/8/9.

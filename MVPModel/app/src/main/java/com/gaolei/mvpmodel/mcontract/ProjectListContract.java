@@ -1,4 +1,4 @@
-package com.gaolei.mvpmodel.contract;
+package com.gaolei.mvpmodel.mcontract;
 
 import android.content.Context;
 
