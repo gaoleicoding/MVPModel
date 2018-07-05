@@ -1,24 +1,10 @@
 package com.gaolei.mvpmodel.activity;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 
-import com.gaolei.mvpmodel.BottomNavigationViewHelper;
 import com.gaolei.mvpmodel.R;
-import com.gaolei.mvpmodel.fragment.BaseMvpFragment;
-import com.gaolei.mvpmodel.fragment.HomeFragment;
-import com.gaolei.mvpmodel.fragment.KnowledgeFragment;
-import com.gaolei.mvpmodel.fragment.NavigationFragment;
-import com.gaolei.mvpmodel.fragment.ProjectFragment;
 import com.gaolei.mvpmodel.view.Html5Webview;
-
-import java.util.ArrayList;
 
 import butterknife.BindView;
 

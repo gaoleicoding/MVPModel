@@ -1,12 +1,12 @@
-package com.gaolei.mvpmodel.net;
+package com.gaolei.mvpmodel.retrofit;
 
 
 import com.gaolei.mvpmodel.application.CustomApplication;
-import com.gaolei.mvpmodel.net.interceptor.GzipRequestInterceptor;
-import com.gaolei.mvpmodel.net.interceptor.HttpLoggingInterceptor;
-import com.gaolei.mvpmodel.net.interceptor.OfflineCacheInterceptor;
-import com.gaolei.mvpmodel.net.interceptor.OnlineCacheInterceptor;
-import com.gaolei.mvpmodel.net.interceptor.RetryIntercepter;
+import com.gaolei.mvpmodel.retrofit.interceptor.GzipRequestInterceptor;
+import com.gaolei.mvpmodel.retrofit.interceptor.HttpLoggingInterceptor;
+import com.gaolei.mvpmodel.retrofit.interceptor.OfflineCacheInterceptor;
+import com.gaolei.mvpmodel.retrofit.interceptor.OnlineCacheInterceptor;
+import com.gaolei.mvpmodel.retrofit.interceptor.RetryIntercepter;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;

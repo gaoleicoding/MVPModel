@@ -1,7 +1,7 @@
 package com.gaolei.mvpmodel.mpresenter;
 
-import com.gaolei.mvpmodel.net.RetrofitProvider;
-import com.gaolei.mvpmodel.net.ApiService;
+import com.gaolei.mvpmodel.retrofit.RetrofitProvider;
+import com.gaolei.mvpmodel.retrofit.ApiService;
 import com.gaolei.mvpmodel.rxjava.BaseObserver;
 
 

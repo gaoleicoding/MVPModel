@@ -16,7 +16,7 @@ import com.gaolei.mvpmodel.R;
 import com.gaolei.mvpmodel.activity.ArticleDetailActivity;
 import com.gaolei.mvpmodel.adapter.DividerItemDecoration;
 import com.gaolei.mvpmodel.adapter.ProjectAdapter;
-import com.gaolei.mvpmodel.contract.ProjectListContract;
+import com.gaolei.mvpmodel.mcontract.ProjectListContract;
 import com.gaolei.mvpmodel.mmodel.BannerListData;
 import com.gaolei.mvpmodel.mmodel.ProjectListData;
 import com.gaolei.mvpmodel.mpresenter.HomePresenter;

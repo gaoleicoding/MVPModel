@@ -3,7 +3,7 @@ package com.gaolei.mvpmodel.mpresenter;
 
 import android.content.Context;
 
-import com.gaolei.mvpmodel.contract.ProjectListContract;
+import com.gaolei.mvpmodel.mcontract.ProjectListContract;
 import com.gaolei.mvpmodel.mmodel.BannerListData;
 import com.gaolei.mvpmodel.mmodel.ProjectListData;
 import com.gaolei.mvpmodel.rxjava.BaseObserver;

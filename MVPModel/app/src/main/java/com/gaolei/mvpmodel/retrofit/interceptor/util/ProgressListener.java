@@ -1,4 +1,4 @@
-package com.gaolei.mvpmodel.net.interceptor.util;
+package com.gaolei.mvpmodel.retrofit.interceptor.util;
 
 /**
  * @author guolin

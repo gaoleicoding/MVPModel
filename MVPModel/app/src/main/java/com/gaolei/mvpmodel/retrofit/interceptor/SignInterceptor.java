@@ -1,4 +1,4 @@
-package com.gaolei.mvpmodel.net.interceptor;
+package com.gaolei.mvpmodel.retrofit.interceptor;
 
 import android.content.Context;
 import android.support.v4.util.ArrayMap;

@@ -1,4 +1,4 @@
-package com.gaolei.mvpmodel.net.interceptor;
+package com.gaolei.mvpmodel.retrofit.interceptor;
 
 import com.gaolei.mvpmodel.utils.LogUtil;
 

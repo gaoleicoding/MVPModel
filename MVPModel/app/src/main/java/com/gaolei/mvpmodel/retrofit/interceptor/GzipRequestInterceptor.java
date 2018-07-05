@@ -1,4 +1,4 @@
-package com.gaolei.mvpmodel.net.interceptor; /** This interceptor compresses the HTTP request body. Many webservers can't handle this! */
+package com.gaolei.mvpmodel.retrofit.interceptor; /** This interceptor compresses the HTTP request body. Many webservers can't handle this! */
 
 import java.io.IOException;
 
