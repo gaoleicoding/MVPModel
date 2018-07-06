@@ -31,7 +31,11 @@ public class NavigationFragment extends BaseMvpFragment {
     }
 
     @Override
-    public BasePresenter initPresenter() {
-        return null;
+    protected void initInject() {
+        getFragmentComponent().inject(this);
     }
+
+//    public BasePresenter initPresenter() {
+//        return null;
+//    }
 }

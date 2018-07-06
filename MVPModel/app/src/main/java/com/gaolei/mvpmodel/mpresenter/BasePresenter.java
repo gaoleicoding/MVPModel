@@ -1,7 +1,6 @@
 package com.gaolei.mvpmodel.mpresenter;
 
-import com.gaolei.mvpmodel.thirdframe.retrofit.RetrofitProvider;
-import com.gaolei.mvpmodel.thirdframe.retrofit.ApiService;
+import com.gaolei.mvpmodel.thirdframe.retrofit.RestApi;
 import com.gaolei.mvpmodel.thirdframe.rxjava.BaseObserver;
 
 
@@ -14,9 +13,13 @@ public abstract class BasePresenter<V> {
 
     public V mView;
 //    public Observable observable;
-    public ApiService mRestService = RetrofitProvider.getInstance().builder().getApiService();
+//    public RestApi mRestService = RetrofitProvider.getInstance().builder().getApiService();
     CompositeDisposable mCompositeDisposable ;
+    private RestApi mRestService;
 
+    public BasePresenter(RestApi mRestService) {
+        this.mRestService = mRestService;
+    }
     /**
      * 绑定View
      *

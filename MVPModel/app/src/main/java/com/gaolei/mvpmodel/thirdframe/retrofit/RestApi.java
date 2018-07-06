@@ -12,7 +12,8 @@ import retrofit2.http.Query;
 /**
  * Created by liuhaiyang on 2016/9/6.
  */
-public interface ApiService {
+public interface RestApi {
+    public static final String BASE_URL = "http://www.wanandroid.com/";
 //    @GET
 //    Call<BaseServerResponse> loadHomeList(@Url String url, @Query("strRecord") int strRecord, @Query("pageSize") int pageSize);
 //

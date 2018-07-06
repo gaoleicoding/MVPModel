@@ -31,7 +31,10 @@ public class KnowledgeFragment extends BaseMvpFragment {
     }
 
     @Override
-    public BasePresenter initPresenter() {
-        return null;
+    protected void initInject() {
+        getFragmentComponent().inject(this);
     }
+//    public BasePresenter initPresenter() {
+//        return null;
+//    }
 }

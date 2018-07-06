@@ -23,7 +23,7 @@ public final class RetrofitProvider {
     private Retrofit mRetrofit;
     private OkHttpClient mOkHttpClient;
     private static volatile RetrofitProvider sInstance;
-    private ApiService restService;
+    private RestApi restService;
 
     private RetrofitProvider() {
     }
@@ -54,7 +54,7 @@ public final class RetrofitProvider {
         if (mRetrofit == null) {
             mRetrofit = new Retrofit.Builder()
                     .client(mOkHttpClient)
-                    .baseUrl(UrlConfig.BASE_URL)
+                    .baseUrl(RestApi.BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .build();
@@ -73,9 +73,9 @@ public final class RetrofitProvider {
         return sInstance;
     }
 
-    public ApiService getApiService() {
+    public RestApi getApiService() {
         if (restService == null)
-            restService = mRetrofit.create(ApiService.class);
+            restService = mRetrofit.create(RestApi.class);
         return restService;
     }
 }

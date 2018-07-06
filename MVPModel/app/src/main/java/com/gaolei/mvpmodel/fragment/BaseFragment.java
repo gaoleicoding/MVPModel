@@ -56,8 +56,7 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
         mErrorPageView = view.findViewById(R.id.ll_base_error_content);
         bt_error_refresh = view.findViewById(R.id.bt_error_refresh);
         mLlLoading = view.findViewById(R.id.ll_loading);
-        Log.d("gaolei","network:"+NetworkUtil.isNetworkAvailable(getActivity()));
-//        if (!NetworkUtil.isNetworkAvailable(getActivity()))
+//        if (!NetworkUtil.isNetworkAvailable())
 //            showErrorPage(true);
         bt_error_refresh.setOnClickListener(this);
     }
@@ -102,7 +101,7 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bt_error_refresh:
-                if (NetworkUtil.isNetworkAvailable(getActivity()))
+                if (NetworkUtil.isNetworkAvailable())
                     mErrorPageView.setVisibility(View.GONE);
                 reload();
                 break;

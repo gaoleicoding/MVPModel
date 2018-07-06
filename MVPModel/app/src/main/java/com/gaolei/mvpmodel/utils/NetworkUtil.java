@@ -4,17 +4,16 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
+import com.gaolei.mvpmodel.application.CustomApplication;
+
 public class NetworkUtil {
   
     /** 
      * 检查网络是否可用 
-     *  
-     * @param context 
-     * @return 
-     */  
-    public static boolean isNetworkAvailable(Context context) {
+     */
+    public static boolean isNetworkAvailable() {
   
-        ConnectivityManager manager = (ConnectivityManager) context
+        ConnectivityManager manager = (ConnectivityManager) CustomApplication.context
                 .getApplicationContext().getSystemService(  
                         Context.CONNECTIVITY_SERVICE);  
   
