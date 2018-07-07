@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gaolei.mvpmodel.activity.BaseActivity;
+import com.gaolei.mvpmodel.fragment.BaseFragment;
 import com.gaolei.mvpmodel.fragment.BaseMvpFragment;
 import com.gaolei.mvpmodel.fragment.KnowledgeFragment;
 import com.gaolei.mvpmodel.fragment.HomeFragment;
@@ -31,7 +32,7 @@ import butterknife.BindView;
 
 public class MainActivity extends BaseActivity {
 
-    private ArrayList<BaseMvpFragment> mFragments;
+    private ArrayList<BaseFragment> mFragments;
     private int mLastFgIndex = 0;
     TextView title;
     private static final int MY_PERMISSION_REQUEST_CODE = 10000;
@@ -52,7 +53,7 @@ public class MainActivity extends BaseActivity {
     protected void initData(Bundle bundle) {
         // 取消BottomNavigation大于3个时，动画
         BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
-        mFragments = new ArrayList<BaseMvpFragment>();
+        mFragments = new ArrayList<BaseFragment>();
         title = findViewById(R.id.title);
         mFragments.add(new HomeFragment());
         mFragments.add(new KnowledgeFragment());

@@ -7,9 +7,9 @@ import android.view.View;
 
 import com.gaolei.mvpmodel.application.CustomApplication;
 import com.gaolei.mvpmodel.mpresenter.BasePresenter;
+import com.gaolei.mvpmodel.thirdframe.dagger2.component.DaggerFragmentComponent;
 import com.gaolei.mvpmodel.thirdframe.dagger2.component.FragmentComponent;
 import com.gaolei.mvpmodel.thirdframe.dagger2.module.FragmentModule;
-import com.gaolei.mvpmodel.thirdframe.dagge2.component.DaggerFragmentComponent;
 
 import javax.inject.Inject;
 

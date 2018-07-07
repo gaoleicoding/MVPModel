@@ -14,7 +14,7 @@ import com.gaolei.mvpmodel.mpresenter.BasePresenter;
  * @date 2018/2/11
  */
 
-public class ProjectFragment extends BaseMvpFragment {
+public class ProjectFragment extends BaseFragment {
 
 
     @Override
@@ -31,10 +31,10 @@ public class ProjectFragment extends BaseMvpFragment {
     public void reload() {
     }
 
-    @Override
-    protected void initInject() {
-        getFragmentComponent().inject(this);
-    }
+//    @Override
+//    protected void initInject() {
+//        getFragmentComponent().inject(this);
+//    }
 
 //    public BasePresenter initPresenter() {
 //        return null;
