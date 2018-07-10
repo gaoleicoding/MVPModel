@@ -36,7 +36,7 @@ import butterknife.BindView;
  * @date 2018/2/11
  */
 
-public class HomeFragment extends BaseMvpFragment<ProjectListContract.View, HomePresenter> implements ProjectListContract.View {
+public class HomeFragment extends BaseMvpFragment< HomePresenter> implements ProjectListContract.View {
 
     @BindView(R.id.project_recyclerview)
     RecyclerView project_recyclerview;
