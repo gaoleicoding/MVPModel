@@ -2,13 +2,20 @@ package com.gaolei.mvpmodel.application;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Environment;
+import android.util.Log;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
+import com.gaolei.mvpmodel.BuildConfig;
 import com.gaolei.mvpmodel.R;
+import com.github.moduth.blockcanary.BlockCanary;
+import com.github.moduth.blockcanary.BlockCanaryContext;
+import com.squareup.leakcanary.LeakCanary;
 
 import java.io.File;
 
@@ -24,6 +31,9 @@ public class CustomApplication extends Application {
         connectivityManager= (ConnectivityManager) getApplicationContext()
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
         context=this;
+
+        LeakCanary.install(this);
+        BlockCanary.install(this, new AppContext()).start();
     }
     public static boolean isNetworkAvalible() {
         // 获得网络状态管理器
@@ -45,5 +55,37 @@ public class CustomApplication extends Application {
         }
         return false;
     }
+    public class AppContext extends BlockCanaryContext {
+        private static final String TAG = "AppContext";
+
+        @Override
+        public String provideQualifier() {
+            String qualifier = "";
+            try {
+                PackageInfo info = getApplicationContext().getPackageManager()
+                        .getPackageInfo(getApplicationContext().getPackageName(), 0);
+                qualifier += info.versionCode + "_" + info.versionName + "_YYB";
+            } catch (PackageManager.NameNotFoundException e) {
+                Log.e(TAG, "provideQualifier exception", e);
+            }
+            return qualifier;
+        }
+
+        @Override
+        public int provideBlockThreshold() {
+            return 500;
+        }
+
+        @Override
+        public boolean displayNotification() {
+            return BuildConfig.DEBUG;
+        }
+
+        @Override
+        public boolean stopWhenDebugging() {
+            return false;
+        }
+    }
+
 
     }

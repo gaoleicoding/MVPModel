@@ -46,4 +46,11 @@ dependencies {
     implementation 'com.google.dagger:dagger:2.0.2'
     // eventbus
     implementation 'org.greenrobot:eventbus:3.0.0'
+
+    // 仅在debug包启用BlockCanary进行卡顿监控和提示的话，可以这么用
+    debugImplementation 'com.github.markzhai:blockcanary-android:1.5.0'
+    releaseImplementation 'com.github.markzhai:blockcanary-no-op:1.5.0'
+
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.3'
+    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.3'
 }
