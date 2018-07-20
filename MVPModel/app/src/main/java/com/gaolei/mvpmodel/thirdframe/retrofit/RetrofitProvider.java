@@ -44,6 +44,7 @@ public final class RetrofitProvider {
 //                    .addInterceptor(new ProgressInterceptor())//请求url的进度
 //                    .addInterceptor(new TokenInterceptor())//token过期，自动刷新Token
 //                    .addInterceptor(new SignInterceptor())//所有的接口，默认需要带上sign,timestamp2个参数
+//                    .addNetworkInterceptor(new ParamsEncryptInterceptor())//参数加密,一般针对表单中的字段和值进行加密，防止中途第三方进行窥探和篡改
 
                     .connectTimeout(5, TimeUnit.SECONDS)
                     .readTimeout(5, TimeUnit.SECONDS)

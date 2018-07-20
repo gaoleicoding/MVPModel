@@ -73,7 +73,7 @@ public class CustomApplication extends Application {
 
         @Override
         public int provideBlockThreshold() {
-            return 500;
+            return 1000;
         }
 
         @Override
