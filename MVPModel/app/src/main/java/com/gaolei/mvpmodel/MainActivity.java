@@ -50,6 +50,8 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initData(Bundle bundle) {
+
+
         // 取消BottomNavigation大于3个时，动画
         BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
         mFragments = new ArrayList<BaseMvpFragment>();
@@ -92,6 +94,8 @@ public class MainActivity extends BaseActivity {
                 return true;
             }
         });
+
+        throw new NullPointerException();
     }
 
     /**

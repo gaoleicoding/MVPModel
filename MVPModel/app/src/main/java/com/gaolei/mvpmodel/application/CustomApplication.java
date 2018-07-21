@@ -34,6 +34,8 @@ public class CustomApplication extends Application {
 
         LeakCanary.install(this);
         BlockCanary.install(this, new AppContext()).start();
+        CrashHandler crashHandler = CrashHandler.getInstance();
+        crashHandler.init(getApplicationContext());
     }
     public static boolean isNetworkAvalible() {
         // 获得网络状态管理器
