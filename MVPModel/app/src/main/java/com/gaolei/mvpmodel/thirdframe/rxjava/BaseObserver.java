@@ -50,7 +50,7 @@ public abstract class BaseObserver<T> extends ResourceObserver<T> {
         }
         if (isShowError) {
 //            mView.showErrorMsg(errMsg);
-            Utils.showToast(context,errMsg);
+            Utils.showToast(errMsg);
         }
 
     }

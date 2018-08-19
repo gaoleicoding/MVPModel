@@ -23,6 +23,8 @@ import com.gaolei.mvpmodel.fragment.KnowledgeFragment;
 import com.gaolei.mvpmodel.fragment.HomeFragment;
 import com.gaolei.mvpmodel.fragment.NavigationFragment;
 import com.gaolei.mvpmodel.fragment.ProjectFragment;
+import com.gaolei.mvpmodel.utils.PermissionUtil;
+import com.gaolei.mvpmodel.utils.Utils;
 import com.gaolei.mvpmodel.view.BottomNavigationViewHelper;
 
 import java.util.ArrayList;
@@ -34,14 +36,10 @@ public class MainActivity extends BaseActivity {
     private ArrayList<BaseMvpFragment> mFragments;
     private int mLastFgIndex = 0;
     TextView title;
-    private static final int MY_PERMISSION_REQUEST_CODE = 10000;
     //    BottomNavigationView bottomNavigationView;
     @BindView(R.id.bottom_navigation_view)
     BottomNavigationView bottomNavigationView;
-    String[] permissionArray = new String[]{
-            Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE,
-    };
+
 
     @Override
     protected int setContentLayout() {
@@ -62,7 +60,9 @@ public class MainActivity extends BaseActivity {
         mFragments.add(new ProjectFragment());
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             //如果versionCode>=23 则需要动态授权
-            checkPermission();
+            boolean isAllGranted= PermissionUtil.checkPermission(this);
+            if(isAllGranted)
+                switchFragment(0);
         } else {
             switchFragment(0);
         }
@@ -117,42 +117,7 @@ public class MainActivity extends BaseActivity {
         ft.commitAllowingStateLoss();
     }
 
-    public void checkPermission() {
-        /**
-         * 第 1 步: 检查是否有相应的权限
-         */
-        boolean isAllGranted = checkPermissionAllGranted(
-                permissionArray
-        );
-        // 如果这权限全都拥有, 则显示HomeFragment
-        if (isAllGranted) {
-            switchFragment(0);
-            return;
-        }
 
-        /**
-         * 第 2 步: 请求权限
-         */
-        // 一次请求多个权限, 如果其他有权限是已经授予的将会自动忽略掉
-        ActivityCompat.requestPermissions(
-                this,
-                permissionArray,
-                MY_PERMISSION_REQUEST_CODE
-        );
-    }
-
-    /**
-     * 检查是否拥有指定的所有权限
-     */
-    private boolean checkPermissionAllGranted(String[] permissions) {
-        for (String permission : permissions) {
-            if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
-                // 只要有一个权限没有被授予, 则直接返回 false
-                return false;
-            }
-        }
-        return true;
-    }
 
     /**
      * 第 3 步: 申请权限结果返回处理
@@ -161,7 +126,7 @@ public class MainActivity extends BaseActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-        if (requestCode == MY_PERMISSION_REQUEST_CODE) {
+        if (requestCode == PermissionUtil.MY_PERMISSION_REQUEST_CODE) {
             boolean isAllGranted = true;
             // 判断是否所有的权限都已经授予了
             for (int grant : grantResults) {
@@ -176,8 +141,10 @@ public class MainActivity extends BaseActivity {
                 switchFragment(0);
             } else {
                 // 弹出对话框告诉用户需要权限的原因, 并引导用户去应用权限管理中手动打开权限按钮
-                getAppDetailSettingIntent(this);
-                toast("App正常使用需要授权" );
+//                PermissionUtil.getAppDetailSettingIntent(this);
+//                Utils.showToast("App正常使用需要授权" );
+                PermissionUtil.showRequestPermissionDialog(this);
+
 
             }
         }
@@ -187,17 +154,5 @@ public class MainActivity extends BaseActivity {
         Toast.makeText(getApplicationContext(), content, Toast.LENGTH_SHORT).show();
     }
 
-    private void getAppDetailSettingIntent(Context context) {
-        Intent intent = new Intent();
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        if (Build.VERSION.SDK_INT >= 9) {
-            intent.setAction("android.settings.APPLICATION_DETAILS_SETTINGS");
-            intent.setData(Uri.fromParts("package", getPackageName(), null));
-        } else if (Build.VERSION.SDK_INT <= 8) {
-            intent.setAction(Intent.ACTION_VIEW);
-            intent.setClassName("com.android.settings", "com.android.settings.InstalledAppDetails");
-            intent.putExtra("com.android.settings.ApplicationPkgName", getPackageName());
-        }
-        startActivity(intent);
-    }
+
 }

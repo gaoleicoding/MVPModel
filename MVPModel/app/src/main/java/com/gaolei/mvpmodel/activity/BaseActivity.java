@@ -2,6 +2,7 @@ package com.gaolei.mvpmodel.activity;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.MemoryFile;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
@@ -15,8 +16,12 @@ import com.gaolei.mvpmodel.R;
 import com.gaolei.mvpmodel.utils.NetworkUtil;
 import com.gaolei.mvpmodel.utils.StatusBarUtil;
 
+import org.greenrobot.eventbus.EventBus;
+
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 
 
 /**
@@ -39,7 +44,6 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
             bundle = savedInstanceState;
         }
         initData(bundle);
-
 
     }
 

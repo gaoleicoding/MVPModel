@@ -3,6 +3,8 @@ package com.gaolei.mvpmodel.utils;
 import android.content.Context;
 import android.widget.Toast;
 
+import com.gaolei.mvpmodel.application.CustomApplication;
+
 import java.security.MessageDigest;
 
 /**
@@ -11,8 +13,8 @@ import java.security.MessageDigest;
 
 public class Utils {
 
-    public static void showToast(Context context,String content){
-        Toast.makeText(context, content, Toast.LENGTH_SHORT).show();
+    public static void showToast(String content){
+        Toast.makeText(CustomApplication.context, content, Toast.LENGTH_SHORT).show();
     }
     /**
      * md5 加密
