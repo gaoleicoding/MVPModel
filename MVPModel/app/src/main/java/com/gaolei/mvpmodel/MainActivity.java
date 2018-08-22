@@ -13,6 +13,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,6 +36,7 @@ public class MainActivity extends BaseActivity {
 
     private ArrayList<BaseMvpFragment> mFragments;
     private int mLastFgIndex = 0;
+    @BindView(R.id.title)
     TextView title;
     //    BottomNavigationView bottomNavigationView;
     @BindView(R.id.bottom_navigation_view)
@@ -53,19 +55,11 @@ public class MainActivity extends BaseActivity {
         // 取消BottomNavigation大于3个时，动画
         BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
         mFragments = new ArrayList<BaseMvpFragment>();
-        title = findViewById(R.id.title);
         mFragments.add(new HomeFragment());
         mFragments.add(new KnowledgeFragment());
         mFragments.add(new NavigationFragment());
         mFragments.add(new ProjectFragment());
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            //如果versionCode>=23 则需要动态授权
-            boolean isAllGranted= PermissionUtil.checkPermission(this);
-            if(isAllGranted)
-                switchFragment(0);
-        } else {
-            switchFragment(0);
-        }
+        requestPermission();
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -119,39 +113,24 @@ public class MainActivity extends BaseActivity {
 
 
 
-    /**
-     * 第 3 步: 申请权限结果返回处理
-     */
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-        if (requestCode == PermissionUtil.MY_PERMISSION_REQUEST_CODE) {
-            boolean isAllGranted = true;
-            // 判断是否所有的权限都已经授予了
-            for (int grant : grantResults) {
-                if (grant != PackageManager.PERMISSION_GRANTED) {
-                    isAllGranted = false;
-                    break;
-                }
-            }
-
-            if (isAllGranted) {
-                // 如果所有的权限都授予了, 则显示HomeFragment
+    public void requestPermission(){
+        requestPermission(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},new PermissionUtil.RequestPermissionCallBack() {
+            @Override
+            public void granted() {
+//                Toast.makeText(MainActivity.this, "获取权限成功，执行正常操作", Toast.LENGTH_LONG).show();
                 switchFragment(0);
-            } else {
-                // 弹出对话框告诉用户需要权限的原因, 并引导用户去应用权限管理中手动打开权限按钮
-//                PermissionUtil.getAppDetailSettingIntent(this);
-//                Utils.showToast("App正常使用需要授权" );
-                PermissionUtil.showRequestPermissionDialog(this);
-
-
             }
-        }
-    }
 
-    public void toast(String content) {
-        Toast.makeText(getApplicationContext(), content, Toast.LENGTH_SHORT).show();
+            @Override
+            public void denied() {
+//                Toast.makeText(MainActivity.this, "获取权限失败，正常功能受到影响", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+    public void onRestart(){
+        super.onRestart();
+        //跳转到设置界面后，重现检查权限
+        requestPermission();
     }
 
 

@@ -1,66 +1,22 @@
 package com.gaolei.mvpmodel.utils;
 
+
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-
-import com.gaolei.mvpmodel.application.CustomApplication;
 
 public class PermissionUtil {
-    public static String[] permissionArray = new String[]{
-            Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE,
-    };
-    public static final int MY_PERMISSION_REQUEST_CODE = 10000;
 
-    public static boolean checkPermission(Activity activity) {
-        /**
-         * 第 1 步: 检查是否有相应的权限
-         */
-        boolean isAllGranted = checkPermissionAllGranted(
-                permissionArray
-        );
-        // 如果这权限全都拥有, 则显示HomeFragment
-        if (isAllGranted) {
+    private static String denyRequestContent = "%s权限 为必要权限，开通才可以正常使用相应功能";
+    private static String foreverDenyRequestContent = "%s权限 为必要权限,开通才可以正常使用相应功能。\n \n 请点击 \"设置\"-\"权限\"-打开所需权限。";
+    public static final int PERMISSION_CODE = 10001;
 
-            return true;
-        }
-
-        /**
-         * 第 2 步: 请求权限
-         */
-        // 一次请求多个权限, 如果其他有权限是已经授予的将会自动忽略掉
-        ActivityCompat.requestPermissions(
-                activity,
-                permissionArray,
-                MY_PERMISSION_REQUEST_CODE
-        );
-        return false;
-    }
-
-    /**
-     * 检查是否拥有指定的所有权限
-     */
-    private static boolean checkPermissionAllGranted(String[] permissions) {
-        for (String permission : permissions) {
-            if (ContextCompat.checkSelfPermission(CustomApplication.context, permission) != PackageManager.PERMISSION_GRANTED) {
-                // 只要有一个权限没有被授予, 则直接返回 false
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public static void getAppDetailSettingIntent(Context context) {
+    public static void gotoDetailSettingIntent(Activity context) {
         Intent intent = new Intent();
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         if (Build.VERSION.SDK_INT >= 9) {
@@ -72,23 +28,100 @@ public class PermissionUtil {
             intent.putExtra("com.android.settings.ApplicationPkgName", context.getPackageName());
         }
         context.startActivity(intent);
+
+//        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+//        Uri uri = Uri.fromParts("package", context.getPackageName(), null);
+//        intent.setData(uri);
     }
 
-    public static void showRequestPermissionDialog(final Activity activity) {
+    public static void requestDenyDialog(final Activity activity, final String... permissions) {
+
+        String content = getContent(denyRequestContent, permissions);
+
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+
         builder.setTitle("权限申请")
-                .setMessage("存储权限为必要权限，开通才可以正常使用APP")
-                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                .setMessage(content)
+                .setPositiveButton("申请", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        checkPermission(activity);
+                        ActivityCompat.requestPermissions(activity, permissions, PERMISSION_CODE);
+                        dialog.dismiss();
                     }
                 })
                 .setNegativeButton("取消", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
+
                         dialog.dismiss();
-                        activity.finish();
                     }
                 });
         builder.show();
+    }
+
+    public static void requestForeverDenyDialog(final Activity activity, final String... permissions) {
+
+        String content = getContent(foreverDenyRequestContent, permissions);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+
+        builder.setTitle("权限设置")
+                .setMessage(content)
+                .setPositiveButton("设置", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        gotoDetailSettingIntent(activity);
+                        dialog.dismiss();
+                    }
+                })
+                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        dialog.dismiss();
+                    }
+                });
+        builder.show();
+    }
+
+    public static String getContent(String ifForeverDeny, String... permissions) {
+        String content = "";
+
+        if (permissions.length == 1) {
+            if (permissions[0].equals(Manifest.permission.CAMERA))
+                content = String.format(ifForeverDeny, "相机");
+            if (permissions[0].equals(Manifest.permission.WRITE_EXTERNAL_STORAGE))
+                content = String.format(ifForeverDeny, "存储");
+        }
+        if (permissions.length > 1) {
+            StringBuilder stringBuilder = new StringBuilder();
+            int length = permissions.length;
+            for (int i = 0; i < length; i++) {
+                if (permissions[i].equals(Manifest.permission.CAMERA))
+                    stringBuilder = stringBuilder.append("相机");
+                if (permissions[i].equals(Manifest.permission.WRITE_EXTERNAL_STORAGE))
+                    stringBuilder = stringBuilder.append("存储");
+                if (permissions[i].equals(Manifest.permission.ACCESS_FINE_LOCATION))
+                    stringBuilder = stringBuilder.append("位置");
+                if (permissions[i].equals(Manifest.permission.WRITE_CONTACTS))
+                    stringBuilder = stringBuilder.append("联系人");
+                if (i < length - 1)
+                    stringBuilder = stringBuilder.append("、");
+            }
+            content = String.format(ifForeverDeny, stringBuilder.toString());
+        }
+        return content;
+
+    }
+
+    /**
+     * 权限请求结果回调接口
+     */
+    public interface RequestPermissionCallBack {
+        /**
+         * 同意授权
+         */
+        public void granted();
+
+        /**
+         * 取消授权
+         */
+        public void denied();
     }
 }
