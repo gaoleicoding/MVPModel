@@ -1,0 +1,44 @@
+ext {
+
+    android = [
+            compileSdkVersion        : 26,
+            buildToolsVersion        : "26.0.2",
+            minSdkVersion            : 14,
+            targetSdkVersion         : 26,
+            versionCode              : 1,
+            versionName              : "1.0.0"
+    ]
+
+    version = [
+            androidSupportSdkVersion : "26+",
+            retrofitSdkVersion       : "2.3.0",
+            glideSdkVersion          : "4.0.0",
+            butterknifeSdkVersion    : "8.4.0",
+    ]
+
+    dependencies = [
+            //support
+            "constraint-layout"      : "com.android.support.constraint:constraint-layout:1.0.2",
+            "appcompat-v7"           : "com.android.support:appcompat-v7:${version["androidSupportSdkVersion"]}",
+            "design"                 : "com.android.support:design:${version["androidSupportSdkVersion"]}",
+
+            //network
+            "retrofit"               : "com.squareup.retrofit2:retrofit:${version["retrofitSdkVersion"]}",
+            "retrofit-converter-gson": "com.squareup.retrofit2:converter-gson:${version["retrofitSdkVersion"]}",
+            "okhttp3"                : "com.squareup.okhttp3:okhttp:3.9.0",
+            "okio"                   : "com.squareup.okio:okio:1.13.0",
+            "glide"                  : "com.github.bumptech.glide:glide:${version["glideSdkVersion"]}",
+            "glide-compiler"         : "com.github.bumptech.glide:compiler:${version["glideSdkVersion"]}",
+
+            //butterknife
+            "butterknife"            : "com.jakewharton:butterknife:${version["butterknifeSdkVersion"]}",
+            "butterknife-compiler"   : "com.jakewharton:butterknife-compiler:${version["butterknifeSdkVersion"]}",
+            //webview jsbridge
+            "webview-bridge"         : "com.gzsll.jsbridge:library:1.1.0",
+
+            //eventbus
+            "event-bus"              : "org.greenrobot:eventbus:3.0.0",
+
+    ]
+
+}
