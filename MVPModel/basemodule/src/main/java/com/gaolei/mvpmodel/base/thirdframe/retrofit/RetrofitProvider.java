@@ -1,9 +1,12 @@
 package com.gaolei.mvpmodel.thirdframe.retrofit;
 
 
+import android.content.Context;
+
 import com.franmontiel.persistentcookiejar.PersistentCookieJar;
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
+import com.gaolei.mvpmodel.base.api.ApiService;
 import com.gaolei.mvpmodel.base.application.CustomApplication;
 import com.gaolei.mvpmodel.thirdframe.retrofit.interceptor.GzipRequestInterceptor;
 import com.gaolei.mvpmodel.thirdframe.retrofit.interceptor.HttpLoggingInterceptor;
@@ -27,19 +30,20 @@ public final class RetrofitProvider {
     private OkHttpClient mOkHttpClient;
     private static volatile RetrofitProvider sInstance;
     private ApiService restService;
+    public static String netCachePath;
 
     private RetrofitProvider() {
     }
 
 
     public RetrofitProvider builder() {
-
+        netCachePath= CustomApplication.context.getCacheDir().getPath()+"/net_cache";
         if (mOkHttpClient == null) {
             mOkHttpClient = new OkHttpClient.Builder()
                     .addNetworkInterceptor(new HttpLoggingInterceptor())
                     .addNetworkInterceptor(new OnlineCacheInterceptor())//有网缓存拦截器
                     .addInterceptor(new OfflineCacheInterceptor())//无网缓存拦截器
-                    .cache(new Cache(new File(CustomApplication.cacheDir), 50 * 10240 * 1024))//缓存路径和空间设置
+                    .cache(new Cache(new File(netCachePath), 50 * 10240 * 1024))//缓存路径和空间设置
                     .addInterceptor(new RetryIntercepter(4))//重试
                     .addInterceptor(new GzipRequestInterceptor())//开启Gzip压缩
 

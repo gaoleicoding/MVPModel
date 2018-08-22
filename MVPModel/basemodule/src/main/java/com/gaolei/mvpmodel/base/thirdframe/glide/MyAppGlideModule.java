@@ -12,9 +12,12 @@ import com.bumptech.glide.load.engine.bitmap_recycle.LruBitmapPool;
 import com.bumptech.glide.load.engine.cache.DiskLruCacheFactory;
 import com.bumptech.glide.load.engine.cache.LruResourceCache;
 import com.bumptech.glide.module.AppGlideModule;
+import com.gaolei.mvpmodel.base.application.CustomApplication;
 
 @GlideModule
 public final class MyAppGlideModule extends AppGlideModule {
+
+    public static String glideCachePath;
     @Override
     public boolean isManifestParsingEnabled() {
 //    return super.isManifestParsingEnabled();
@@ -23,7 +26,8 @@ public final class MyAppGlideModule extends AppGlideModule {
 
     @Override
     public void applyOptions(@NonNull Context context, @NonNull GlideBuilder builder) {
-        int diskCacheSizeBytes = 1024 * 1024 * 100; // 100 MB
+        int diskCacheSizeBytes = 1024 * 1024 * 50; // 50 MB
+        glideCachePath= CustomApplication.context.getCacheDir().getPath()+"/net_cache";
         builder.setDiskCache(
                 new DiskLruCacheFactory( getStorageDirectory(context)+"/GlideDisk", diskCacheSizeBytes )
         );
