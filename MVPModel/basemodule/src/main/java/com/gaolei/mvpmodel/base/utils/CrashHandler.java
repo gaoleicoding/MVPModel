@@ -57,11 +57,10 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
             }
 
 
-            Class clazz=Class.fromName("com.gaolei.mvpmodel.MainActivity");
 
             //崩溃后，重启应用
-            Intent intent = new Intent(mcontext.getApplicationContext(),
-                    clazz);
+            Intent intent = new Intent();
+            intent.setAction(Intent.ACTION_MAIN);
             intent.putExtra("error_reboot", true);
 
             PendingIntent pendingIntent = PendingIntent.getActivity(

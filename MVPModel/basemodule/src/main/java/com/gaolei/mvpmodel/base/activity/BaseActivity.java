@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gaolei.basemodule.R;
+import com.gaolei.mvpmodel.base.utils.NetworkUtil;
 import com.gaolei.mvpmodel.base.utils.PermissionUtil;
 import com.gaolei.mvpmodel.base.utils.StatusBarUtil;
 
@@ -31,11 +32,11 @@ import static com.gaolei.mvpmodel.base.utils.PermissionUtil.PERMISSION_CODE;
  * Created by gaolei on 2018/4/26.
  */
 
-public abstract class BaseActivity extends FragmentActivity  {
+public abstract class BaseActivity extends FragmentActivity implements View.OnClickListener {
     private PermissionUtil.RequestPermissionCallBack mRequestPermissionCallBack;
-    @BindView(R.id.iv_back)
+    //    @BindView(R2.id.iv_back)
     public ImageView iv_back;
-    @BindView(R.id.title)
+    //    @BindView(R2.id.title)
     public TextView title;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,6 +47,7 @@ public abstract class BaseActivity extends FragmentActivity  {
         //1、ButterKnife.bind(this);必须在setContentView();之后绑定；
         //2、在Activity中不需要做解绑操作
         ButterKnife.bind(this);
+
         Bundle bundle = getIntent().getExtras();
         if (bundle == null) {
             bundle = savedInstanceState;
@@ -59,21 +61,34 @@ public abstract class BaseActivity extends FragmentActivity  {
     protected abstract void initData(Bundle bundle);
 
 
-    @OnClick({ R.id.iv_back, })
-    public void clickListen(View view) {
-        switch (view.getId()) {
-            case R.id.iv_back:
-                finish();
-                break;
+//    @OnClick(R2.id.iv_back)
+//    public void onClick(View view) {
+//
+//        if (view.getId() == R.id.iv_back)
+//            finish();
+//    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.iv_back) {
+            finish();
         }
     }
+
+
     public View addContentView() {
         LayoutInflater inflater = LayoutInflater.from(this);
         LinearLayout mParentView = (LinearLayout) inflater.inflate(R.layout.activity_base, null);
         View subActivityView = inflater.inflate(setContentLayout(), null);
         mParentView.addView(subActivityView);
-//        initBaseView(mParentView);
+        initBaseView(mParentView);
         return mParentView;
+    }
+
+    private void initBaseView(View view){
+        iv_back=view.findViewById(R.id.iv_back);
+        title=view.findViewById(R.id.title);
+        iv_back.setOnClickListener(this);
     }
 
     /**

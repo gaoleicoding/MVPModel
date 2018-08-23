@@ -1,6 +1,8 @@
 apply plugin: 'com.android.library'
 //使用greendao
 apply plugin: 'org.greenrobot.greendao'
+apply plugin: 'com.jakewharton.butterknife'
+
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
 
@@ -37,10 +39,11 @@ dependencies {
 
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-
+    //okhttp retrofit
     implementation 'com.squareup.okhttp3:okhttp:3.10.0'
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.0.2'
+    //butterknife
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     // glide
@@ -61,12 +64,12 @@ dependencies {
     // greendao
     implementation 'org.greenrobot:greendao:3.2.0' //greendao依赖
 
-    // 仅在debug包启用BlockCanary进行卡顿监控和提示的话，可以这么用
+    // BlockCanary进行卡顿监控和提示
     debugImplementation 'com.github.markzhai:blockcanary-android:1.5.0'
     releaseImplementation 'com.github.markzhai:blockcanary-no-op:1.5.0'
-
+    //LeakCanary
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.3'
     releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.3'
-
+    //okhttp保存cookie
     implementation 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
 }
