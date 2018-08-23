@@ -37,7 +37,7 @@ public final class RetrofitProvider {
 
 
     public RetrofitProvider builder() {
-        netCachePath= CustomApplication.context.getCacheDir().getPath()+"/net_cache";
+        netCachePath= CustomApplication.context.getExternalFilesDir("net_cache").getAbsolutePath();
         if (mOkHttpClient == null) {
             mOkHttpClient = new OkHttpClient.Builder()
                     .addNetworkInterceptor(new HttpLoggingInterceptor())

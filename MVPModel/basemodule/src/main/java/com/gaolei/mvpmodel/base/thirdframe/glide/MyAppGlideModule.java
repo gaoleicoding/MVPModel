@@ -26,8 +26,8 @@ public final class MyAppGlideModule extends AppGlideModule {
 
     @Override
     public void applyOptions(@NonNull Context context, @NonNull GlideBuilder builder) {
-        int diskCacheSizeBytes = 1024 * 1024 * 50; // 50 MB
-        glideCachePath= CustomApplication.context.getCacheDir().getPath()+"/net_cache";
+        int diskCacheSizeBytes = 1024 * 1024 * 100; // 50 MB
+        glideCachePath= CustomApplication.context.getExternalFilesDir("glide_cache").getAbsolutePath();
         builder.setDiskCache(
                 new DiskLruCacheFactory( glideCachePath, diskCacheSizeBytes )
         );

@@ -51,7 +51,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
             mDefaultHandler.uncaughtException(thread, ex);// 如果未处理异常，那么系统默认的异常处理类处理
         } else {
             try {
-                Thread.sleep(1500);
+                Thread.sleep(1000);
             } catch (Exception e) {
                 // TODO: handle exception
             }
@@ -59,8 +59,13 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
 
 
             //崩溃后，重启应用
-            Intent intent = new Intent();
-            intent.setAction(Intent.ACTION_MAIN);
+            Class clazz= null;
+            try {
+                clazz = Class.forName("com.gaolei.mvpmodel.MainActivity");
+            } catch (java.lang.Exception exception) {
+                exception.printStackTrace();
+            }
+            Intent intent = new Intent(CustomApplication.context,clazz);
             intent.putExtra("error_reboot", true);
 
             PendingIntent pendingIntent = PendingIntent.getActivity(
@@ -68,7 +73,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
                     PendingIntent.FLAG_ONE_SHOT);
             AlarmManager mgr = (AlarmManager) mcontext
                     .getSystemService(Context.ALARM_SERVICE);
-            mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 1500,
+            mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 1000,
                     pendingIntent); // 1秒钟后重启应用
             android.os.Process.killProcess(android.os.Process.myPid());
             System.exit(10);
