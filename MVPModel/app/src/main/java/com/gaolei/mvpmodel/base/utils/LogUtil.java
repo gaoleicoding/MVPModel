@@ -1,7 +1,7 @@
 /**
  * Copyright (C) 2006-2014 Tuniu All rights reserved
  */
-package com.gaolei.mvpmodel.utils;
+package com.gaolei.mvpmodel.base.utils;
 
 import android.util.Log;
 

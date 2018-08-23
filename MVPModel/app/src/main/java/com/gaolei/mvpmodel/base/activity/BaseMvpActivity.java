@@ -1,4 +1,4 @@
-package com.gaolei.mvpmodel.activity;
+package com.gaolei.mvpmodel.base.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

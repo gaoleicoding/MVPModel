@@ -3,12 +3,10 @@ package com.gaolei.mvpmodel.thirdframe.retrofit.interceptor;
 import android.util.Log;
 
 import com.gaolei.mvpmodel.application.CustomApplication;
-import com.gaolei.mvpmodel.utils.NetworkUtil;
+import com.gaolei.mvpmodel.base.utils.NetworkUtil;
 
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
-import okhttp3.CacheControl;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;

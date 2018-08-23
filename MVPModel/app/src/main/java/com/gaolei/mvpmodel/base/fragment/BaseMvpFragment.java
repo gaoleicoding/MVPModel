@@ -1,8 +1,7 @@
-package com.gaolei.mvpmodel.fragment;
+package com.gaolei.mvpmodel.base.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 
 import com.gaolei.mvpmodel.mpresenter.BasePresenter;
 

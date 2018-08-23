@@ -1,6 +1,5 @@
-package com.gaolei.mvpmodel.utils;
+package com.gaolei.mvpmodel.base.utils;
 
-import android.content.Context;
 import android.widget.Toast;
 
 import com.gaolei.mvpmodel.application.CustomApplication;

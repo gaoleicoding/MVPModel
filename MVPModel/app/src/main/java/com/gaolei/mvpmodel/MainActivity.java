@@ -1,31 +1,21 @@
 package com.gaolei.mvpmodel;
 
 import android.Manifest;
-import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.net.Uri;
-import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.gaolei.mvpmodel.activity.BaseActivity;
-import com.gaolei.mvpmodel.fragment.BaseMvpFragment;
+import com.gaolei.mvpmodel.base.activity.BaseActivity;
+import com.gaolei.mvpmodel.base.fragment.BaseMvpFragment;
 import com.gaolei.mvpmodel.fragment.KnowledgeFragment;
 import com.gaolei.mvpmodel.fragment.HomeFragment;
 import com.gaolei.mvpmodel.fragment.NavigationFragment;
 import com.gaolei.mvpmodel.fragment.ProjectFragment;
-import com.gaolei.mvpmodel.utils.PermissionUtil;
-import com.gaolei.mvpmodel.utils.Utils;
+import com.gaolei.mvpmodel.base.utils.PermissionUtil;
 import com.gaolei.mvpmodel.view.BottomNavigationViewHelper;
 
 import java.util.ArrayList;

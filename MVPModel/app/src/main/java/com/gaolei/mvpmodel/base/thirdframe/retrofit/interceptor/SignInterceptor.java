@@ -6,8 +6,8 @@ import android.util.Log;
 import android.util.Pair;
 
 import com.gaolei.mvpmodel.BuildConfig;
-import com.gaolei.mvpmodel.utils.LogUtil;
-import com.gaolei.mvpmodel.utils.Utils;
+import com.gaolei.mvpmodel.base.utils.LogUtil;
+import com.gaolei.mvpmodel.base.utils.Utils;
 
 import org.json.JSONException;
 import org.json.JSONObject;

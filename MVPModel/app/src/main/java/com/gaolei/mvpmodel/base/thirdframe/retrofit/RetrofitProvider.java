@@ -4,6 +4,7 @@ package com.gaolei.mvpmodel.thirdframe.retrofit;
 import com.franmontiel.persistentcookiejar.PersistentCookieJar;
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
+import com.gaolei.mvpmodel.api.ApiService;
 import com.gaolei.mvpmodel.application.CustomApplication;
 import com.gaolei.mvpmodel.thirdframe.retrofit.interceptor.GzipRequestInterceptor;
 import com.gaolei.mvpmodel.thirdframe.retrofit.interceptor.HttpLoggingInterceptor;

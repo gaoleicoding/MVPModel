@@ -1,4 +1,4 @@
-package com.gaolei.mvpmodel.fragment;
+package com.gaolei.mvpmodel.base.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,8 +12,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.gaolei.mvpmodel.R;
-import com.gaolei.mvpmodel.utils.NetworkUtil;
-import com.gaolei.mvpmodel.utils.StatusBarUtil;
+import com.gaolei.mvpmodel.base.utils.NetworkUtil;
+import com.gaolei.mvpmodel.base.utils.StatusBarUtil;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -24,12 +24,12 @@ import butterknife.Unbinder;
  */
 
 public abstract class BaseFragment extends Fragment implements View.OnClickListener {
-    private FrameLayout mLlContent;
-    View subFragmentView;
-    private RelativeLayout mLlLoading;
-    private Button bt_error_refresh;
+    public FrameLayout mLlContent;
+    public View subFragmentView;
+    public RelativeLayout mLlLoading;
+    public Button bt_error_refresh;
     public LinearLayout mErrorPageView;
-    private Unbinder mBinder;
+    public Unbinder mBinder;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

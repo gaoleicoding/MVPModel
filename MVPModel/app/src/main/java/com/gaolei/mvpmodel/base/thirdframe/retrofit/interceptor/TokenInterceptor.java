@@ -1,6 +1,6 @@
 package com.gaolei.mvpmodel.thirdframe.retrofit.interceptor;
 
-import com.gaolei.mvpmodel.utils.LogUtil;
+import com.gaolei.mvpmodel.base.utils.LogUtil;
 
 import java.io.IOException;
 

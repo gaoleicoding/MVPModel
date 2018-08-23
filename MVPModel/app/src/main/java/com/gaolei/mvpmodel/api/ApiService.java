@@ -1,4 +1,4 @@
-package com.gaolei.mvpmodel.thirdframe.retrofit;
+package com.gaolei.mvpmodel.api;
 
 
 import com.gaolei.mvpmodel.mmodel.BannerListData;

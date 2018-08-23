@@ -1,4 +1,4 @@
-package com.gaolei.mvpmodel.utils;
+package com.gaolei.mvpmodel.base.utils;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;

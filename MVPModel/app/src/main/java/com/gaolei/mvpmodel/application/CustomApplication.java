@@ -13,6 +13,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.gaolei.mvpmodel.BuildConfig;
 import com.gaolei.mvpmodel.R;
+import com.gaolei.mvpmodel.base.utils.CrashHandler;
 import com.github.moduth.blockcanary.BlockCanary;
 import com.github.moduth.blockcanary.BlockCanaryContext;
 import com.squareup.leakcanary.LeakCanary;
