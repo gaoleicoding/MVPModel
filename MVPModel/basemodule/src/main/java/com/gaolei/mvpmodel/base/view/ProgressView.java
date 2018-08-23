@@ -1,4 +1,4 @@
-package com.gaolei.mvpmodel.view;
+package com.gaolei.mvpmodel.base.view;
 
 import android.content.Context;
 import android.graphics.Canvas;

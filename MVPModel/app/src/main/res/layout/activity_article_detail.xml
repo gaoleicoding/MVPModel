@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.gaolei.mvpmodel.view.Html5Webview
+    <com.gaolei.mvpmodel.base.view.Html5Webview
         android:id="@+id/webview_article"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

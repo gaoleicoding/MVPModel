@@ -1,4 +1,4 @@
-package com.gaolei.mvpmodel.view;
+package com.gaolei.mvpmodel.base.view;
 
 /**
  * Created by gaolei on 2018/4/26.

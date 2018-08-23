@@ -3,6 +3,8 @@ package com.gaolei.mvpmodel.base.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.gaolei.mvpmodel.base.mpresenter.BasePresenter;
+
 
 /**
  * Created by gaolei on 2018/4/26.

@@ -9,9 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.gaolei.mvpmodel.R;
-import com.gaolei.mvpmodel.mmodel.ProjectListData.FeedArticleData;
-import com.gaolei.mvpmodel.thirdframe.glide.ImageLoader;
+import com.gaolei.mvpmodel.base.mmodel.ProjectListData.FeedArticleData;
+import com.gaolei.mvpmodel.base.thirdframe.glide.ImageLoader;
 
 import java.util.List;
 

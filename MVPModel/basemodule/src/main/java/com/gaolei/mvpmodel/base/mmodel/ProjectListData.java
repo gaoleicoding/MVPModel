@@ -1,4 +1,4 @@
-package com.gaolei.mvpmodel.mmodel;
+package com.gaolei.mvpmodel.base.mmodel;
 
 import java.io.Serializable;
 import java.util.List;

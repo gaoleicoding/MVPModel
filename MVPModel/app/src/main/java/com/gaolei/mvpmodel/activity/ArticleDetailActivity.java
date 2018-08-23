@@ -5,7 +5,7 @@ import android.view.View;
 
 import com.gaolei.mvpmodel.R;
 import com.gaolei.mvpmodel.base.activity.BaseActivity;
-import com.gaolei.mvpmodel.view.Html5Webview;
+import com.gaolei.mvpmodel.base.view.Html5Webview;
 
 import butterknife.BindView;
 

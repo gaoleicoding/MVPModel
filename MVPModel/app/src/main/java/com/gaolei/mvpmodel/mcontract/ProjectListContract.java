@@ -2,8 +2,8 @@ package com.gaolei.mvpmodel.mcontract;
 
 import android.content.Context;
 
-import com.gaolei.mvpmodel.mmodel.BannerListData;
-import com.gaolei.mvpmodel.mmodel.ProjectListData;
+import com.gaolei.mvpmodel.base.mmodel.BannerListData;
+import com.gaolei.mvpmodel.base.mmodel.ProjectListData;
 
 /**
  * Created by gaolei on 2018/6/18.

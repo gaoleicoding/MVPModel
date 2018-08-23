@@ -11,6 +11,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import com.gaolei.basemodule.R;
 import com.gaolei.mvpmodel.base.utils.NetworkUtil;
 import com.gaolei.mvpmodel.base.utils.StatusBarUtil;
 

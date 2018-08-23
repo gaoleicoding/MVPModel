@@ -3,8 +3,8 @@ package com.gaolei.mvpmodel.base.api;
 
 
 
-import com.gaolei.mvpmodel.mmodel.BannerListData;
-import com.gaolei.mvpmodel.mmodel.ProjectListData;
+import com.gaolei.mvpmodel.base.mmodel.BannerListData;
+import com.gaolei.mvpmodel.base.mmodel.ProjectListData;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;

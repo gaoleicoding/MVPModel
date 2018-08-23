@@ -6,7 +6,7 @@ import android.content.Context;
 import com.gaolei.mvpmodel.base.application.CustomApplication;
 import com.gaolei.mvpmodel.base.mview.BaseView;
 import com.gaolei.mvpmodel.base.utils.Utils;
-import com.gaolei.mvpmodel.view.CustomProgressDialog;
+import com.gaolei.mvpmodel.base.view.CustomProgressDialog;
 
 import java.io.IOException;
 

@@ -1,4 +1,4 @@
-package com.gaolei.mvpmodel.view;
+package com.gaolei.mvpmodel.base.view;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -10,7 +10,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.gaolei.mvpmodel.R;
+import com.gaolei.basemodule.R;
+
 
 public class CustomProgressDialog{
 

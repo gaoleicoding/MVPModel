@@ -1,9 +1,8 @@
-package com.gaolei.mvpmodel.view;
+package com.gaolei.mvpmodel.base.view;
 
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Message;

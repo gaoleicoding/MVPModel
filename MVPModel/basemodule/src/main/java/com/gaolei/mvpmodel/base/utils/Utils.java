@@ -3,6 +3,8 @@ package com.gaolei.mvpmodel.base.utils;
 import android.widget.Toast;
 
 
+import com.gaolei.mvpmodel.base.application.CustomApplication;
+
 import java.security.MessageDigest;
 
 /**

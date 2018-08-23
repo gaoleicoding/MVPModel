@@ -15,7 +15,7 @@ import com.gaolei.mvpmodel.fragment.HomeFragment;
 import com.gaolei.mvpmodel.fragment.NavigationFragment;
 import com.gaolei.mvpmodel.fragment.ProjectFragment;
 import com.gaolei.mvpmodel.base.utils.PermissionUtil;
-import com.gaolei.mvpmodel.view.BottomNavigationViewHelper;
+import com.gaolei.mvpmodel.base.view.BottomNavigationViewHelper;
 
 import java.util.ArrayList;
 

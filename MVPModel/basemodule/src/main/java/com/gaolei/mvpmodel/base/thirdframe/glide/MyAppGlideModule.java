@@ -29,7 +29,7 @@ public final class MyAppGlideModule extends AppGlideModule {
         int diskCacheSizeBytes = 1024 * 1024 * 50; // 50 MB
         glideCachePath= CustomApplication.context.getCacheDir().getPath()+"/net_cache";
         builder.setDiskCache(
-                new DiskLruCacheFactory( getStorageDirectory(context)+"/GlideDisk", diskCacheSizeBytes )
+                new DiskLruCacheFactory( glideCachePath, diskCacheSizeBytes )
         );
         int maxMemory = (int) Runtime.getRuntime().maxMemory();//获取系统分配给应用的总内存大小
         int memoryCacheSize = maxMemory / 8;//设置图片内存缓存占用八分之一

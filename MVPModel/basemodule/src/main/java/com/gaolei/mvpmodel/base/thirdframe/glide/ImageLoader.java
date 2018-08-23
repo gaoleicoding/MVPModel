@@ -1,4 +1,4 @@
-package com.gaolei.mvpmodel.thirdframe.glide;
+package com.gaolei.mvpmodel.base.thirdframe.glide;
 
 import android.content.Context;
 import android.widget.ImageView;

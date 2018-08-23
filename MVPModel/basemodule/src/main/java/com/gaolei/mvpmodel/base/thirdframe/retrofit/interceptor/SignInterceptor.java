@@ -1,6 +1,7 @@
 package com.gaolei.mvpmodel.thirdframe.retrofit.interceptor;
 
 import android.content.Context;
+import android.support.v4.BuildConfig;
 import android.support.v4.util.ArrayMap;
 import android.util.Log;
 import android.util.Pair;

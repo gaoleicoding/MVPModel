@@ -7,10 +7,11 @@ import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Environment;
+import android.support.v4.BuildConfig;
 import android.util.Log;
 
-import com.gaolei.mvpmodel.BuildConfig;
-import com.gaolei.mvpmodel.R;
+
+import com.gaolei.mvpmodel.base.utils.CrashHandler;
 import com.github.moduth.blockcanary.BlockCanary;
 import com.github.moduth.blockcanary.BlockCanaryContext;
 import com.squareup.leakcanary.LeakCanary;
@@ -28,8 +29,8 @@ public class CustomApplication extends Application {
 
         LeakCanary.install(this);
         BlockCanary.install(this, new AppContext()).start();
-//        CrashHandler crashHandler = CrashHandler.getInstance();
-//        crashHandler.init(getApplicationContext());
+        CrashHandler crashHandler = CrashHandler.getInstance();
+        crashHandler.init(getApplicationContext());
     }
     public static boolean isNetworkAvalible() {
         // 获得网络状态管理器
