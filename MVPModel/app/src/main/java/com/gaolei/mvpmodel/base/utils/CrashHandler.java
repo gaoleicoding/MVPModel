@@ -10,6 +10,8 @@ import android.os.Environment;
 import android.os.Looper;
 import android.view.Gravity;
 import android.widget.Toast;
+
+import com.gaolei.mvpmodel.MainActivity;
 import com.gaolei.mvpmodel.application.CustomApplication;
 
 import java.io.File;
@@ -57,8 +59,8 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
 
 
             //崩溃后，重启应用
-            Intent intent = new Intent();
-            intent.setAction(Intent.ACTION_MAIN);
+            Intent intent = new Intent(mcontext.getApplicationContext(),
+                    MainActivity.class);
             intent.putExtra("error_reboot", true);
 
             PendingIntent pendingIntent = PendingIntent.getActivity(

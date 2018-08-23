@@ -13,8 +13,13 @@ import com.bumptech.glide.load.engine.cache.DiskLruCacheFactory;
 import com.bumptech.glide.load.engine.cache.LruResourceCache;
 import com.bumptech.glide.module.AppGlideModule;
 
+import java.io.File;
+
 @GlideModule
 public final class MyAppGlideModule extends AppGlideModule {
+
+    private String cacheDir;
+
     @Override
     public boolean isManifestParsingEnabled() {
 //    return super.isManifestParsingEnabled();
@@ -23,9 +28,14 @@ public final class MyAppGlideModule extends AppGlideModule {
 
     @Override
     public void applyOptions(@NonNull Context context, @NonNull GlideBuilder builder) {
+
+//        cacheDir=Environment.getExternalStorageDirectory().getPath()+"/"+context.getPackageName()+"/glide_cache";
+//        cacheDir=context.getExternalCacheDir().getAbsolutePath()+"/glide_cache";
+        cacheDir = context.getExternalFilesDir("glide_cache").getAbsolutePath();
+
         int diskCacheSizeBytes = 1024 * 1024 * 100; // 100 MB
         builder.setDiskCache(
-                new DiskLruCacheFactory( getStorageDirectory(context)+"/GlideDisk", diskCacheSizeBytes )
+                new DiskLruCacheFactory(cacheDir, diskCacheSizeBytes)
         );
         int maxMemory = (int) Runtime.getRuntime().maxMemory();//获取系统分配给应用的总内存大小
         int memoryCacheSize = maxMemory / 8;//设置图片内存缓存占用八分之一
@@ -35,9 +45,11 @@ public final class MyAppGlideModule extends AppGlideModule {
         builder.setBitmapPool(new LruBitmapPool(memoryCacheSize));
 
     }
-    private String getStorageDirectory(Context context){
-        return Environment.getExternalStorageDirectory().getPath()+"/"+context.getPackageName();
+
+    private String getStorageDirectory(Context context) {
+        return Environment.getExternalStorageDirectory().getPath() + "/" + context.getPackageName();
     }
+
     @Override
     public void registerComponents(@NonNull Context context, @NonNull Glide glide, @NonNull Registry registry) {
         super.registerComponents(context, glide, registry);

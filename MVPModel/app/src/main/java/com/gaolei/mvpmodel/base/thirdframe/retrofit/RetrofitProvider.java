@@ -1,6 +1,8 @@
 package com.gaolei.mvpmodel.thirdframe.retrofit;
 
 
+import android.os.Environment;
+
 import com.franmontiel.persistentcookiejar.PersistentCookieJar;
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
@@ -28,7 +30,7 @@ public final class RetrofitProvider {
     private OkHttpClient mOkHttpClient;
     private static volatile RetrofitProvider sInstance;
     private ApiService restService;
-
+    private String cacheDir;
     private RetrofitProvider() {
     }
 
@@ -36,11 +38,14 @@ public final class RetrofitProvider {
     public RetrofitProvider builder() {
 
         if (mOkHttpClient == null) {
+//            cacheDir= Environment.getExternalStorageDirectory().getPath()+"/"+CustomApplication.context.getPackageName()+"/net_cache";
+            cacheDir = CustomApplication.context.getExternalFilesDir("net_cache").getAbsolutePath();
+
             mOkHttpClient = new OkHttpClient.Builder()
                     .addNetworkInterceptor(new HttpLoggingInterceptor())
                     .addNetworkInterceptor(new OnlineCacheInterceptor())//有网缓存拦截器
                     .addInterceptor(new OfflineCacheInterceptor())//无网缓存拦截器
-                    .cache(new Cache(new File(CustomApplication.cacheDir), 50 * 10240 * 1024))//缓存路径和空间设置
+                    .cache(new Cache(new File(cacheDir), 50 * 10240 * 1024))//缓存路径和空间设置
                     .addInterceptor(new RetryIntercepter(4))//重试
                     .addInterceptor(new GzipRequestInterceptor())//开启Gzip压缩
 
@@ -59,7 +64,7 @@ public final class RetrofitProvider {
         if (mRetrofit == null) {
             mRetrofit = new Retrofit.Builder()
                     .client(mOkHttpClient)
-                    .baseUrl(UrlConfig.BASE_URL)
+                    .baseUrl(com.gaolei.mvpmodel.thirdframe.retrofit.UrlConfig.BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .build();
