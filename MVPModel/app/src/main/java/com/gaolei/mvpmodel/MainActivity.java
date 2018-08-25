@@ -47,6 +47,7 @@ public class MainActivity extends BaseActivity {
         mFragments.add(new KnowledgeFragment());
         mFragments.add(new NavigationFragment());
         mFragments.add(new ProjectFragment());
+
         requestPermission();
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -100,7 +101,7 @@ public class MainActivity extends BaseActivity {
     }
 
 
-
+    //6.0 版本及以上动态获取权限
     public void requestPermission(){
         requestPermission(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},new PermissionUtil.RequestPermissionCallBack() {
             @Override

@@ -1,13 +1,13 @@
 package com.gaolei.mvpmodel.thirdframe.retrofit.interceptor;
 
 import android.content.Context;
-import android.support.v4.BuildConfig;
 import android.support.v4.util.ArrayMap;
 import android.util.Log;
 import android.util.Pair;
 
 import com.gaolei.mvpmodel.base.utils.LogUtil;
 import com.gaolei.mvpmodel.base.utils.Utils;
+import com.github.moduth.blockcanary.BuildConfig;
 
 import org.json.JSONException;
 import org.json.JSONObject;
