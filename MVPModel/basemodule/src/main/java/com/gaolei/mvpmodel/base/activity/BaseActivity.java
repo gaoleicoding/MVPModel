@@ -20,6 +20,8 @@ import com.gaolei.basemodule.R;
 import com.gaolei.mvpmodel.base.utils.NetworkUtil;
 import com.gaolei.mvpmodel.base.utils.PermissionUtil;
 import com.gaolei.mvpmodel.base.utils.StatusBarUtil;
+import com.umeng.analytics.MobclickAgent;
+import com.umeng.onlineconfig.OnlineConfigAgent;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -53,7 +55,8 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
             bundle = savedInstanceState;
         }
         initData(bundle);
-
+        OnlineConfigAgent.getInstance().setDebugMode(true);
+        OnlineConfigAgent.getInstance().updateOnlineConfig(this);
     }
 
     protected abstract int setContentLayout();
@@ -85,9 +88,9 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
         return mParentView;
     }
 
-    private void initBaseView(View view){
-        iv_back=view.findViewById(R.id.iv_back);
-        title=view.findViewById(R.id.title);
+    private void initBaseView(View view) {
+        iv_back = view.findViewById(R.id.iv_back);
+        title = view.findViewById(R.id.title);
         iv_back.setOnClickListener(this);
     }
 
@@ -157,14 +160,23 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
                             //用户拒绝权限请求，但未选中“不再提示”选项
                         }
                         mRequestPermissionCallBack.denied();
-                        return;
                     }
                 }
-                if (hasAllGranted) {
+                if (grantResults.length > 0 && hasAllGranted) {
                     mRequestPermissionCallBack.granted();
                 }
             }
         }
     }
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
+
 
 }

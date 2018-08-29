@@ -16,6 +16,7 @@ import com.gaolei.mvpmodel.fragment.NavigationFragment;
 import com.gaolei.mvpmodel.fragment.ProjectFragment;
 import com.gaolei.mvpmodel.base.utils.PermissionUtil;
 import com.gaolei.mvpmodel.base.view.BottomNavigationViewHelper;
+import com.umeng.onlineconfig.OnlineConfigAgent;
 
 import java.util.ArrayList;
 
@@ -33,6 +34,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected int setContentLayout() {
+
         return R.layout.activity_main;
     }
 
@@ -77,7 +79,7 @@ public class MainActivity extends BaseActivity {
                 return true;
             }
         });
-
+        String value = OnlineConfigAgent.getInstance().getConfigParams(this,"test");
     }
 
     /**
@@ -103,7 +105,7 @@ public class MainActivity extends BaseActivity {
 
     //6.0 版本及以上动态获取权限
     public void requestPermission(){
-        requestPermission(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},new PermissionUtil.RequestPermissionCallBack() {
+        requestPermission(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_PHONE_STATE},new PermissionUtil.RequestPermissionCallBack() {
             @Override
             public void granted() {
 //                Toast.makeText(MainActivity.this, "获取权限成功，执行正常操作", Toast.LENGTH_LONG).show();
