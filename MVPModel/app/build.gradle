@@ -73,10 +73,10 @@ android {
                 variant.outputs.all { output ->
                     def outputFile = output.outputFile
                     if (outputFile != null && outputFile.name.endsWith('.apk')) {
-                        // 输出apk名称为boohee_v1.0_2015-01-15_wandoujia.apk
+                        // 输出apk名称为XuetangXRelease-3.1.0(3100)_Baidu-百度.apk
                         def channel = variant.productFlavors[0].name
-                        def fileName = "build/outputs/XuetangXRelease-" + variant.versionName + "(" + variant.versionCode + ")_${getCNName().get(channel)}"
-
+                        def fileName = "build/outputs/XuetangX${variant.buildType.name}-"+variant.versionName+"("+variant.versionCode+")_${getCNName().get(channel)}"
+//                         def replaceFile = "build/outputs/XuetangXRelease-"+_V${variant.versionName}_${variant.flavorName}_${variant.buildType.name}_${buildTime()}"
                         outputFileName = fileName
                     }
                 }
