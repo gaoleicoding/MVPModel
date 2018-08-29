@@ -38,8 +38,7 @@ android {
         api rootProject.ext.dependencies.design
         api rootProject.ext.dependencies["constraint-layout"]
         testImplementation 'junit:junit:4.12'
-        androidTestImplementation 'com.android.support.test:runner:1.0.2'
-        androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
         api fileTree(include: ['*.jar'], dir: 'libs')
         //okhttp retrofit
         api rootProject.ext.dependencies["okhttp3"]
@@ -63,19 +62,19 @@ android {
         // eventbus
         api rootProject.ext.dependencies["event-bus"]
         annotationProcessor rootProject.ext.dependencies["eventbus-annotation-processor"]
-        // greendao
-        api rootProject.ext.dependencies["blockcanary"]
-        //greendao依赖
         // BlockCanary进行卡顿监控和提示
-        debugImplementation rootProject.ext.dependencies["blockcanary"]
+        debugImplementation 'com.github.markzhai:blockcanary-android:1.5.0'
+        releaseImplementation 'com.github.markzhai:blockcanary-no-op:1.5.0'
         //LeakCanary
-        debugImplementation rootProject.ext.dependencies["leakcanary"]
+        debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.1'
+        releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.1'
+        // Optional, if you use support library fragments:
+        debugImplementation 'com.squareup.leakcanary:leakcanary-support-fragment:1.6.1'
         //okhttp保存cookie
         api rootProject.ext.dependencies["PersistentCookieJar"]
         //友盟统计
         api rootProject.ext.dependencies["umeng-common"]
         api rootProject.ext.dependencies["umeng-analytics"]
-        implementation files('src/main/libs/android-support-v4.jar')
-        implementation files('src/main/libs/umeng-onlineconfig_v1.0.0.jar')
+
     }
 }

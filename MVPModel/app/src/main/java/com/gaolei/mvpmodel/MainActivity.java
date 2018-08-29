@@ -59,11 +59,11 @@ public class MainActivity extends BaseActivity {
                     case R.id.tab_main_pager:
                         title.setText(getString(R.string.home_pager));
                         switchFragment(0);
-
                         break;
                     case R.id.tab_knowledge_hierarchy:
                         title.setText(getString(R.string.knowledge_hierarchy));
                         switchFragment(1);
+//                        int i=1/0;
 
                         break;
                     case R.id.tab_navigation:

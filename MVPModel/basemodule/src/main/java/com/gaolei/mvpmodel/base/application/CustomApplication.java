@@ -35,7 +35,7 @@ public class CustomApplication extends Application {
         crashHandler.init(getApplicationContext());
 
         UMConfigure.init(this, UMConfigure.DEVICE_TYPE_PHONE,"");
-        MobclickAgent.onEvent(this, "enter","app");//前统计的事件ID
+        MobclickAgent.onEvent(this, "enter","CustomApplication");//前统计的事件ID
     }
     public static boolean isNetworkAvalible() {
         // 获得网络状态管理器
