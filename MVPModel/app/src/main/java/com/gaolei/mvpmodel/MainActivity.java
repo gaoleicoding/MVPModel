@@ -16,7 +16,6 @@ import com.gaolei.mvpmodel.fragment.NavigationFragment;
 import com.gaolei.mvpmodel.fragment.ProjectFragment;
 import com.gaolei.mvpmodel.base.utils.PermissionUtil;
 import com.gaolei.mvpmodel.base.view.BottomNavigationViewHelper;
-import com.umeng.onlineconfig.OnlineConfigAgent;
 
 import java.util.ArrayList;
 
@@ -79,7 +78,6 @@ public class MainActivity extends BaseActivity {
                 return true;
             }
         });
-        String value = OnlineConfigAgent.getInstance().getConfigParams(this,"test");
     }
 
     /**

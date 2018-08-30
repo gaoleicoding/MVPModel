@@ -21,7 +21,6 @@ import com.gaolei.mvpmodel.base.utils.NetworkUtil;
 import com.gaolei.mvpmodel.base.utils.PermissionUtil;
 import com.gaolei.mvpmodel.base.utils.StatusBarUtil;
 import com.umeng.analytics.MobclickAgent;
-import com.umeng.onlineconfig.OnlineConfigAgent;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -55,8 +54,7 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
             bundle = savedInstanceState;
         }
         initData(bundle);
-        OnlineConfigAgent.getInstance().setDebugMode(true);
-        OnlineConfigAgent.getInstance().updateOnlineConfig(this);
+        
     }
 
     protected abstract int setContentLayout();

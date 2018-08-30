@@ -24,7 +24,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
+    //执行lint检查，有任何的错误或者警告提示，都会终止构建
+    lintOptions {
+        abortOnError false
+    }
 //    sourceSets {
 //        main {
 //            //jni库的调用会到资源文件夹下libs里面找so文件,对于so文件，android studio理论上是要求放置在一个jniLibs文件夹下的，这样程序才能够找到要所依赖的so文件
