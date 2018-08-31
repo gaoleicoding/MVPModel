@@ -1,14 +1,19 @@
 package com.gaolei.mvpmodel.base.utils;
 
 import android.app.AlarmManager;
+import android.app.Dialog;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Environment;
 import android.os.Looper;
+import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.Gravity;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 
@@ -58,23 +63,20 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
 
 
 
-            //崩溃后，重启应用
-            Class clazz= null;
-            try {
-                clazz = Class.forName("com.gaolei.mvpmodel.MainActivity");
-            } catch (java.lang.Exception exception) {
-                exception.printStackTrace();
-            }
-            Intent intent = new Intent(CustomApplication.context,clazz);
-            intent.putExtra("error_reboot", true);
+//            if (SPUtils.contains("currentTime")) {
+//                String lastTimeMillis = (String) SPUtils.get("currentTime", String.valueOf("0"));
+//                LogUtil.d("lastTimeMillis:" + lastTimeMillis);
+//                LogUtil.d("System.currentTimeMillis():" + System.currentTimeMillis());
+//                LogUtil.d("priod:" + (System.currentTimeMillis() - Long.valueOf(lastTimeMillis)));
+//                long timeInterval = System.currentTimeMillis() - Long.valueOf(lastTimeMillis);
+//                if (timeInterval > 60 * 1000) {
+//                    SPUtils.put("currentTime", String.valueOf(System.currentTimeMillis()));
+//                }
+//            } else {
+//                SPUtils.put("currentTime", String.valueOf(System.currentTimeMillis()));
+//
+//            }
 
-            PendingIntent pendingIntent = PendingIntent.getActivity(
-                    mcontext.getApplicationContext(), 0, intent,
-                    PendingIntent.FLAG_ONE_SHOT);
-            AlarmManager mgr = (AlarmManager) mcontext
-                    .getSystemService(Context.ALARM_SERVICE);
-            mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 1000,
-                    pendingIntent); // 1秒钟后重启应用
             android.os.Process.killProcess(android.os.Process.myPid());
             System.exit(10);
         }
@@ -88,7 +90,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
             @Override
             public void run() {
                 Looper.prepare();
-                Toast toast = Toast.makeText(mcontext, "程序出错了，我们会尽快修复，稍后将重启应用！",
+                Toast toast = Toast.makeText(mcontext, "程序出错了，请先用其它功能，我们会尽快修复！",
                         Toast.LENGTH_LONG);
                 toast.setGravity(Gravity.CENTER, 0, 0);
                 toast.show();
@@ -165,4 +167,6 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
         printWriter.close();
         return result.toString();
     }
+
+
 }

@@ -3,7 +3,7 @@ package com.gaolei.mvpmodel.thirdframe.retrofit.interceptor;
 import android.util.Log;
 
 import com.gaolei.mvpmodel.base.application.CustomApplication;
-import com.gaolei.mvpmodel.base.utils.NetworkUtil;
+import com.gaolei.mvpmodel.base.utils.NetUtils;
 
 import java.io.IOException;
 
@@ -15,7 +15,7 @@ public class OfflineCacheInterceptor implements Interceptor {
     @Override
     public Response intercept(Chain chain) throws IOException {
         Request request = chain.request();
-        if (!NetworkUtil.isNetworkAvailable(CustomApplication.context)) {
+        if (!NetUtils.isConnected()) {
             int offlineCacheTime = Integer.MAX_VALUE;//离线的时候的缓存的过期时间
             request = request.newBuilder()
 //                        .cacheControl(new CacheControl

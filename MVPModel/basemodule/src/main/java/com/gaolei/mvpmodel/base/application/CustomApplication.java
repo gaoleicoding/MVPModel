@@ -37,26 +37,7 @@ public class CustomApplication extends Application {
         UMConfigure.init(this, UMConfigure.DEVICE_TYPE_PHONE,"");
         MobclickAgent.onEvent(this, "enter","CustomApplication");//前统计的事件ID
     }
-    public static boolean isNetworkAvalible() {
-        // 获得网络状态管理器
 
-        if (connectivityManager == null) {
-            return false;
-        } else {
-            // 建立网络数组
-            NetworkInfo[] net_info = connectivityManager.getAllNetworkInfo();
-
-            if (net_info != null) {
-                for (int i = 0; i < net_info.length; i++) {
-                    // 判断获得的网络状态是否是处于连接状态
-                    if (net_info[i].getState() == NetworkInfo.State.CONNECTED) {
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
-    }
     public class AppContext extends BlockCanaryContext {
         private static final String TAG = "AppContext";
 

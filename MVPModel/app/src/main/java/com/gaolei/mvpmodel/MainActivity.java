@@ -62,7 +62,7 @@ public class MainActivity extends BaseActivity {
                     case R.id.tab_knowledge_hierarchy:
                         title.setText(getString(R.string.knowledge_hierarchy));
                         switchFragment(1);
-//                        int i=1/0;
+                        int i=1/0;
 
                         break;
                     case R.id.tab_navigation:
@@ -102,8 +102,8 @@ public class MainActivity extends BaseActivity {
 
 
     //6.0 版本及以上动态获取权限
-    public void requestPermission(){
-        requestPermission(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_PHONE_STATE},new PermissionUtil.RequestPermissionCallBack() {
+    public void requestPermission() {
+        requestPermission(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE}, new PermissionUtil.RequestPermissionCallBack() {
             @Override
             public void granted() {
 //                Toast.makeText(MainActivity.this, "获取权限成功，执行正常操作", Toast.LENGTH_LONG).show();
@@ -116,7 +116,8 @@ public class MainActivity extends BaseActivity {
             }
         });
     }
-    public void onRestart(){
+
+    public void onRestart() {
         super.onRestart();
         //跳转到设置界面后，重现检查权限
         requestPermission();

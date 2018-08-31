@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.gaolei.basemodule.R;
-import com.gaolei.mvpmodel.base.utils.NetworkUtil;
+import com.gaolei.mvpmodel.base.utils.NetUtils;
 import com.gaolei.mvpmodel.base.utils.StatusBarUtil;
 
 import butterknife.ButterKnife;
@@ -56,7 +56,6 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
         mErrorPageView = view.findViewById(R.id.ll_base_error_content);
         bt_error_refresh = view.findViewById(R.id.bt_error_refresh);
         mLlLoading = view.findViewById(R.id.ll_loading);
-        Log.d("gaolei", "network:" + NetworkUtil.isNetworkAvailable(getActivity()));
 //        if (!NetworkUtil.isNetworkAvailable(getActivity()))
 //            showErrorPage(true);
         bt_error_refresh.setOnClickListener(this);
@@ -101,7 +100,7 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.bt_error_refresh) {
-            if (NetworkUtil.isNetworkAvailable(getActivity()))
+            if (NetUtils.isConnected())
                 mErrorPageView.setVisibility(View.GONE);
             reload();
         }

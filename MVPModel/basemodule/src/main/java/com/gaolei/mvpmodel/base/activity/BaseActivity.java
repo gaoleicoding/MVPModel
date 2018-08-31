@@ -17,7 +17,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gaolei.basemodule.R;
-import com.gaolei.mvpmodel.base.utils.NetworkUtil;
 import com.gaolei.mvpmodel.base.utils.PermissionUtil;
 import com.gaolei.mvpmodel.base.utils.StatusBarUtil;
 import com.umeng.analytics.MobclickAgent;

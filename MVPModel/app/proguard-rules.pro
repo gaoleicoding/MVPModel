@@ -78,7 +78,8 @@
 -keepclasseswithmembernames class * {
     native <methods>;
 }
-
+#所有model类不要混淆。
+-keep class com.gaolei.mvpmodel.base.mmodel.**{*;}
 # 保留我们自定义控件（继承自View）不被混淆
 -keep public class * extends android.view.View{
     *** get*();
@@ -160,7 +161,7 @@
 -keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueConsumerNodeRef {
     rx.internal.util.atomic.LinkedQueueNode consumerNode;
 }
-
+-dontnote rx.internal.util.PlatformDependent
 # Gson
 -keep class com.google.gson.stream.** { *; }
 -keepattributes EnclosingMethod
@@ -189,6 +190,18 @@
     <init>(java.lang.Throwable);
 }
 
+#greendao3.2.0,此是针对3.2.0，如果是之前的，可能需要更换下包名
+# # -------------------------------------------
+-keep class freemarker.** { *; }
+-dontwarn freemarker.**
+
+-keep class org.greenrobot.greendao.**{*;}
+-dontwarn org.greenrobot.greendao.**
+
+-keepclassmembers class * extends org.greenrobot.greendao.AbstractDao {
+public static java.lang.String TABLENAME;
+}
+#友盟
 -keep class com.umeng.** {*;}
 -keepclassmembers class * {
    public <init> (org.json.JSONObject);

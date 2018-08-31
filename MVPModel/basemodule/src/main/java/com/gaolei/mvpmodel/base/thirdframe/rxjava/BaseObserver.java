@@ -5,6 +5,7 @@ import android.content.Context;
 
 import com.gaolei.mvpmodel.base.application.CustomApplication;
 import com.gaolei.mvpmodel.base.mview.BaseView;
+import com.gaolei.mvpmodel.base.utils.NetUtils;
 import com.gaolei.mvpmodel.base.utils.Utils;
 import com.gaolei.mvpmodel.base.view.CustomProgressDialog;
 
@@ -40,7 +41,7 @@ public abstract class BaseObserver<T> extends ResourceObserver<T> {
     @Override
     public void onError(Throwable e) {
         prgressDialog.cancel();
-        if (!CustomApplication.isNetworkAvalible()) {
+        if (!NetUtils.isConnected()) {
             errMsg = "网络连接出错,请检查网络";
 
         } else if (e instanceof HttpException) {
