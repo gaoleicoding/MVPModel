@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="180dp"
         app:image_scale_type="fit_xy"
-        app:indicator_drawable_selected="@drawable/selected_radius"
+        app:indicator_drawable_selected="@drawable/banner_selected_radius"
         app:indicator_drawable_unselected="@drawable/unselected_radius"
         app:indicator_height="8dp"
         app:indicator_width="8dp"

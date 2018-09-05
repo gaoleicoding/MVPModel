@@ -19,7 +19,8 @@
         android:roundIcon="@mipmap/icon_mvp"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SplashActivity">
+        <activity android:name=".SplashActivity"
+            android:theme=" @style/full_screen_style" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

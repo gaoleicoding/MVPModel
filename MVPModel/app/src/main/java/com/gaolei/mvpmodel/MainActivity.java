@@ -1,22 +1,19 @@
 package com.gaolei.mvpmodel;
 
 import android.Manifest;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
-import android.view.MenuItem;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 
+import com.gaolei.mvpmodel.adapter.MainTabAdapter;
 import com.gaolei.mvpmodel.base.activity.BaseActivity;
-import com.gaolei.mvpmodel.base.fragment.BaseMvpFragment;
-import com.gaolei.mvpmodel.fragment.KnowledgeFragment;
+import com.gaolei.mvpmodel.base.utils.PermissionUtil;
 import com.gaolei.mvpmodel.fragment.HomeFragment;
+import com.gaolei.mvpmodel.fragment.KnowledgeFragment;
 import com.gaolei.mvpmodel.fragment.NavigationFragment;
 import com.gaolei.mvpmodel.fragment.ProjectFragment;
-import com.gaolei.mvpmodel.base.utils.PermissionUtil;
-import com.gaolei.mvpmodel.base.view.BottomNavigationViewHelper;
 import com.gaolei.mvpmodel.fragment.UserFragment;
+import com.gaolei.mvpmodel.view.CustomViewPager;
 
 import java.util.ArrayList;
 
@@ -24,13 +21,13 @@ import butterknife.BindView;
 
 public class MainActivity extends BaseActivity {
 
-    private ArrayList<BaseMvpFragment> mFragments;
-    private int mLastFgIndex = 0;
+    private ArrayList<Fragment> mFragments;
+    private ArrayList<String> titles;
 
-    //    BottomNavigationView bottomNavigationView;
-    @BindView(R.id.bottom_navigation_view)
-    BottomNavigationView bottomNavigationView;
-
+    @BindView(R.id.viewPager)
+    CustomViewPager viewPager;
+    @BindView(R.id.tabLayout)
+    TabLayout tabLayout;
 
     @Override
     protected int setContentLayout() {
@@ -42,65 +39,79 @@ public class MainActivity extends BaseActivity {
     protected void initData(Bundle bundle) {
 
 
-        // 取消BottomNavigation大于3个时，动画
-        BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
-        mFragments = new ArrayList<BaseMvpFragment>();
+        mFragments = new ArrayList<Fragment>();
         mFragments.add(new HomeFragment());
         mFragments.add(new KnowledgeFragment());
         mFragments.add(new NavigationFragment());
         mFragments.add(new ProjectFragment());
         mFragments.add(new UserFragment());
+        titles = new ArrayList<String>();
+        titles.add(getString(R.string.home));
+        titles.add(getString(R.string.knowledge));
+        titles.add(getString(R.string.navigation));
+        titles.add(getString(R.string.project));
+        titles.add(getString(R.string.mine));
 
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.tab_main_pager:
-                        title.setText(getString(R.string.home_pager));
-                        switchFragment(0);
-                        break;
-                    case R.id.tab_knowledge_hierarchy:
-                        title.setText(getString(R.string.knowledge_hierarchy));
-                        switchFragment(1);
-
-                        break;
-                    case R.id.tab_navigation:
-                        title.setText(getString(R.string.navigation));
-                        switchFragment(2);
-
-                        break;
-                    case R.id.tab_project:
-                        title.setText(getString(R.string.project));
-                        switchFragment(3);
-                        break;
-                }
-                return true;
-            }
-        });
+        MainTabAdapter adapter = new MainTabAdapter(getSupportFragmentManager(), mFragments);
+        viewPager.setOffscreenPageLimit(mFragments.size());
+        viewPager.setAdapter(adapter);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(viewPager));
+        //将TabLayout和ViewPager关联起来
+        tabLayout.setupWithViewPager(viewPager);
+        initTab();
+        requestPermission();
     }
 
     /**
-     * 切换fragment
-     *
-     * @param position 要显示的fragment的下标
+     * 设置添加Tab
      */
-    private void switchFragment(int position) {
+    private void initTab() {
 
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        Fragment targetFg = mFragments.get(position);
-        Fragment lastFg = mFragments.get(mLastFgIndex);
-        mLastFgIndex = position;
-        ft.hide(lastFg);
-        if (!targetFg.isAdded()) {
-            getSupportFragmentManager().beginTransaction().remove(targetFg).commit();
-            ft.add(R.id.fragment_group, targetFg);
-        }
-        ft.show(targetFg);
-        ft.commitAllowingStateLoss();
+        tabLayout.getTabAt(0).setCustomView(R.layout.tab_home);
+        tabLayout.getTabAt(1).setCustomView(R.layout.tab_knowledge);
+        tabLayout.getTabAt(2).setCustomView(R.layout.tab_navigation);
+        tabLayout.getTabAt(3).setCustomView(R.layout.tab_project);
+        tabLayout.getTabAt(4).setCustomView(R.layout.tab_mine);
+
+
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            //标签选中之后执行的方法
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                title.setText(titles.get(tab.getPosition()));
+            }
+
+            //标签没选中
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+    }
+    public void requestPermission() {
+        requestPermission(this, new PermissionUtil.RequestPermissionCallBack() {
+
+            @Override
+            public void granted() {
+                //默认选中的Tab
+                tabLayout.getTabAt(0).getCustomView().setSelected(true);
+            }
+
+            @Override
+            public void denied() {
+            }
+        }, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE});
     }
 
-
-
-
-
+    public void onRestart() {
+        super.onRestart();
+        //跳转到设置界面后返回，重新检查权限
+        requestPermission();
+    }
 }

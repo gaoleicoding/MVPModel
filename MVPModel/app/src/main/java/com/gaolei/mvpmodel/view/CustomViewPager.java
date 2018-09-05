@@ -13,7 +13,7 @@ import android.view.MotionEvent;
 public class CustomViewPager extends ViewPager {
 
 
-    public boolean canScroll;
+    public boolean canScroll=true;
 
     public CustomViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);

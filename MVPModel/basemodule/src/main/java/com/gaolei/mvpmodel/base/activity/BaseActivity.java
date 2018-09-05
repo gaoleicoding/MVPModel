@@ -11,12 +11,15 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gaolei.basemodule.R;
+import com.gaolei.basemodule.R2;
 import com.gaolei.mvpmodel.base.utils.PermissionUtil;
 import com.gaolei.mvpmodel.base.utils.StatusBarUtil;
 import com.umeng.analytics.MobclickAgent;
@@ -34,16 +37,20 @@ import static com.gaolei.mvpmodel.base.utils.PermissionUtil.PERMISSION_CODE;
 
 public abstract class BaseActivity extends FragmentActivity implements View.OnClickListener {
     private PermissionUtil.RequestPermissionCallBack mRequestPermissionCallBack;
-    //    @BindView(R2.id.iv_back)
+//        @BindView(R2.id.iv_back)
     public ImageView iv_back;
-    //    @BindView(R2.id.title)
+//        @BindView(R2.id.title)
     public TextView title;
+//    @BindView(R2.id.header_layout)
+    public  RelativeLayout header_layout;
+
+    protected boolean isShowTitleLayout=true;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(addContentView());
-        setStatusBarColor(R.color.yellow);
+        setStatusBarColor(R.color.app_color);
         //1、ButterKnife.bind(this);必须在setContentView();之后绑定；
         //2、在Activity中不需要做解绑操作
         ButterKnife.bind(this);
@@ -78,16 +85,19 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
 
     public View addContentView() {
         LayoutInflater inflater = LayoutInflater.from(this);
-        LinearLayout mParentView = (LinearLayout) inflater.inflate(R.layout.activity_base, null);
+        ViewGroup mParentView = (ViewGroup) inflater.inflate(R.layout.activity_base, null);
+        initBaseView(mParentView);
         View subActivityView = inflater.inflate(setContentLayout(), null);
         mParentView.addView(subActivityView);
-        initBaseView(mParentView);
         return mParentView;
     }
 
     private void initBaseView(View view) {
         iv_back = view.findViewById(R.id.iv_back);
         title = view.findViewById(R.id.title);
+//        header_layout = view.findViewById(R.id.header_layoutabcd);
+//        if(!isShowTitleLayout)
+//            header_layout.setVisibility(View.GONE);
         iv_back.setOnClickListener(this);
     }
 

@@ -4,10 +4,10 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
-    <color name="yellow">#f39c12</color>
-    <color name="delete_text">#cccccc</color>
-    <color name="colorCard">#FFFFFF</color>
-    <color name="comment_text">#5b5d5c</color>
+    <color name="app_color">#f39c12</color>
+    <color name="color_cccccc">#cccccc</color>
+    <color name="white">#FFFFFF</color>
+    <color name="color_5b5d5c">#5b5d5c</color>
     <color name="color_c3">#8A8E99</color>
     <color name="color_co">#FF7429</color>
     <color name="color_c5">#C2C5CC</color>

@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:textSize="18sp"
         android:layout_centerInParent="true"
-        android:text="@string/me" />
+        android:text="@string/mine" />
 
 
 

@@ -50,7 +50,9 @@ public class PermissionUtil {
                 })
                 .setNegativeButton("取消", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-
+                        if (Utils.getTopActivity(activity).equals("MainActivity")) {
+                            activity.finish();
+                        }
                         dialog.dismiss();
                     }
                 });

@@ -18,4 +18,8 @@
     </style>
 
 
+    <style name="full_screen_style">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
 </resources>

@@ -4,32 +4,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <!--<TextView-->
-        <!--android:id="@+id/title"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="45dp"-->
-        <!--android:textSize="18sp"-->
-        <!--android:background="@color/yellow"-->
-        <!--android:textColor="#ffffff"-->
-        <!--android:text="首页"-->
-        <!--android:gravity="center" />-->
-
-    <FrameLayout
-        android:id="@+id/fragment_group"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="60dp"
-        />
 
     <com.gaolei.mvpmodel.view.CustomViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1" />
+
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#d6d2d2"/>
+        android:layout_height="0.5dp"
+        android:background="#cccccc" />
+
     <android.support.design.widget.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"

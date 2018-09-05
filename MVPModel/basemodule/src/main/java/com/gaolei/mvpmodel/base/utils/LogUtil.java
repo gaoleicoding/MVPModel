@@ -11,6 +11,7 @@ import com.gaolei.basemodule.BuildConfig;
 public class LogUtil {
 
     private static boolean isDebug = BuildConfig.DEBUG;
+    private static final String TAG = "zmy";
 
     public static void init(boolean isPrintable) {
         isDebug = isPrintable;
@@ -20,7 +21,7 @@ public class LogUtil {
         if (!isDebug) {
             return;
         }
-        Log.e("zmy", msg);
+        Log.e(TAG, msg);
     }
 
     public static void v(String tag, String msg) {

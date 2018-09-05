@@ -8,7 +8,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:background="@color/yellow">
+        android:background="@color/app_color">
 
         <ImageView
             android:id="@+id/iv_back"
