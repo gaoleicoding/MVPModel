@@ -29,7 +29,7 @@ public class SplashActivity extends Activity {
 
         setContentView(R.layout.activity_splash);
 
-        handler.sendEmptyMessageDelayed(0, 4000);
+        handler.sendEmptyMessageDelayed(0, 3000);
     }
 
     public void jumpToMainActivity(View view){
