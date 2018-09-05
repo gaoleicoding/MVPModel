@@ -16,6 +16,7 @@ import com.gaolei.mvpmodel.fragment.NavigationFragment;
 import com.gaolei.mvpmodel.fragment.ProjectFragment;
 import com.gaolei.mvpmodel.base.utils.PermissionUtil;
 import com.gaolei.mvpmodel.base.view.BottomNavigationViewHelper;
+import com.gaolei.mvpmodel.fragment.UserFragment;
 
 import java.util.ArrayList;
 
@@ -48,8 +49,7 @@ public class MainActivity extends BaseActivity {
         mFragments.add(new KnowledgeFragment());
         mFragments.add(new NavigationFragment());
         mFragments.add(new ProjectFragment());
-
-        requestPermission();
+        mFragments.add(new UserFragment());
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -62,7 +62,6 @@ public class MainActivity extends BaseActivity {
                     case R.id.tab_knowledge_hierarchy:
                         title.setText(getString(R.string.knowledge_hierarchy));
                         switchFragment(1);
-                        int i=1/0;
 
                         break;
                     case R.id.tab_navigation:
@@ -101,27 +100,7 @@ public class MainActivity extends BaseActivity {
     }
 
 
-    //6.0 版本及以上动态获取权限
-    public void requestPermission() {
-        requestPermission(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE}, new PermissionUtil.RequestPermissionCallBack() {
-            @Override
-            public void granted() {
-//                Toast.makeText(MainActivity.this, "获取权限成功，执行正常操作", Toast.LENGTH_LONG).show();
-                switchFragment(0);
-            }
 
-            @Override
-            public void denied() {
-//                Toast.makeText(MainActivity.this, "获取权限失败，正常功能受到影响", Toast.LENGTH_LONG).show();
-            }
-        });
-    }
-
-    public void onRestart() {
-        super.onRestart();
-        //跳转到设置界面后，重现检查权限
-        requestPermission();
-    }
 
 
 }

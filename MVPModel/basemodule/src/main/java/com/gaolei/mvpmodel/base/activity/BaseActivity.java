@@ -112,8 +112,8 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
      * @param callback
      */
 
-    public void requestPermission(final Context context, final String[] permissions,
-                                  PermissionUtil.RequestPermissionCallBack callback) {
+    public void requestPermission(final Context context,
+                                  PermissionUtil.RequestPermissionCallBack callback, final String... permissions) {
         this.mRequestPermissionCallBack = callback;
 
         //如果所有权限都已授权，则直接返回授权成功,只要有一项未授权，则发起权限请求

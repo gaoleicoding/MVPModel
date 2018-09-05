@@ -19,13 +19,14 @@
         android:roundIcon="@mipmap/icon_mvp"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MainActivity"></activity>
         <activity android:name=".activity.ArticleDetailActivity"></activity>
         <!--value的值填写你在友盟后台申请的应用Appkey-->
         <meta-data android:value="5b856a95b27b0a712f0000fb" android:name="UMENG_APPKEY"/>

@@ -29,4 +29,10 @@
         android:icon="@drawable/icon_project_not_selected"
         android:title="@string/project"
         app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/tab_user"
+        android:enabled="true"
+        android:icon="@drawable/icon_me_not_selected"
+        android:title="@string/me"
+        app:showAsAction="ifRoom" />
 </menu>
