@@ -13,6 +13,10 @@ import com.gaolei.mvpmodel.base.mpresenter.BasePresenter;
  */
 
 public class NavigationFragment extends BaseMvpFragment {
+    @Override
+    protected void loadData() {
+
+    }
 
     @Override
     public void initData( Bundle bundle) {

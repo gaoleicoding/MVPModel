@@ -33,4 +33,9 @@ public class UserFragment extends BaseMvpFragment {
     public BasePresenter initPresenter() {
         return null;
     }
+
+    @Override
+    protected void loadData() {
+
+    }
 }

@@ -22,6 +22,7 @@ public abstract class BaseObserver<T> extends ResourceObserver<T> {
     Dialog prgressDialog;
 
     protected BaseObserver(Context context){
+        // context在CustomProgressDialog中用到
         this.context=context;
         prgressDialog= CustomProgressDialog.createLoadingDialog(context);
         prgressDialog.setCancelable(true);//允许返回

@@ -93,14 +93,15 @@ public class MainActivity extends BaseActivity {
 
             }
         });
+        //默认选中的Tab
+        tabLayout.getTabAt(0).getCustomView().setSelected(true);
     }
     public void requestPermission() {
         requestPermission(this, new PermissionUtil.RequestPermissionCallBack() {
 
             @Override
             public void granted() {
-                //默认选中的Tab
-                tabLayout.getTabAt(0).getCustomView().setSelected(true);
+
             }
 
             @Override

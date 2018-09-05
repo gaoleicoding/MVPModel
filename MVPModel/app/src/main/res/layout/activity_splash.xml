@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_margin="20dp"
+        android:padding="40dp"
         android:textSize="14sp"
         android:textColor="#ffffff"
         android:clickable="true"

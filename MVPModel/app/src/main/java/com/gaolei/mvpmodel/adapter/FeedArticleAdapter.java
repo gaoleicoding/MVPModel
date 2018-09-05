@@ -10,27 +10,27 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.gaolei.mvpmodel.R;
-import com.gaolei.mvpmodel.base.mmodel.ProjectListData;
-import com.gaolei.mvpmodel.base.mmodel.ProjectListData.ProjectData;
+import com.gaolei.mvpmodel.base.mmodel.FeedArticleListData;
+import com.gaolei.mvpmodel.base.mmodel.FeedArticleListData.FeedArticleData;
 import com.gaolei.mvpmodel.base.thirdframe.glide.ImageLoader;
 
 import java.util.List;
 
 
-public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.MyViewHolder> {
+public class FeedArticleAdapter extends RecyclerView.Adapter<FeedArticleAdapter.MyViewHolder> {
 
     public Context context;
     int selectPosition = 0;
     OnItemClickListener listener;
-    List<ProjectData> list;
+    List<FeedArticleData> list;
 
-    public ProjectAdapter(Context context, List<ProjectListData.ProjectData> list) {
+    public FeedArticleAdapter(Context context, List<FeedArticleData> list) {
         this.context = context;
         this.list = list;
     }
 
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_project_list, null);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_feedarticle_list, null);
         MyViewHolder holder = new MyViewHolder(view);
         view.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,9 +47,8 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.MyViewHo
 
     public void onBindViewHolder(MyViewHolder holder, int position) {
         holder.itemView.setTag(position);
-        ProjectData projectInfo=list.get(position);
-        Log.d("gaolei","onBindViewHolder-----------"+position);
-        Log.d("gaolei","projectInfo.getTitle()-----------"+projectInfo.getTitle());
+        FeedArticleData projectInfo=list.get(position);
+
         holder.item_project_list_title_tv.setText(projectInfo.getTitle());
         holder.item_project_list_content_tv.setText(projectInfo.getDesc());
         holder.item_project_list_time_tv.setText(projectInfo.getNiceDate());

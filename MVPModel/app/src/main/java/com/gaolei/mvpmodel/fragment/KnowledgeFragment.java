@@ -32,4 +32,9 @@ public class KnowledgeFragment extends BaseMvpFragment {
     public BasePresenter initPresenter() {
         return null;
     }
+
+    @Override
+    protected void loadData() {
+
+    }
 }

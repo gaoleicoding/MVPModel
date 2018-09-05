@@ -24,17 +24,17 @@ public class ProjectListData {
 
     public class ListData {
         private int curPage;
-        private List<FeedArticleData> datas;
+        private List<ProjectData> datas;
         private int offset;
         private boolean over;
         private int pageCount;
         private int size;
         private int total;
-        public List<FeedArticleData> getDatas() {
+        public List<ProjectData> getDatas() {
             return datas;
         }
 
-        public void setDatas(List<FeedArticleData> datas) {
+        public void setDatas(List<ProjectData> datas) {
             this.datas = datas;
         }
 //        public int getCurPage() {
@@ -86,7 +86,7 @@ public class ProjectListData {
 //        }
     }
 
-    public class FeedArticleData implements Serializable
+    public class ProjectData implements Serializable
     {
 
 //            {

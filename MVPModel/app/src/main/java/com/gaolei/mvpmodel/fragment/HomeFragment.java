@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Debug;
-import android.os.Trace;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -14,11 +13,13 @@ import com.bumptech.glide.Glide;
 import com.gaolei.mvpmodel.R;
 import com.gaolei.mvpmodel.activity.ArticleDetailActivity;
 import com.gaolei.mvpmodel.adapter.DividerItemDecoration;
+import com.gaolei.mvpmodel.adapter.FeedArticleAdapter;
 import com.gaolei.mvpmodel.adapter.ProjectAdapter;
 import com.gaolei.mvpmodel.base.fragment.BaseMvpFragment;
-import com.gaolei.mvpmodel.mcontract.ProjectListContract;
+import com.gaolei.mvpmodel.base.mmodel.FeedArticleListData;
+import com.gaolei.mvpmodel.mcontract.HomeContract;
 import com.gaolei.mvpmodel.base.mmodel.BannerListData;
-import com.gaolei.mvpmodel.base.mmodel.ProjectListData;
+import com.gaolei.mvpmodel.base.mmodel.FeedArticleListData.FeedArticleData;
 import com.gaolei.mvpmodel.mpresenter.HomePresenter;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
@@ -36,24 +37,23 @@ import butterknife.BindView;
  * @date 2018/2/11
  */
 
-public class HomeFragment extends BaseMvpFragment< HomePresenter> implements ProjectListContract.View {
+public class HomeFragment extends BaseMvpFragment<HomePresenter> implements HomeContract.View {
 
     @BindView(R.id.project_recyclerview)
     RecyclerView project_recyclerview;
     @BindView(R.id.banner)
     Banner banner;
-    ProjectAdapter projectAdapter;
+    FeedArticleAdapter feedArticleAdapter;
 
     @Override
     public void initData(Bundle bundle) {
 
         Debug.startMethodTracing("traceview");
-        Trace.beginSection("systrace");
+//        Trace.beginSection("systrace");
 
-        mPresenter.getProjectInfo(1, 294,getActivity());
-        mPresenter.getBannerInfo(getActivity());
+
         Debug.stopMethodTracing();
-        Trace.endSection();
+//        Trace.endSection();
     }
 
     @Override
@@ -63,7 +63,7 @@ public class HomeFragment extends BaseMvpFragment< HomePresenter> implements Pro
 
     @Override
     public void reload() {
-        mPresenter.getProjectInfo(1, 294,getActivity());
+        mPresenter.getFeedArticleList(0, getActivity());
         mPresenter.getBannerInfo(getActivity());
     }
 
@@ -72,17 +72,23 @@ public class HomeFragment extends BaseMvpFragment< HomePresenter> implements Pro
         return new HomePresenter();
     }
 
+    @Override
+    protected void loadData() {
+        mPresenter.getFeedArticleList(0, getActivity());
+        mPresenter.getBannerInfo(getActivity());
+    }
+
 
     @Override
-    public void showProjectInfo(ProjectListData listData) {
-        final List<ProjectListData.FeedArticleData> articleDataList = listData.data.getDatas();
-        projectAdapter = new ProjectAdapter(getActivity(), articleDataList);
+    public void showFeedArticleInfo(FeedArticleListData listData) {
+        final List<FeedArticleData> articleDataList = listData.data.getDatas();
+        feedArticleAdapter = new FeedArticleAdapter(getActivity(), articleDataList);
 
         project_recyclerview.addItemDecoration(new DividerItemDecoration(getActivity(),
                 DividerItemDecoration.VERTICAL_LIST));
         project_recyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
-        project_recyclerview.setAdapter(projectAdapter);
-        projectAdapter.setOnItemClickListener(new ProjectAdapter.OnItemClickListener() {
+        project_recyclerview.setAdapter(feedArticleAdapter);
+        feedArticleAdapter.setOnItemClickListener(new FeedArticleAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View v, int position) {
                 Intent intent = new Intent(getActivity(), ArticleDetailActivity.class);
@@ -101,7 +107,7 @@ public class HomeFragment extends BaseMvpFragment< HomePresenter> implements Pro
         List imageList = new ArrayList();
         List titleList = new ArrayList();
         int size = itemBeans.data.size();
-       
+
         for (int i = 0; i < size; i++) {
             imageList.add(itemBeans.data.get(i).getImagePath());
             titleList.add(itemBeans.data.get(i).getTitle());
@@ -147,10 +153,12 @@ public class HomeFragment extends BaseMvpFragment< HomePresenter> implements Pro
             }
         });
     }
+
     public void onPause() {
         super.onPause();
 
     }
+
     public void onDestroy() {
         super.onDestroy();
     }

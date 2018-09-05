@@ -3,10 +3,11 @@ package com.gaolei.mvpmodel.mpresenter;
 
 import android.content.Context;
 
-import com.gaolei.mvpmodel.base.mpresenter.BasePresenter;
-import com.gaolei.mvpmodel.mcontract.ProjectListContract;
 import com.gaolei.mvpmodel.base.mmodel.BannerListData;
+import com.gaolei.mvpmodel.base.mmodel.FeedArticleListData;
 import com.gaolei.mvpmodel.base.mmodel.ProjectListData;
+import com.gaolei.mvpmodel.base.mpresenter.BasePresenter;
+import com.gaolei.mvpmodel.mcontract.HomeContract;
 import com.gaolei.mvpmodel.thirdframe.rxjava.BaseObserver;
 
 import io.reactivex.Observable;
@@ -15,19 +16,20 @@ import io.reactivex.Observable;
  * Created by caiwancheng on 2017/8/30.
  */
 
-public class HomePresenter extends BasePresenter<ProjectListContract.View> implements ProjectListContract.Presenter{
+public class HomePresenter extends BasePresenter<HomeContract.View> implements HomeContract.Presenter{
 
 
     @Override
-    public void getProjectInfo(int page, int cid, Context context) {
-        Observable observable = mRestService.getProjectListData(page, cid);
-        doSubscribe(observable,new BaseObserver<ProjectListData>(context) {
+    public void getFeedArticleList(int num,Context context) {
+                Observable observable = mRestService.getFeedArticleList(num);
+        doSubscribe(observable,new BaseObserver<FeedArticleListData>(context){
             @Override
-            public void onNext(ProjectListData projectListData) {
-                mView.showProjectInfo(projectListData);
+            public void onNext(FeedArticleListData feedArticleListData) {
+                mView.showFeedArticleInfo(feedArticleListData);
             }
         });
     }
+
     @Override
     public void getBannerInfo(Context context) {
         Observable observable = mRestService.getBannerListData();

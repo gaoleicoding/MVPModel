@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="8dp"
     android:layout_marginBottom="8dp"
     android:layout_marginEnd="12dp"
     android:layout_marginStart="12dp"
+    android:layout_marginTop="8dp"
     android:clickable="true"
     android:focusable="true">
 
@@ -22,7 +22,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="2"
-            android:contentDescription="@null"/>
+            android:contentDescription="@null" />
 
         <RelativeLayout
             android:layout_width="0dp"
@@ -34,8 +34,8 @@
                 android:id="@+id/item_project_list_title_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:layout_marginRight="50dp"
+                android:layout_marginTop="8dp"
                 android:drawablePadding="5dp"
                 android:ellipsize="end"
                 android:gravity="center"
@@ -55,32 +55,39 @@
                 android:textColor="@color/color_5b5d5c"
                 tools:text="Diycode 社区客户端，可以更方便的在手机上查看社区信息。应用采用了数据多级缓存，并且实现了离线浏览(访问过一次的页面会被缓存下来，没有网络也可查看)，相比于网页版，在一定程度上可以" />
 
-
-            <TextView
-                android:id="@+id/item_project_list_time_tv"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/item_project_list_content_tv"
                 android:layout_alignParentBottom="true"
-                android:layout_marginBottom="8dp"
-                android:gravity="center"
-                android:textColor="@color/color_5b5d5c"
-                tools:text="2018-01-29" />
+                android:layout_marginBottom="8dp">
 
-            <TextView
-                android:id="@+id/item_project_list_author_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/item_project_list_content_tv"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_toRightOf="@id/item_project_list_time_tv"
-                android:gravity="center"
-                android:textColor="@color/color_5b5d5c"
-                tools:text="GcsSloop" />
+                <TextView
+                    android:id="@+id/item_project_list_time_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/color_5b5d5c"
+                    tools:text="2018-01-29" />
 
+                <TextView
+                    android:id="@+id/item_project_list_author_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_toRightOf="@id/item_project_list_time_tv"
+                    android:gravity="center"
+                    android:textColor="@color/color_5b5d5c"
+                    tools:text="GcsSloop" />
 
+                <ImageView
+                    android:id="@+id/item_search_pager_like_iv"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/icon_like_article_unselect" />
+            </RelativeLayout>
         </RelativeLayout>
     </LinearLayout>
 </RelativeLayout>
