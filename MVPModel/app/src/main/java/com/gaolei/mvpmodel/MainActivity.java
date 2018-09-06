@@ -41,15 +41,16 @@ public class MainActivity extends BaseActivity {
 
         mFragments = new ArrayList<Fragment>();
         mFragments.add(new HomeFragment());
+        mFragments.add(new ProjectFragment());
         mFragments.add(new KnowledgeFragment());
         mFragments.add(new NavigationFragment());
-        mFragments.add(new ProjectFragment());
         mFragments.add(new UserFragment());
+
         titles = new ArrayList<String>();
         titles.add(getString(R.string.home));
+        titles.add(getString(R.string.project));
         titles.add(getString(R.string.knowledge));
         titles.add(getString(R.string.navigation));
-        titles.add(getString(R.string.project));
         titles.add(getString(R.string.mine));
 
         MainTabAdapter adapter = new MainTabAdapter(getSupportFragmentManager(), mFragments);
@@ -69,9 +70,9 @@ public class MainActivity extends BaseActivity {
     private void initTab() {
 
         tabLayout.getTabAt(0).setCustomView(R.layout.tab_home);
-        tabLayout.getTabAt(1).setCustomView(R.layout.tab_knowledge);
-        tabLayout.getTabAt(2).setCustomView(R.layout.tab_navigation);
-        tabLayout.getTabAt(3).setCustomView(R.layout.tab_project);
+        tabLayout.getTabAt(1).setCustomView(R.layout.tab_project);
+        tabLayout.getTabAt(2).setCustomView(R.layout.tab_knowledge);
+        tabLayout.getTabAt(3).setCustomView(R.layout.tab_navigation);
         tabLayout.getTabAt(4).setCustomView(R.layout.tab_mine);
 
 

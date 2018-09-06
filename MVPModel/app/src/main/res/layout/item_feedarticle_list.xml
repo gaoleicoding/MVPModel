@@ -60,12 +60,20 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="8dp">
-
+                <ImageView
+                    android:id="@+id/icon_time"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/icon_time" />
                 <TextView
                     android:id="@+id/item_project_list_time_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/icon_time"
+                    android:layout_marginLeft="5dp"
                     android:gravity="center"
+                    android:layout_centerVertical="true"
                     android:textColor="@color/color_5b5d5c"
                     tools:text="2018-01-29" />
 
@@ -73,16 +81,20 @@
                     android:id="@+id/item_project_list_author_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="35dp"
                     android:layout_toRightOf="@id/item_project_list_time_tv"
                     android:gravity="center"
+                    android:layout_centerVertical="true"
                     android:textColor="@color/color_5b5d5c"
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     tools:text="GcsSloop" />
 
                 <ImageView
                     android:id="@+id/item_search_pager_like_iv"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="10dp"
                     android:contentDescription="@null"

@@ -2,7 +2,6 @@ package com.gaolei.mvpmodel.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.gaolei.mvpmodel.R;
-import com.gaolei.mvpmodel.base.mmodel.FeedArticleListData;
 import com.gaolei.mvpmodel.base.mmodel.FeedArticleListData.FeedArticleData;
 import com.gaolei.mvpmodel.base.thirdframe.glide.ImageLoader;
 
@@ -52,7 +50,7 @@ public class FeedArticleAdapter extends RecyclerView.Adapter<FeedArticleAdapter.
         holder.item_project_list_title_tv.setText(projectInfo.getTitle());
         holder.item_project_list_content_tv.setText(projectInfo.getDesc());
         holder.item_project_list_time_tv.setText(projectInfo.getNiceDate());
-        holder.item_project_list_author_tv.setText(projectInfo.getAuthor());
+        holder.item_project_list_author_tv.setText(context.getString(R.string.author)+projectInfo.getAuthor());
         ImageLoader.getInstance().load(context,projectInfo.getEnvelopePic(),holder.item_project_list_iv);
 
     }

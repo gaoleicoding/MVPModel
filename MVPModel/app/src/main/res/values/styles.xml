@@ -7,6 +7,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
     <!-- 自定义loading dialog -->
     <style name="loading_dialog" parent="android:style/Theme.Dialog">
         <item name="android:windowFrame">@null</item><!--边框-->
@@ -17,9 +18,16 @@
         <item name="android:backgroundDimEnabled">false</item><!--模糊-->
     </style>
 
-
+    <!-- Activity全屏 -->
     <style name="full_screen_style">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <!-- TabLayout -->
+    <style name="CustomTabLayout" parent="Widget.Design.TabLayout">
+        <item name="tabPaddingStart">0dp</item>
+        <item name="tabPaddingEnd">0dp</item>
+
     </style>
 </resources>
