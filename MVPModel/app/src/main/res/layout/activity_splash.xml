@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/splash3">
+    android:background="@mipmap/splash4">
 
     <TextView
         android:id="@+id/request"
@@ -12,8 +12,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:padding="40dp"
-        android:textSize="14sp"
+        android:padding="30dp"
+        android:textSize="16sp"
         android:textColor="#ffffff"
         android:clickable="true"
         android:onClick="jumpToMainActivity"

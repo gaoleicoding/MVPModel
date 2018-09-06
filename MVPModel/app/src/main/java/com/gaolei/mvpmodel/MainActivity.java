@@ -4,7 +4,6 @@ import android.Manifest;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.view.View;
 
 import com.gaolei.mvpmodel.adapter.MainTabAdapter;
 import com.gaolei.mvpmodel.base.activity.BaseActivity;
@@ -44,8 +43,10 @@ public class MainActivity extends BaseActivity {
 
 
         mFragments = new ArrayList<Fragment>();
-        mFragments.add(new HomeFragment());
-        mFragments.add(new ProjectFragment());
+        homeFragment = new HomeFragment();
+        projectFragment = new ProjectFragment();
+        mFragments.add(homeFragment);
+        mFragments.add(projectFragment);
         mFragments.add(new KnowledgeFragment());
         mFragments.add(new NavigationFragment());
         mFragments.add(new UserFragment());
@@ -101,15 +102,18 @@ public class MainActivity extends BaseActivity {
         //默认选中的Tab
         tabLayout.getTabAt(0).getCustomView().setSelected(true);
     }
+
     @OnClick({R.id.title})
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.title:
+    public void onClick() {
+        int index = viewPager.getCurrentItem();
+        if (index == 0)
+            homeFragment.scrollToTop();
+        if (index == 1)
+            projectFragment.scrollToTop();
 
-                break;
 
-        }
     }
+
     public void requestPermission() {
         requestPermission(this, new PermissionUtil.RequestPermissionCallBack() {
 
