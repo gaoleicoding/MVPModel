@@ -2,7 +2,6 @@ package com.gaolei.mvpmodel.base.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +40,7 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
             bundle = savedInstanceState;
         }
         initData(bundle);
+        initView();
         return mParentView;
     }
 
@@ -50,6 +50,7 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
      * @param bundle
      */
     public abstract void initData(Bundle bundle);
+    public abstract void initView();
 
     private void initBaseView(View view) {
         mLlContent = view.findViewById(R.id.base_fragment_content);

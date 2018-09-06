@@ -3,6 +3,7 @@ package com.gaolei.mvpmodel.thirdframe.rxjava;
 import android.app.Dialog;
 import android.content.Context;
 
+import com.gaolei.mvpmodel.base.activity.BaseActivity;
 import com.gaolei.mvpmodel.base.application.CustomApplication;
 import com.gaolei.mvpmodel.base.mview.BaseView;
 import com.gaolei.mvpmodel.base.utils.NetUtils;
@@ -21,10 +22,10 @@ public abstract class BaseObserver<T> extends ResourceObserver<T> {
     private Context context;
     Dialog prgressDialog;
 
-    protected BaseObserver(Context context){
+    protected BaseObserver(){
         // context在CustomProgressDialog中用到
         this.context=context;
-        prgressDialog= CustomProgressDialog.createLoadingDialog(context);
+        prgressDialog= CustomProgressDialog.createLoadingDialog(BaseActivity.context);
         prgressDialog.setCancelable(true);//允许返回
         prgressDialog.show();//显示
     }

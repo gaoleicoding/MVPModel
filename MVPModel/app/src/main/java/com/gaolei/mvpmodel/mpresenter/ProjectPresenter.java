@@ -1,32 +1,52 @@
 package com.gaolei.mvpmodel.mpresenter;
 
 
-import android.content.Context;
-
+import com.gaolei.mvpmodel.base.mmodel.ProjectListData;
 import com.gaolei.mvpmodel.base.mpresenter.BasePresenter;
 import com.gaolei.mvpmodel.mcontract.ProjectContract;
-import com.gaolei.mvpmodel.base.mmodel.BannerListData;
-import com.gaolei.mvpmodel.base.mmodel.ProjectListData;
 import com.gaolei.mvpmodel.thirdframe.rxjava.BaseObserver;
 
 import io.reactivex.Observable;
 
 
+public class ProjectPresenter extends BasePresenter<ProjectContract.View> implements ProjectContract.Presenter {
 
-public class ProjectPresenter extends BasePresenter<ProjectContract.View> implements ProjectContract.Presenter{
-
+    private int mCurrentPage = 1;
 
     @Override
-    public void getProjectInfo(int page, int cid, Context context) {
+    public void getProjectInfo(int page, int cid) {
         Observable observable = mRestService.getProjectListData(page, cid);
-        doSubscribe(observable,new BaseObserver<ProjectListData>(context) {
+        addSubscribe(observable, new BaseObserver<ProjectListData>() {
             @Override
             public void onNext(ProjectListData projectListData) {
-                mView.showProjectInfo(projectListData);
+                mView.showProjectList(projectListData, false);
+            }
+        });
+    }
+
+    @Override
+    public void onRefreshMore(int cid) {
+        Observable observable = mRestService.getProjectListData(-1, cid);
+        addSubscribe(observable, new BaseObserver<ProjectListData>() {
+            @Override
+            public void onNext(ProjectListData projectListData) {
+                mView.showProjectList(projectListData, true);
+            }
+        });
+    }
+
+    @Override
+    public void onLoadMore(int cid) {
+        ++mCurrentPage;
+        Observable observable = mRestService.getProjectListData(mCurrentPage, cid);
+        addSubscribe(observable, new BaseObserver<ProjectListData>() {
+            @Override
+            public void onNext(ProjectListData projectListData) {
+                mView.showProjectList(projectListData, false);
             }
         });
     }
 
 
-    }
+}
 

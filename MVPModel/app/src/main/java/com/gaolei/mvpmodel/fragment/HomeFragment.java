@@ -13,14 +13,16 @@ import com.bumptech.glide.Glide;
 import com.gaolei.mvpmodel.R;
 import com.gaolei.mvpmodel.activity.ArticleDetailActivity;
 import com.gaolei.mvpmodel.adapter.DividerItemDecoration;
-import com.gaolei.mvpmodel.adapter.FeedArticleAdapter;
-import com.gaolei.mvpmodel.adapter.ProjectAdapter;
+import com.gaolei.mvpmodel.adapter.ArticleListAdapter;
 import com.gaolei.mvpmodel.base.fragment.BaseMvpFragment;
-import com.gaolei.mvpmodel.base.mmodel.FeedArticleListData;
-import com.gaolei.mvpmodel.mcontract.HomeContract;
 import com.gaolei.mvpmodel.base.mmodel.BannerListData;
-import com.gaolei.mvpmodel.base.mmodel.FeedArticleListData.FeedArticleData;
+import com.gaolei.mvpmodel.base.mmodel.ArticleListData;
+import com.gaolei.mvpmodel.base.mmodel.ArticleListData.FeedArticleData;
+import com.gaolei.mvpmodel.mcontract.HomeContract;
 import com.gaolei.mvpmodel.mpresenter.HomePresenter;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
@@ -43,17 +45,23 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
     RecyclerView project_recyclerview;
     @BindView(R.id.banner)
     Banner banner;
-    FeedArticleAdapter feedArticleAdapter;
+    @BindView(R.id.smartRefreshLayout_home)
+    SmartRefreshLayout smartRefreshLayout;
+    private List<FeedArticleData> articleDataList;
+    private ArticleListAdapter feedArticleAdapter;
 
     @Override
     public void initData(Bundle bundle) {
 
         Debug.startMethodTracing("traceview");
-//        Trace.beginSection("systrace");
-
 
         Debug.stopMethodTracing();
-//        Trace.endSection();
+    }
+
+    @Override
+    public void initView() {
+        initSmartRefreshLayout();
+        initRecyclerView();
     }
 
     @Override
@@ -63,8 +71,8 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
 
     @Override
     public void reload() {
-        mPresenter.getFeedArticleList(0, getActivity());
-        mPresenter.getBannerInfo(getActivity());
+        mPresenter.getFeedArticleList(0);
+        mPresenter.getBannerInfo();
     }
 
     @Override
@@ -74,21 +82,26 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
 
     @Override
     protected void loadData() {
-        mPresenter.getFeedArticleList(0, getActivity());
-        mPresenter.getBannerInfo(getActivity());
+        mPresenter.getFeedArticleList(0);
+        mPresenter.getBannerInfo();
+
     }
 
 
     @Override
-    public void showFeedArticleInfo(FeedArticleListData listData) {
-        final List<FeedArticleData> articleDataList = listData.data.getDatas();
-        feedArticleAdapter = new FeedArticleAdapter(getActivity(), articleDataList);
+    public void showArticleList(ArticleListData listData, boolean isRefresh) {
+        final List<FeedArticleData> newDataList = listData.data.getDatas();
+        if (isRefresh) {
+//            mAdapter.replaceData(feedArticleListData.getDatas());
+            smartRefreshLayout.finishRefresh(true);
+        } else {
+            articleDataList.addAll(newDataList);
+            feedArticleAdapter.notifyItemRangeInserted(articleDataList.size() - newDataList.size(), newDataList.size());
+            feedArticleAdapter.notifyDataSetChanged();
+            smartRefreshLayout.finishLoadMore();
+        }
 
-        project_recyclerview.addItemDecoration(new DividerItemDecoration(getActivity(),
-                DividerItemDecoration.VERTICAL_LIST));
-        project_recyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
-        project_recyclerview.setAdapter(feedArticleAdapter);
-        feedArticleAdapter.setOnItemClickListener(new FeedArticleAdapter.OnItemClickListener() {
+        feedArticleAdapter.setOnItemClickListener(new ArticleListAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View v, int position) {
                 Intent intent = new Intent(getActivity(), ArticleDetailActivity.class);
@@ -101,7 +114,7 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
     }
 
     @Override
-    public void showBannerInfo(BannerListData itemBeans) {
+    public void showBannerList(BannerListData itemBeans) {
 
         final List<String> linkList = new ArrayList<String>();
         List imageList = new ArrayList();
@@ -154,8 +167,39 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
         });
     }
 
-    public void onPause() {
-        super.onPause();
+    private void initRecyclerView() {
+        articleDataList = new ArrayList<>();
+        feedArticleAdapter = new ArticleListAdapter(getActivity(), articleDataList);
+        project_recyclerview.addItemDecoration(new DividerItemDecoration(getActivity(),
+                DividerItemDecoration.VERTICAL_LIST));
+        project_recyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
+        project_recyclerview.setAdapter(feedArticleAdapter);
+    }
+
+    //初始化下拉刷新控件
+    private void initSmartRefreshLayout() {
+//        smartRefreshLayout.setRefreshHeader(new MaterialHeader(getActivity()).setShowBezierWave(true));
+//        smartRefreshLayout.setRefreshFooter(new BallPulseFooter(getActivity()).setSpinnerStyle(SpinnerStyle.Scale));
+        smartRefreshLayout.setEnableScrollContentWhenLoaded(true);//是否在加载完成时滚动列表显示新的内容
+        smartRefreshLayout.setEnableFooterFollowWhenLoadFinished(true);
+        smartRefreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
+            @Override
+            public void onLoadMore(RefreshLayout refreshLayout) {
+                mPresenter.onLoadMore();
+            }
+
+            @Override
+            public void onRefresh(RefreshLayout refreshLayout) {
+                mPresenter.onRefreshMore();
+            }
+        });
+    }
+    public void scrollToTop(){
+        project_recyclerview.scrollToPosition(0);
+    }
+
+    public void onResume() {
+        super.onResume();
 
     }
 

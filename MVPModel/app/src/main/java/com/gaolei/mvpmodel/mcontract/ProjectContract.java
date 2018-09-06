@@ -1,8 +1,5 @@
 package com.gaolei.mvpmodel.mcontract;
 
-import android.content.Context;
-
-import com.gaolei.mvpmodel.base.mmodel.BannerListData;
 import com.gaolei.mvpmodel.base.mmodel.ProjectListData;
 
 /**
@@ -11,13 +8,17 @@ import com.gaolei.mvpmodel.base.mmodel.ProjectListData;
 
 public class ProjectContract {
 
-    public interface Presenter  {
+    public interface Presenter {
 
-        void getProjectInfo(int page, int cid, Context context);
+        void getProjectInfo(int page, int cid);
+
+        void onRefreshMore(int cid);
+
+        void onLoadMore(int cid);
     }
 
-    public interface View  {
+    public interface View {
 
-        void showProjectInfo(ProjectListData itemBeans);
+        void showProjectList(ProjectListData itemBeans, boolean isRefresh);
     }
 }

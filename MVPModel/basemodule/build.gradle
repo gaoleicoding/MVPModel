@@ -66,15 +66,19 @@ android {
         api rootProject.ext.dependencies["event-bus"]
         annotationProcessor rootProject.ext.dependencies["eventbus-annotation-processor"]
         // BlockCanary进行卡顿监控和提示
-        debugImplementation 'com.github.markzhai:blockcanary-android:1.5.0'
-        releaseImplementation 'com.github.markzhai:blockcanary-no-op:1.5.0'
+        debugImplementation rootProject.ext.dependencies["blockcanary-android"]
+        releaseImplementation rootProject.ext.dependencies["blockcanary-no-op"]
         //LeakCanary
-        debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.1'
-        releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.1'
+        debugImplementation rootProject.ext.dependencies["leakcanary-android"]
+        releaseImplementation rootProject.ext.dependencies["leakcanary-android-no-op"]
         // Optional, if you use support library fragments:
         debugImplementation 'com.squareup.leakcanary:leakcanary-support-fragment:1.6.1'
         //okhttp保存cookie
         api rootProject.ext.dependencies["PersistentCookieJar"]
+        //下拉刷新框架
+        api rootProject.ext.dependencies["SmartRefreshLayout"]
+        api rootProject.ext.dependencies["SmartRefreshHeader"]
+
         //友盟统计
         api rootProject.ext.dependencies["umeng-common"]
         api rootProject.ext.dependencies["umeng-analytics"]

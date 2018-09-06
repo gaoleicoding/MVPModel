@@ -4,6 +4,7 @@ import android.Manifest;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.view.View;
 
 import com.gaolei.mvpmodel.adapter.MainTabAdapter;
 import com.gaolei.mvpmodel.base.activity.BaseActivity;
@@ -18,6 +19,7 @@ import com.gaolei.mvpmodel.view.CustomViewPager;
 import java.util.ArrayList;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity {
 
@@ -28,6 +30,8 @@ public class MainActivity extends BaseActivity {
     CustomViewPager viewPager;
     @BindView(R.id.tabLayout)
     TabLayout tabLayout;
+    HomeFragment homeFragment;
+    ProjectFragment projectFragment;
 
     @Override
     protected int setContentLayout() {
@@ -96,6 +100,15 @@ public class MainActivity extends BaseActivity {
         });
         //默认选中的Tab
         tabLayout.getTabAt(0).getCustomView().setSelected(true);
+    }
+    @OnClick({R.id.title})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.title:
+
+                break;
+
+        }
     }
     public void requestPermission() {
         requestPermission(this, new PermissionUtil.RequestPermissionCallBack() {

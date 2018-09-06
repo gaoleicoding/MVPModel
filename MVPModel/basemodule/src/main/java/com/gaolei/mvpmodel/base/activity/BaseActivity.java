@@ -13,20 +13,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.gaolei.basemodule.R;
-import com.gaolei.basemodule.R2;
 import com.gaolei.mvpmodel.base.utils.PermissionUtil;
 import com.gaolei.mvpmodel.base.utils.StatusBarUtil;
 import com.umeng.analytics.MobclickAgent;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 import static com.gaolei.mvpmodel.base.utils.PermissionUtil.PERMISSION_CODE;
 
@@ -45,11 +40,12 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
     public  RelativeLayout header_layout;
 
     protected boolean isShowTitleLayout=true;
+    public static Activity context;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(addContentView());
+        context=this;
         setStatusBarColor(R.color.app_color);
         //1、ButterKnife.bind(this);必须在setContentView();之后绑定；
         //2、在Activity中不需要做解绑操作

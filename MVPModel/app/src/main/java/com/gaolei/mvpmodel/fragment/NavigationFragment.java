@@ -24,6 +24,11 @@ public class NavigationFragment extends BaseMvpFragment {
     }
 
     @Override
+    public void initView() {
+
+    }
+
+    @Override
     public int setContentLayout() {
         return R.layout.fragment_navigation;
     }

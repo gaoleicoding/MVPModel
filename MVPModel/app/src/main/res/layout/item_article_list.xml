@@ -19,16 +19,15 @@
 
         <ImageView
             android:id="@+id/item_project_list_iv"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="2"
             android:contentDescription="@null" />
 
         <RelativeLayout
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginLeft="16dp"
-            android:layout_weight="5">
+            android:layout_marginLeft="12dp"
+            >
 
             <TextView
                 android:id="@+id/item_project_list_title_tv"

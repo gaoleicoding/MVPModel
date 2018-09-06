@@ -39,7 +39,7 @@ public abstract class BasePresenter<V> {
         }
     }
 
-    public void doSubscribe( Observable observable,BaseObserver observer){
+    public void addSubscribe( Observable observable,BaseObserver observer){
                 mCompositeDisposable.add(observer);
         observable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())

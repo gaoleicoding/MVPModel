@@ -2,7 +2,7 @@ package com.gaolei.mvpmodel.base.api;
 
 
 import com.gaolei.mvpmodel.base.mmodel.BannerListData;
-import com.gaolei.mvpmodel.base.mmodel.FeedArticleListData;
+import com.gaolei.mvpmodel.base.mmodel.ArticleListData;
 import com.gaolei.mvpmodel.base.mmodel.LoginData;
 import com.gaolei.mvpmodel.base.mmodel.ProjectListData;
 
@@ -39,7 +39,7 @@ public interface ApiService {
      * @return feed文章列表数据
      */
     @GET("article/list/{num}/json")
-    Observable<FeedArticleListData> getFeedArticleList(@Path("num") int num);
+    Observable<ArticleListData> getFeedArticleList(@Path("num") int num);
 
     /**
      * 登陆

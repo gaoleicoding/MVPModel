@@ -8,7 +8,7 @@ import java.util.List;
  * @date 2018/2/12
  */
 
-public class FeedArticleListData {
+public class ArticleListData {
     public ListData data;
 
     public class ListData {

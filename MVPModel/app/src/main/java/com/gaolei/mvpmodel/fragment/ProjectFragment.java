@@ -9,13 +9,16 @@ import android.view.View;
 import com.gaolei.mvpmodel.R;
 import com.gaolei.mvpmodel.activity.ArticleDetailActivity;
 import com.gaolei.mvpmodel.adapter.DividerItemDecoration;
-import com.gaolei.mvpmodel.adapter.ProjectAdapter;
+import com.gaolei.mvpmodel.adapter.ProjectListAdapter;
 import com.gaolei.mvpmodel.base.fragment.BaseMvpFragment;
-import com.gaolei.mvpmodel.base.mmodel.BannerListData;
 import com.gaolei.mvpmodel.base.mmodel.ProjectListData;
 import com.gaolei.mvpmodel.mcontract.ProjectContract;
 import com.gaolei.mvpmodel.mpresenter.ProjectPresenter;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -30,15 +33,23 @@ public class ProjectFragment extends BaseMvpFragment<ProjectPresenter> implement
 
     @BindView(R.id.project_recyclerview)
     RecyclerView project_recyclerview;
-
-    ProjectAdapter projectAdapter;
+    @BindView(R.id.smartRefreshLayout_home)
+    SmartRefreshLayout smartRefreshLayout;
+    ProjectListAdapter projectAdapter;
+    private List<ProjectListData.ProjectData> projectDataList;
 
     @Override
     public void initData(Bundle bundle) {
 
 
-        mPresenter.getProjectInfo(1, 294, getActivity());
+        mPresenter.getProjectInfo(1, 294);
 
+    }
+
+    @Override
+    public void initView() {
+        initSmartRefreshLayout();
+        initRecyclerView();
     }
 
     @Override
@@ -48,7 +59,7 @@ public class ProjectFragment extends BaseMvpFragment<ProjectPresenter> implement
 
     @Override
     public void reload() {
-        mPresenter.getProjectInfo(1, 294, getActivity());
+        mPresenter.getProjectInfo(1, 294);
     }
 
     @Override
@@ -58,30 +69,64 @@ public class ProjectFragment extends BaseMvpFragment<ProjectPresenter> implement
 
     @Override
     protected void loadData() {
-        mPresenter.getProjectInfo(1, 294, getActivity());
+        mPresenter.getProjectInfo(1, 294);
     }
 
 
     @Override
-    public void showProjectInfo(ProjectListData listData) {
-        final List<ProjectListData.ProjectData> articleDataList = listData.data.getDatas();
-        projectAdapter = new ProjectAdapter(getActivity(), articleDataList);
+    public void showProjectList(ProjectListData listData, boolean isRefresh) {
+        final List<ProjectListData.ProjectData> newDataList = listData.data.getDatas();
 
-        project_recyclerview.addItemDecoration(new DividerItemDecoration(getActivity(),
-                DividerItemDecoration.VERTICAL_LIST));
-        project_recyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
-        project_recyclerview.setAdapter(projectAdapter);
-        projectAdapter.setOnItemClickListener(new ProjectAdapter.OnItemClickListener() {
+        if (isRefresh) {
+//            mAdapter.replaceData(feedArticleListData.getDatas());
+            smartRefreshLayout.finishRefresh(true);
+        } else {
+            projectDataList.addAll(newDataList);
+            projectAdapter.notifyItemRangeInserted(projectDataList.size() - newDataList.size(), newDataList.size());
+            projectAdapter.notifyDataSetChanged();
+            smartRefreshLayout.finishLoadMore();
+        }
+
+        projectAdapter.setOnItemClickListener(new ProjectListAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View v, int position) {
                 Intent intent = new Intent(getActivity(), ArticleDetailActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putString("url", articleDataList.get(position).getLink());
+                bundle.putString("url", projectDataList.get(position).getLink());
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
         });
     }
 
+    private void initRecyclerView() {
+        projectDataList = new ArrayList<>();
+        projectAdapter = new ProjectListAdapter(getActivity(), projectDataList);
+        project_recyclerview.addItemDecoration(new DividerItemDecoration(getActivity(),
+                DividerItemDecoration.VERTICAL_LIST));
+        project_recyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
+        project_recyclerview.setAdapter(projectAdapter);
+    }
 
+    //初始化下拉刷新控件
+    private void initSmartRefreshLayout() {
+//        smartRefreshLayout.setRefreshHeader(new MaterialHeader(getActivity()).setShowBezierWave(true));
+//        smartRefreshLayout.setRefreshFooter(new BallPulseFooter(getActivity()).setSpinnerStyle(SpinnerStyle.Scale));
+        smartRefreshLayout.setEnableScrollContentWhenLoaded(true);//是否在加载完成时滚动列表显示新的内容
+        smartRefreshLayout.setEnableFooterFollowWhenLoadFinished(true);
+        smartRefreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
+            @Override
+            public void onLoadMore(RefreshLayout refreshLayout) {
+                mPresenter.onLoadMore(294);
+            }
+
+            @Override
+            public void onRefresh(RefreshLayout refreshLayout) {
+                mPresenter.onRefreshMore(294);
+            }
+        });
+    }
+    public void scrollToTop(){
+        project_recyclerview.scrollToPosition(0);
+    }
 }
