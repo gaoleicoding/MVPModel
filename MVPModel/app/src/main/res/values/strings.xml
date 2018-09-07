@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_name">MVPModel</string>
-    <string name="awesome_wan_android">Awesome WanAndroid</string>
+    <string name="app_name">MVP模式</string>
 
     <string name="mine">我的</string>
     <string name="knowledge">知识体系</string>

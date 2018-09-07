@@ -19,7 +19,7 @@
     </style>
 
     <!-- Activity全屏 -->
-    <style name="full_screen_style">
+    <style name="FullScreenStyle">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
     </style>

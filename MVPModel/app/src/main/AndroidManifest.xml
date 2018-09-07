@@ -14,13 +14,13 @@
     <application
         android:name=".base.application.CustomApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/icon_mvp"
+        android:icon="@mipmap/app_icon2"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/icon_mvp"
+        android:roundIcon="@mipmap/app_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".SplashActivity"
-            android:theme=" @style/full_screen_style" >
+            android:theme=" @style/FullScreenStyle" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

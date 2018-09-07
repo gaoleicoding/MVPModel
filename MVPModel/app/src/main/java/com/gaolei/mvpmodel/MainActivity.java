@@ -7,7 +7,9 @@ import android.support.v4.app.Fragment;
 
 import com.gaolei.mvpmodel.adapter.MainTabAdapter;
 import com.gaolei.mvpmodel.base.activity.BaseActivity;
+import com.gaolei.mvpmodel.base.utils.LogUtil;
 import com.gaolei.mvpmodel.base.utils.PermissionUtil;
+import com.gaolei.mvpmodel.base.utils.Utils;
 import com.gaolei.mvpmodel.fragment.HomeFragment;
 import com.gaolei.mvpmodel.fragment.KnowledgeFragment;
 import com.gaolei.mvpmodel.fragment.NavigationFragment;
@@ -67,6 +69,7 @@ public class MainActivity extends BaseActivity {
         tabLayout.setupWithViewPager(viewPager);
         initTab();
         requestPermission();
+
     }
 
     /**

@@ -10,7 +10,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 
-public class PermissionUtil {
+public class
+PermissionUtil {
 
     private static String denyRequestContent = "%s权限 为必要权限，开通才可以正常使用相应功能";
     private static String foreverDenyRequestContent = "%s权限 为必要权限,开通才可以正常使用相应功能。\n \n 请点击 \"设置\"-\"权限\"-打开所需权限。";

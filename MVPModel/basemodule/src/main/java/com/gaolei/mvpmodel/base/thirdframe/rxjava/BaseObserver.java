@@ -25,9 +25,9 @@ public abstract class BaseObserver<T> extends ResourceObserver<T> {
     protected BaseObserver(){
         // context在CustomProgressDialog中用到
         this.context=context;
-        prgressDialog= CustomProgressDialog.createLoadingDialog(BaseActivity.context);
-        prgressDialog.setCancelable(true);//允许返回
-        prgressDialog.show();//显示
+//        prgressDialog= CustomProgressDialog.createLoadingDialog(BaseActivity.context);
+//        prgressDialog.setCancelable(true);//允许返回
+//        prgressDialog.show();//显示
     }
     protected BaseObserver(BaseView view, boolean isShowError){
         this.isShowError = isShowError;
@@ -42,7 +42,7 @@ public abstract class BaseObserver<T> extends ResourceObserver<T> {
 
     @Override
     public void onError(Throwable e) {
-        prgressDialog.cancel();
+//      prgressDialog.cancel();
         if (!NetUtils.isConnected()) {
             errMsg = "网络连接出错,请检查网络";
 
@@ -60,7 +60,7 @@ public abstract class BaseObserver<T> extends ResourceObserver<T> {
 
     @Override
     public void onComplete() {
-        prgressDialog.cancel();
+//        prgressDialog.cancel();
     }
 
 }
