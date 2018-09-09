@@ -6,7 +6,8 @@
     android:orientation="vertical">
 
     <RelativeLayout
-        android:id="@+id/header_layoutabcd"
+        android:id="@+id/header_layout"
+
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:background="@color/app_color">

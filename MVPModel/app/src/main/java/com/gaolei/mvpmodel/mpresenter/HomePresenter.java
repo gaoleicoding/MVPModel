@@ -9,9 +9,7 @@ import com.gaolei.mvpmodel.thirdframe.rxjava.BaseObserver;
 
 import io.reactivex.Observable;
 
-/**
- * Created by caiwancheng on 2017/8/30.
- */
+
 
 public class HomePresenter extends BasePresenter<HomeContract.View> implements HomeContract.Presenter {
     private boolean isRefresh = true;
@@ -20,7 +18,7 @@ public class HomePresenter extends BasePresenter<HomeContract.View> implements H
     @Override
     public void onRefreshMore() {
         Observable observable = mRestService.getFeedArticleList(-1);
-        addSubscribe(observable, new BaseObserver<ArticleListData>() {
+        addSubscribe(observable, new BaseObserver<ArticleListData>(false) {
             @Override
             public void onNext(ArticleListData feedArticleListData) {
                 mView.showArticleList(feedArticleListData, true);
@@ -34,7 +32,7 @@ public class HomePresenter extends BasePresenter<HomeContract.View> implements H
     public void onLoadMore() {
         ++mCurrentPage;
         Observable observable = mRestService.getFeedArticleList(mCurrentPage);
-        addSubscribe(observable, new BaseObserver<ArticleListData>() {
+        addSubscribe(observable, new BaseObserver<ArticleListData>(false) {
             @Override
             public void onNext(ArticleListData feedArticleListData) {
                 mView.showArticleList(feedArticleListData, false);
@@ -45,7 +43,7 @@ public class HomePresenter extends BasePresenter<HomeContract.View> implements H
     @Override
     public void getFeedArticleList(int num) {
         Observable observable = mRestService.getFeedArticleList(num);
-        addSubscribe(observable, new BaseObserver<ArticleListData>() {
+        addSubscribe(observable, new BaseObserver<ArticleListData>(true) {
             @Override
             public void onNext(ArticleListData feedArticleListData) {
                 mView.showArticleList(feedArticleListData, false);
@@ -56,7 +54,7 @@ public class HomePresenter extends BasePresenter<HomeContract.View> implements H
     @Override
     public void getBannerInfo() {
         Observable observable = mRestService.getBannerListData();
-        addSubscribe(observable, new BaseObserver<BannerListData>() {
+        addSubscribe(observable, new BaseObserver<BannerListData>(true) {
 
             @Override
             public void onNext(BannerListData bannerListData) {

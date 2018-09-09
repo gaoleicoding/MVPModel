@@ -5,11 +5,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 
 
-/**
- * Created by wangxw on 2017/2/10 0010 15:21.
- * E-mail:wangxw725@163.com
- * function:
- */
+
 public abstract class BaseLazyFragment extends BaseFragment {
 
     //Fragment的View加载完毕的标记

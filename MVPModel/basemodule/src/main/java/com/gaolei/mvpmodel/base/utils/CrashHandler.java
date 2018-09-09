@@ -52,15 +52,14 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
 
     @Override
     public void uncaughtException(Thread thread, Throwable ex) {
-        if (!handleException(ex) && mDefaultHandler != null) {
-            mDefaultHandler.uncaughtException(thread, ex);// 如果未处理异常，那么系统默认的异常处理类处理
-        } else {
-            try {
-                Thread.sleep(1000);
-            } catch (Exception e) {
-                // TODO: handle exception
-            }
+        saveCrashInfoIntoSd(ex);
+        showToast(mcontext, "程序出错了，请先用其它功能，我们会尽快修复！");
 
+        try {
+            Thread.sleep(2000);
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
 
 
 //            if (SPUtils.contains("currentTime")) {
@@ -77,32 +76,24 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
 //
 //            }
 
-            android.os.Process.killProcess(android.os.Process.myPid());
-            System.exit(10);
-        }
+//            android.os.Process.killProcess(android.os.Process.myPid());
+//            System.exit(0);
+        ExitAppUtils.getInstance().exit();
+//        }
     }
 
-    private boolean handleException(Throwable ex) {
-        if (ex == null) {
-            return false;
-        }
-        new Thread() {
+    private void showToast(final Context context, final String msg) {
+        new Thread(new Runnable() {
+
             @Override
             public void run() {
                 Looper.prepare();
-                Toast toast = Toast.makeText(mcontext, "程序出错了，请先用其它功能，我们会尽快修复！",
-                        Toast.LENGTH_LONG);
-                toast.setGravity(Gravity.CENTER, 0, 0);
-                toast.show();
+                Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
                 Looper.loop();
             }
-        }.start();
-
-        collectDeviceInfo();
-        saveCrashInfoIntoSd(ex);
-        return true;// 测试阶段全部抛出
-        // return false;
+        }).start();
     }
+
 
     // 收集设备、软件参数信息
     private void collectDeviceInfo() {
@@ -125,6 +116,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
 
     // 保存错误信息到SD卡文件中
     private void saveCrashInfoIntoSd(Throwable ex) {
+        collectDeviceInfo();
         //创建文件夹
         errorSavePath = Environment.getExternalStorageDirectory().getPath() + "/" + mcontext.getPackageName() + "/crash";
         File dir = new File(errorSavePath);

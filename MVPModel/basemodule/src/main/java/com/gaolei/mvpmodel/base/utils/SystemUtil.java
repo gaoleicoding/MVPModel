@@ -6,10 +6,7 @@ import android.telephony.TelephonyManager;
 
 import java.util.Locale;
 
-/**
- * 系统工具类
- * Created by zhuwentao on 2016-07-18.
- */
+
 public class SystemUtil {
  
     /**

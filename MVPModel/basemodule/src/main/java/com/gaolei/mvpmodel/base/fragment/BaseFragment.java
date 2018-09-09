@@ -18,9 +18,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 
-/**
- * Created by liuhaiyang on 2017/1/2.
- */
+
 
 public abstract class BaseFragment extends Fragment implements View.OnClickListener {
     private FrameLayout mLlContent;

@@ -2,8 +2,11 @@ package com.gaolei.mvpmodel;
 
 import android.Manifest;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.view.View;
+import android.widget.TextView;
 
 import com.gaolei.mvpmodel.adapter.MainTabAdapter;
 import com.gaolei.mvpmodel.base.activity.BaseActivity;
@@ -31,19 +34,23 @@ public class MainActivity extends BaseActivity {
     CustomViewPager viewPager;
     @BindView(R.id.tabLayout)
     TabLayout tabLayout;
+    @BindView(R.id.title)
+    TextView title;
     HomeFragment homeFragment;
     ProjectFragment projectFragment;
 
     @Override
-    protected int setContentLayout() {
-
+    protected int getLayoutId() {
         return R.layout.activity_main;
     }
 
     @Override
     protected void initData(Bundle bundle) {
+        initView();
+        requestPermission();
 
-
+    }
+    protected void initView(){
         mFragments = new ArrayList<Fragment>();
         homeFragment = new HomeFragment();
         projectFragment = new ProjectFragment();
@@ -68,9 +75,8 @@ public class MainActivity extends BaseActivity {
         //将TabLayout和ViewPager关联起来
         tabLayout.setupWithViewPager(viewPager);
         initTab();
-        requestPermission();
-
     }
+
 
     /**
      * 设置添加Tab

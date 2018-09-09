@@ -2,9 +2,6 @@ package com.gaolei.mvpmodel.base.mmodel;
 
 import java.util.List;
 
-/**
- * Created by caiwancheng on 2017/8/29.
- */
 
 public class BannerListData {
 

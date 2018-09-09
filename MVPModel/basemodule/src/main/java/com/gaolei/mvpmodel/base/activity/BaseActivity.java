@@ -13,14 +13,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.gaolei.basemodule.R;
+import com.gaolei.basemodule.R2;
+import com.gaolei.mvpmodel.base.utils.ExitAppUtils;
 import com.gaolei.mvpmodel.base.utils.PermissionUtil;
 import com.gaolei.mvpmodel.base.utils.StatusBarUtil;
 import com.umeng.analytics.MobclickAgent;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static com.gaolei.mvpmodel.base.utils.PermissionUtil.PERMISSION_CODE;
@@ -32,69 +36,37 @@ import static com.gaolei.mvpmodel.base.utils.PermissionUtil.PERMISSION_CODE;
 
 public abstract class BaseActivity extends BasePermisssionActivity implements View.OnClickListener {
     private PermissionUtil.RequestPermissionCallBack mRequestPermissionCallBack;
-//        @BindView(R2.id.iv_back)
-    public ImageView iv_back;
-//        @BindView(R2.id.title)
-    public TextView title;
-//    @BindView(R2.id.header_layout)
-    public  RelativeLayout header_layout;
 
-    protected boolean isShowTitleLayout=true;
     public static Activity context;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(addContentView());
+        setContentView(getLayoutId());
+        ButterKnife.bind(this);
+
+        ExitAppUtils.getInstance().addActivity(this);
+
         context=this;
         setStatusBarColor(R.color.app_color);
-        //1、ButterKnife.bind(this);必须在setContentView();之后绑定；
-        //2、在Activity中不需要做解绑操作
-        ButterKnife.bind(this);
 
         Bundle bundle = getIntent().getExtras();
         if (bundle == null) {
             bundle = savedInstanceState;
         }
         initData(bundle);
-        
+
     }
 
-    protected abstract int setContentLayout();
+
+    protected abstract int getLayoutId();
 
     protected abstract void initData(Bundle bundle);
-
-
-//    @OnClick(R2.id.iv_back)
-//    public void onClick(View view) {
-//
-//        if (view.getId() == R.id.iv_back)
-//            finish();
-//    }
 
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.iv_back) {
             finish();
         }
-    }
-
-
-    public View addContentView() {
-        LayoutInflater inflater = LayoutInflater.from(this);
-        ViewGroup mParentView = (ViewGroup) inflater.inflate(R.layout.activity_base, null);
-        initBaseView(mParentView);
-        View subActivityView = inflater.inflate(setContentLayout(), null);
-        mParentView.addView(subActivityView);
-        return mParentView;
-    }
-
-    private void initBaseView(View view) {
-        iv_back = view.findViewById(R.id.iv_back);
-        title = view.findViewById(R.id.title);
-//        header_layout = view.findViewById(R.id.header_layoutabcd);
-//        if(!isShowTitleLayout)
-//            header_layout.setVisibility(View.GONE);
-        iv_back.setOnClickListener(this);
     }
 
     /**
@@ -177,6 +149,8 @@ public abstract class BaseActivity extends BasePermisssionActivity implements Vi
     protected void onDestroy() {
         super.onDestroy();
         context=null;
+        ExitAppUtils.getInstance().delActivity(this);
+
     }
 
 

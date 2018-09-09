@@ -28,10 +28,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 import okio.Buffer;
 
-/**
- * Created by liuhaiyang on 2017/8/9.
- * 加密sign
- */
+
 
 public final class SignInterceptor implements Interceptor {
 

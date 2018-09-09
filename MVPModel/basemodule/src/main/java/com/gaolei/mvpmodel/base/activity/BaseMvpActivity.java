@@ -6,9 +6,7 @@ import android.support.annotation.Nullable;
 import com.gaolei.mvpmodel.base.mpresenter.BasePresenter;
 
 
-/**
- * Created by liuhaiyang on 2017/8/2.
- */
+
 
 public abstract class BaseMvpActivity<V, P extends BasePresenter<V>> extends BaseActivity {
 
