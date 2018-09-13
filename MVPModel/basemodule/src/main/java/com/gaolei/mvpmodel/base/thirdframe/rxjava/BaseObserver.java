@@ -4,7 +4,6 @@ import android.app.Dialog;
 import android.content.Context;
 
 import com.gaolei.mvpmodel.base.activity.BaseActivity;
-import com.gaolei.mvpmodel.base.application.CustomApplication;
 import com.gaolei.mvpmodel.base.mview.BaseView;
 import com.gaolei.mvpmodel.base.utils.NetUtils;
 import com.gaolei.mvpmodel.base.utils.Utils;

@@ -24,19 +24,11 @@ public class LogUtil {
         Log.e(TAG, msg);
     }
 
-    public static void v(String tag, String msg) {
+    public static void v(String msg) {
         if (!isDebug) {
             return;
         }
-        Log.v(tag, msg);
-    }
-
-
-    public static void d(String tag, String msg) {
-        if (!isDebug) {
-            return;
-        }
-        Log.d(tag, msg);
+        Log.v(TAG, msg);
     }
 
 
@@ -48,19 +40,19 @@ public class LogUtil {
     }
 
 
-    public static void w(String tag, String msg) {
+    public static void w(String msg) {
         if (!isDebug) {
             return;
         }
-        Log.w(tag, msg);
+        Log.w(TAG, msg);
     }
 
 
-    public static void e(String tag, String msg) {
+    public static void e(String msg) {
         if (!isDebug) {
             return;
         }
-        Log.e(tag, msg);
+        Log.e(TAG, msg);
     }
 
 

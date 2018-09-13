@@ -2,7 +2,6 @@ package com.gaolei.mvpmodel.thirdframe.retrofit.interceptor;
 
 import android.util.Log;
 
-import com.gaolei.mvpmodel.base.application.CustomApplication;
 import com.gaolei.mvpmodel.base.utils.NetUtils;
 
 import java.io.IOException;
