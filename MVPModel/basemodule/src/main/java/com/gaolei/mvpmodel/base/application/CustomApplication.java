@@ -8,9 +8,7 @@ import android.net.ConnectivityManager;
 import android.util.Log;
 
 
-import com.gaolei.basemodule.R;
-import com.gaolei.mvpmodel.base.activity.BaseActivity;
-import com.gaolei.mvpmodel.base.activity.CustomErrorActivity;
+import com.gaolei.mvpmodel.base.utils.CrashHandler;
 import com.gaolei.mvpmodel.base.utils.LogUtil;
 import com.github.moduth.blockcanary.BlockCanary;
 import com.github.moduth.blockcanary.BlockCanaryContext;
@@ -36,33 +34,17 @@ public class CustomApplication extends Application {
 
         LeakCanary.install(this);
         BlockCanary.install(this, new AppContext()).start();
-//        CrashHandler crashHandler = CrashHandler.getInstance();
-//        crashHandler.init(getApplicationContext());
+
 
         UMConfigure.init(this, UMConfigure.DEVICE_TYPE_PHONE, "");
         MobclickAgent.onEvent(this, "enter", "CustomApplication");//前统计的事件ID
-        Class clazz = null;
-        try {
-            clazz = Class.forName("com.gaolei.mvpmodel.MainActivity");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        CustomActivityOnCrash.install(this);
-//        CaocConfig.Builder.create()
-//                .backgroundMode(CaocConfig.BACKGROUND_MODE_SILENT) //default: CaocConfig.BACKGROUND_MODE_SHOW_CUSTOM
-//                .enabled(false) //default: true
-//                .showErrorDetails(true) //default: true
-//                .showRestartButton(true) //default: true
-//                .logErrorOnRestart(false) //default: true
-//                .trackActivities(true) //default: false
-//                .minTimeBetweenCrashesMs(2000) //default: 3000
-//                .errorDrawable(R.drawable.customactivityoncrash_error_image) //default: bug image
-//                .restartActivity(BaseActivity.class) //default: null (your app's launch activity)
-//                .errorActivity(CustomErrorActivity.class) //default: null (default error activity)
-//                .eventListener(new CustomEventListener()) //default: null
-//                .apply();
+
+//        CustomActivityOnCrash.install(this);
+//        CrashHandler crashHandler = CrashHandler.getInstance();
+//        crashHandler.init(getApplicationContext());
 
     }
+
 
     public class AppContext extends BlockCanaryContext {
         private static final String TAG = "AppContext";

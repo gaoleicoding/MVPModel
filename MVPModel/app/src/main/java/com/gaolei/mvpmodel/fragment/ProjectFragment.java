@@ -69,7 +69,7 @@ public class ProjectFragment extends BaseMvpFragment<ProjectPresenter> implement
 
     @Override
     protected void loadData() {
-        int i=1/0;
+
         mPresenter.getProjectInfo(1, 294);
     }
 

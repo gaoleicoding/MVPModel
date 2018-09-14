@@ -95,6 +95,9 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 title.setText(titles.get(tab.getPosition()));
+                if(tab.getPosition()==1)
+                    throw new RuntimeException("I'm a cool exception and I crashed the main thread!");
+
             }
 
             //标签没选中

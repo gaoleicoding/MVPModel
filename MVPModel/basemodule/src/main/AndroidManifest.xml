@@ -1,4 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.gaolei.basemodule" >
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -8,5 +9,6 @@
     <!--Dangerous Permissions-->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
+    <application
+       ></application>
 </manifest>

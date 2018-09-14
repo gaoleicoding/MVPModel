@@ -8,7 +8,6 @@ import android.os.Environment;
 import android.os.Looper;
 
 
-import com.gaolei.mvpmodel.base.activity.CustomErrorActivity;
 import com.gaolei.mvpmodel.base.application.CustomApplication;
 
 import java.io.File;
@@ -20,6 +19,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
+
+import cat.ereza.customactivityoncrash.activity.DefaultErrorActivity;
 
 public class CrashHandler implements Thread.UncaughtExceptionHandler {
     /**
@@ -46,7 +47,8 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
     public void uncaughtException(Thread thread, Throwable ex) {
         saveCrashInfoIntoSd(ex);
 //        showToast(mcontext, "程序出错了，请先用其它功能，我们会尽快修复！");
-
+        Intent intent = new Intent(CustomApplication.context, DefaultErrorActivity.class);
+        CustomApplication.context.startActivity(intent);
         try {
             Thread.sleep(2000);
         } catch (Exception e) {
@@ -79,7 +81,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
             public void run() {
                 Looper.prepare();
 //                Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(CustomApplication.context, CustomErrorActivity.class);
+                Intent intent = new Intent(CustomApplication.context, DefaultErrorActivity.class);
                 CustomApplication.context.startActivity(intent);
                 Looper.loop();
             }
