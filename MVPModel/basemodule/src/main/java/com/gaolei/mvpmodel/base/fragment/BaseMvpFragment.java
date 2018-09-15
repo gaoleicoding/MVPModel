@@ -5,6 +5,8 @@ import android.support.annotation.Nullable;
 
 import com.gaolei.mvpmodel.base.mpresenter.BasePresenter;
 
+import javax.inject.Inject;
+
 
 /**
  * Created by gaolei on 2018/4/26.
@@ -13,18 +15,20 @@ import com.gaolei.mvpmodel.base.mpresenter.BasePresenter;
 
 public abstract class BaseMvpFragment<P extends BasePresenter> extends BaseFragment {
 
-    public P mPresenter;
     //Fragment的View加载完毕的标记
     private boolean isViewCreated;
     //Fragment对用户可见的标记
     private boolean isUIVisible;
-
+    @Inject
+     P mPresenter;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         isViewCreated = true;
 
-        mPresenter = initPresenter();
+//        mPresenter = initPresenter();
+        //新添代码
+
         if (mPresenter != null)
             mPresenter.attach(this);
         lazyLoad();
@@ -37,8 +41,8 @@ public abstract class BaseMvpFragment<P extends BasePresenter> extends BaseFragm
         super.onDestroy();
     }
 
-    //实例presenter
-    public abstract P initPresenter();
+//    //实例presenter
+//    public abstract P initPresenter();
 
 
     @Override

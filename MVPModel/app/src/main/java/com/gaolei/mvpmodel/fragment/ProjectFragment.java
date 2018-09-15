@@ -62,10 +62,10 @@ public class ProjectFragment extends BaseMvpFragment<ProjectPresenter> implement
         mPresenter.getProjectInfo(1, 294);
     }
 
-    @Override
-    public ProjectPresenter initPresenter() {
-        return new ProjectPresenter();
-    }
+//    @Override
+//    public ProjectPresenter initPresenter() {
+//        return new ProjectPresenter();
+//    }
 
     @Override
     protected void loadData() {

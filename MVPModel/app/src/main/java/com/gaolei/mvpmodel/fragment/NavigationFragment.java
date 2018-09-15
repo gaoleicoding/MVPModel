@@ -37,8 +37,8 @@ public class NavigationFragment extends BaseMvpFragment {
     public void reload() {
     }
 
-    @Override
-    public BasePresenter initPresenter() {
-        return null;
-    }
+//    @Override
+//    public BasePresenter initPresenter() {
+//        return null;
+//    }
 }

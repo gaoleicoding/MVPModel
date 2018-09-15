@@ -18,6 +18,8 @@ import com.gaolei.mvpmodel.base.fragment.BaseMvpFragment;
 import com.gaolei.mvpmodel.base.mmodel.BannerListData;
 import com.gaolei.mvpmodel.base.mmodel.ArticleListData;
 import com.gaolei.mvpmodel.base.mmodel.ArticleListData.FeedArticleData;
+import com.gaolei.mvpmodel.di.component.DaggerPresenterComponent;
+import com.gaolei.mvpmodel.di.module.PresenterModule;
 import com.gaolei.mvpmodel.mcontract.HomeContract;
 import com.gaolei.mvpmodel.mpresenter.HomePresenter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -30,6 +32,8 @@ import com.youth.banner.listener.OnBannerListener;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 
@@ -49,6 +53,8 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
     SmartRefreshLayout smartRefreshLayout;
     private List<FeedArticleData> articleDataList;
     private ArticleListAdapter feedArticleAdapter;
+//    @Inject
+//    HomePresenter homePresenter;
 
     @Override
     public void initData(Bundle bundle) {
@@ -56,6 +62,10 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
         Debug.startMethodTracing("traceview");
 
         Debug.stopMethodTracing();
+        DaggerPresenterComponent.builder()
+                .presenterModule(new PresenterModule(new HomePresenter()))
+                .build()
+                .inject(this);
     }
 
     @Override
@@ -75,10 +85,10 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
         mPresenter.getBannerInfo();
     }
 
-    @Override
-    public HomePresenter initPresenter() {
-        return new HomePresenter();
-    }
+//    @Override
+//    public HomePresenter initPresenter() {
+//        return new HomePresenter();
+//    }
 
     @Override
     protected void loadData() {

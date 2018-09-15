@@ -7,6 +7,8 @@ import com.gaolei.mvpmodel.base.mpresenter.BasePresenter;
 import com.gaolei.mvpmodel.mcontract.HomeContract;
 import com.gaolei.mvpmodel.thirdframe.rxjava.BaseObserver;
 
+import javax.inject.Inject;
+
 import io.reactivex.Observable;
 
 
@@ -14,7 +16,9 @@ import io.reactivex.Observable;
 public class HomePresenter extends BasePresenter<HomeContract.View> implements HomeContract.Presenter {
     private boolean isRefresh = true;
     private int mCurrentPage = 0;
-
+    @Inject
+    public HomePresenter() {
+    }
     @Override
     public void onRefreshMore() {
         Observable observable = mRestService.getFeedArticleList(-1);

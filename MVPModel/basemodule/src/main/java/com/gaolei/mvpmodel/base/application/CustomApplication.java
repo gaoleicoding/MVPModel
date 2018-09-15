@@ -7,8 +7,6 @@ import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.util.Log;
 
-
-import com.gaolei.mvpmodel.base.utils.CrashHandler;
 import com.gaolei.mvpmodel.base.utils.LogUtil;
 import com.github.moduth.blockcanary.BlockCanary;
 import com.github.moduth.blockcanary.BlockCanaryContext;
@@ -18,7 +16,6 @@ import com.umeng.analytics.MobclickAgent;
 import com.umeng.commonsdk.UMConfigure;
 
 import cat.ereza.customactivityoncrash.CustomActivityOnCrash;
-import cat.ereza.customactivityoncrash.config.CaocConfig;
 
 
 public class CustomApplication extends Application {
