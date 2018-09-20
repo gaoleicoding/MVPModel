@@ -20,7 +20,8 @@ public abstract class BaseMvpFragment<P extends BasePresenter> extends BaseFragm
     //Fragment对用户可见的标记
     private boolean isUIVisible;
     @Inject
-     P mPresenter;
+    public P mPresenter;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

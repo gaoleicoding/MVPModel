@@ -1,8 +1,8 @@
 package com.gaolei.mvpmodel.mpresenter;
 
 
-import com.gaolei.mvpmodel.base.mmodel.BannerListData;
 import com.gaolei.mvpmodel.base.mmodel.ArticleListData;
+import com.gaolei.mvpmodel.base.mmodel.BannerListData;
 import com.gaolei.mvpmodel.base.mpresenter.BasePresenter;
 import com.gaolei.mvpmodel.mcontract.HomeContract;
 import com.gaolei.mvpmodel.thirdframe.rxjava.BaseObserver;
@@ -17,8 +17,8 @@ public class HomePresenter extends BasePresenter<HomeContract.View> implements H
     private boolean isRefresh = true;
     private int mCurrentPage = 0;
     @Inject
-    public HomePresenter() {
-    }
+//    public HomePresenter() {
+//    }
     @Override
     public void onRefreshMore() {
         Observable observable = mRestService.getFeedArticleList(-1);

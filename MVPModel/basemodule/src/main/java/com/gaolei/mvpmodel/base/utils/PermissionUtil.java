@@ -76,7 +76,9 @@ PermissionUtil {
                 })
                 .setNegativeButton("取消", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-
+                        if (Utils.getTopActivity(activity).equals("MainActivity")) {
+                            activity.finish();
+                        }
                         dialog.dismiss();
                     }
                 });
@@ -91,6 +93,8 @@ PermissionUtil {
                 content = String.format(ifForeverDeny, "相机");
             if (permissions[0].equals(Manifest.permission.WRITE_EXTERNAL_STORAGE))
                 content = String.format(ifForeverDeny, "存储");
+            if (permissions[0].equals(Manifest.permission.READ_PHONE_STATE))
+                content = String.format(ifForeverDeny, "电话");
         }
         if (permissions.length > 1) {
             StringBuilder stringBuilder = new StringBuilder();
@@ -100,6 +104,8 @@ PermissionUtil {
                     stringBuilder = stringBuilder.append("相机");
                 if (permissions[i].equals(Manifest.permission.WRITE_EXTERNAL_STORAGE))
                     stringBuilder = stringBuilder.append("存储");
+                if (permissions[i].equals(Manifest.permission.READ_PHONE_STATE))
+                    stringBuilder = stringBuilder.append("电话");
                 if (permissions[i].equals(Manifest.permission.ACCESS_FINE_LOCATION))
                     stringBuilder = stringBuilder.append("位置");
                 if (permissions[i].equals(Manifest.permission.WRITE_CONTACTS))
@@ -108,6 +114,9 @@ PermissionUtil {
                     stringBuilder = stringBuilder.append("、");
             }
             content = String.format(ifForeverDeny, stringBuilder.toString());
+            if(content.endsWith("、")){
+                content=content.substring(0,content.length()-1);
+            }
         }
         return content;
 

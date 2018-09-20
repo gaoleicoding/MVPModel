@@ -12,14 +12,13 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.gaolei.mvpmodel.R;
 import com.gaolei.mvpmodel.activity.ArticleDetailActivity;
-import com.gaolei.mvpmodel.adapter.DividerItemDecoration;
 import com.gaolei.mvpmodel.adapter.ArticleListAdapter;
+import com.gaolei.mvpmodel.adapter.DividerItemDecoration;
 import com.gaolei.mvpmodel.base.fragment.BaseMvpFragment;
-import com.gaolei.mvpmodel.base.mmodel.BannerListData;
 import com.gaolei.mvpmodel.base.mmodel.ArticleListData;
 import com.gaolei.mvpmodel.base.mmodel.ArticleListData.FeedArticleData;
-import com.gaolei.mvpmodel.di.component.DaggerPresenterComponent;
-import com.gaolei.mvpmodel.di.module.PresenterModule;
+import com.gaolei.mvpmodel.base.mmodel.BannerListData;
+import com.gaolei.mvpmodel.di.component.DaggerSampleComponent;
 import com.gaolei.mvpmodel.mcontract.HomeContract;
 import com.gaolei.mvpmodel.mpresenter.HomePresenter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -53,8 +52,8 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
     SmartRefreshLayout smartRefreshLayout;
     private List<FeedArticleData> articleDataList;
     private ArticleListAdapter feedArticleAdapter;
-//    @Inject
-//    HomePresenter homePresenter;
+    @Inject
+    HomePresenter homePresenter;
 
     @Override
     public void initData(Bundle bundle) {
@@ -62,9 +61,15 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
         Debug.startMethodTracing("traceview");
 
         Debug.stopMethodTracing();
-        DaggerPresenterComponent.builder()
-                .presenterModule(new PresenterModule(new HomePresenter()))
-                .build()
+//        DaggerPresenterComponent.builder()
+//                .presenterModule(new PresenterModule(new HomePresenter()))
+//                .build()
+//                .inject(this);
+        //新添代码
+        DaggerSampleComponent
+//                .builder()
+//                .sampleModule(new SampleModule())
+                .create()
                 .inject(this);
     }
 
@@ -81,8 +86,8 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
 
     @Override
     public void reload() {
-        mPresenter.getFeedArticleList(0);
-        mPresenter.getBannerInfo();
+        homePresenter.getFeedArticleList(0);
+        homePresenter.getBannerInfo();
     }
 
 //    @Override
@@ -92,8 +97,8 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
 
     @Override
     protected void loadData() {
-        mPresenter.getFeedArticleList(0);
-        mPresenter.getBannerInfo();
+        homePresenter.getFeedArticleList(0);
+        homePresenter.getBannerInfo();
 
     }
 
@@ -195,12 +200,12 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
         smartRefreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
             @Override
             public void onLoadMore(RefreshLayout refreshLayout) {
-                mPresenter.onLoadMore();
+                homePresenter.onLoadMore();
             }
 
             @Override
             public void onRefresh(RefreshLayout refreshLayout) {
-                mPresenter.onRefreshMore();
+                homePresenter.onRefreshMore();
             }
         });
     }
