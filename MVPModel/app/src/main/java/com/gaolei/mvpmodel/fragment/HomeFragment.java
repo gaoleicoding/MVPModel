@@ -18,6 +18,7 @@ import com.gaolei.mvpmodel.base.fragment.BaseMvpFragment;
 import com.gaolei.mvpmodel.base.mmodel.BannerListData;
 import com.gaolei.mvpmodel.base.mmodel.ArticleListData;
 import com.gaolei.mvpmodel.base.mmodel.ArticleListData.FeedArticleData;
+import com.gaolei.mvpmodel.base.mpresenter.BasePresenter;
 import com.gaolei.mvpmodel.mcontract.HomeContract;
 import com.gaolei.mvpmodel.mpresenter.HomePresenter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -71,17 +72,20 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
 
     @Override
     public void reload() {
+        if(mPresenter==null)return;
         mPresenter.getFeedArticleList(0);
         mPresenter.getBannerInfo();
     }
 
     @Override
     public HomePresenter initPresenter() {
+
         return new HomePresenter();
     }
 
     @Override
     protected void loadData() {
+//        if(mPresenter==null)return;
         mPresenter.getFeedArticleList(0);
         mPresenter.getBannerInfo();
 

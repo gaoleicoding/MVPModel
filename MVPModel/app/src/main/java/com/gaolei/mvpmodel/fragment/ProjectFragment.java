@@ -12,6 +12,7 @@ import com.gaolei.mvpmodel.adapter.DividerItemDecoration;
 import com.gaolei.mvpmodel.adapter.ProjectListAdapter;
 import com.gaolei.mvpmodel.base.fragment.BaseMvpFragment;
 import com.gaolei.mvpmodel.base.mmodel.ProjectListData;
+import com.gaolei.mvpmodel.base.mpresenter.BasePresenter;
 import com.gaolei.mvpmodel.mcontract.ProjectContract;
 import com.gaolei.mvpmodel.mpresenter.ProjectPresenter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -59,6 +60,7 @@ public class ProjectFragment extends BaseMvpFragment<ProjectPresenter> implement
 
     @Override
     public void reload() {
+        if(mPresenter==null)return;
         mPresenter.getProjectInfo(1, 294);
     }
 
@@ -69,6 +71,7 @@ public class ProjectFragment extends BaseMvpFragment<ProjectPresenter> implement
 
     @Override
     protected void loadData() {
+        if(mPresenter==null)return;
         mPresenter.getProjectInfo(1, 294);
     }
 
