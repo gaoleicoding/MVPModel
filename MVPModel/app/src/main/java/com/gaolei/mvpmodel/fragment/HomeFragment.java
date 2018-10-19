@@ -19,6 +19,7 @@ import com.gaolei.mvpmodel.base.mmodel.ArticleListData;
 import com.gaolei.mvpmodel.base.mmodel.ArticleListData.FeedArticleData;
 import com.gaolei.mvpmodel.base.mmodel.BannerListData;
 import com.gaolei.mvpmodel.di.component.DaggerSampleComponent;
+import com.gaolei.mvpmodel.di.module.SampleModule;
 import com.gaolei.mvpmodel.mcontract.HomeContract;
 import com.gaolei.mvpmodel.mpresenter.HomePresenter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -67,8 +68,8 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
 //                .inject(this);
         //新添代码
         DaggerSampleComponent
-//                .builder()
-//                .sampleModule(new SampleModule())
+                .builder()
+                .sampleModule(new SampleModule())
                 .create()
                 .inject(this);
     }
@@ -91,7 +92,7 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
     }
 
 //    @Override
-//    public HomePresenter initPresenter() {
+//    public BasePresenter initPresenter() {
 //        return new HomePresenter();
 //    }
 

@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">存储卡</string>
+    <string name="text_position_storage_video">下载视频的存储位置</string>
+    <string name="text_memory_card">内置存储卡</string>
+    <string name="text_sd_card">外置SD卡</string>
+    <string name="text_sd_card_note">(卸载后，此路径视频将被删除)</string>
+    <string name="current_download_path">详细位置：%s</string>
+    <string name="text_download_position">下载视频位置选择</string>
+
+    <string name="full_storage">存储空间不足，请选择另外的位置</string>
+    <string name="bad_storage">存储位置不可用，请检查存储卡</string>
+    <string name="less_storage">存储空间不足</string>
+
+</resources>
