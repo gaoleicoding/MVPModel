@@ -9,6 +9,7 @@ import android.view.View;
 import com.gaolei.mvpmodel.R;
 import com.gaolei.mvpmodel.activity.ArticleDetailActivity;
 import com.gaolei.mvpmodel.adapter.DividerItemDecoration;
+import com.gaolei.mvpmodel.adapter.ProductDetailImgAdapter;
 import com.gaolei.mvpmodel.adapter.ProjectListAdapter;
 import com.gaolei.mvpmodel.base.fragment.BaseMvpFragment;
 import com.gaolei.mvpmodel.base.mmodel.ProjectListData;
@@ -36,7 +37,7 @@ public class ProjectFragment extends BaseMvpFragment<ProjectPresenter> implement
     RecyclerView project_recyclerview;
     @BindView(R.id.smartRefreshLayout_home)
     SmartRefreshLayout smartRefreshLayout;
-    ProjectListAdapter projectAdapter;
+    ProductDetailImgAdapter projectAdapter;
     private List<ProjectListData.ProjectData> projectDataList;
 
     @Override
@@ -90,21 +91,21 @@ public class ProjectFragment extends BaseMvpFragment<ProjectPresenter> implement
             smartRefreshLayout.finishLoadMore();
         }
 
-        projectAdapter.setOnItemClickListener(new ProjectListAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(View v, int position) {
-                Intent intent = new Intent(getActivity(), ArticleDetailActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putString("url", projectDataList.get(position).getLink());
-                intent.putExtras(bundle);
-                startActivity(intent);
-            }
-        });
+//        projectAdapter.setOnItemClickListener(new ProjectListAdapter.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(View v, int position) {
+//                Intent intent = new Intent(getActivity(), ArticleDetailActivity.class);
+//                Bundle bundle = new Bundle();
+//                bundle.putString("url", projectDataList.get(position).getLink());
+//                intent.putExtras(bundle);
+//                startActivity(intent);
+//            }
+//        });
     }
 
     private void initRecyclerView() {
         projectDataList = new ArrayList<>();
-        projectAdapter = new ProjectListAdapter(getActivity(), projectDataList);
+        projectAdapter = new ProductDetailImgAdapter(getActivity(), projectDataList);
         project_recyclerview.addItemDecoration(new DividerItemDecoration(getActivity(),
                 DividerItemDecoration.VERTICAL_LIST));
         project_recyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
