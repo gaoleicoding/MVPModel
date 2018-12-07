@@ -18,8 +18,6 @@ import com.gaolei.mvpmodel.base.fragment.BaseMvpFragment;
 import com.gaolei.mvpmodel.base.mmodel.ArticleListData;
 import com.gaolei.mvpmodel.base.mmodel.ArticleListData.FeedArticleData;
 import com.gaolei.mvpmodel.base.mmodel.BannerListData;
-import com.gaolei.mvpmodel.di.component.DaggerSampleComponent;
-import com.gaolei.mvpmodel.di.module.SampleModule;
 import com.gaolei.mvpmodel.mcontract.HomeContract;
 import com.gaolei.mvpmodel.mpresenter.HomePresenter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -53,8 +51,8 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
     SmartRefreshLayout smartRefreshLayout;
     private List<FeedArticleData> articleDataList;
     private ArticleListAdapter feedArticleAdapter;
-    @Inject
-    HomePresenter homePresenter;
+//    @Inject
+//    HomePresenter homePresenter;
 
     @Override
     public void initData(Bundle bundle) {
@@ -67,11 +65,11 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
 //                .build()
 //                .inject(this);
         //新添代码
-        DaggerSampleComponent
-                .builder()
-                .sampleModule(new SampleModule())
-                .create()
-                .inject(this);
+//        DaggerSampleComponent
+//                .builder()
+//                .sampleModule(new SampleModule())
+//                .create()
+//                .inject(this);
     }
 
     @Override
@@ -87,8 +85,8 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
 
     @Override
     public void reload() {
-        homePresenter.getFeedArticleList(0);
-        homePresenter.getBannerInfo();
+        mPresenter.getFeedArticleList(0);
+        mPresenter.getBannerInfo();
     }
 
 //    @Override
@@ -98,8 +96,8 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
 
     @Override
     protected void loadData() {
-        homePresenter.getFeedArticleList(0);
-        homePresenter.getBannerInfo();
+        mPresenter.getFeedArticleList(0);
+        mPresenter.getBannerInfo();
 
     }
 
@@ -201,12 +199,12 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
         smartRefreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
             @Override
             public void onLoadMore(RefreshLayout refreshLayout) {
-                homePresenter.onLoadMore();
+                mPresenter.onLoadMore();
             }
 
             @Override
             public void onRefresh(RefreshLayout refreshLayout) {
-                homePresenter.onRefreshMore();
+                mPresenter.onRefreshMore();
             }
         });
     }

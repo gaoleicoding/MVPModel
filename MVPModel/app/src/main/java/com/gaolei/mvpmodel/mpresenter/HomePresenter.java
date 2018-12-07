@@ -17,8 +17,8 @@ public class HomePresenter extends BasePresenter<HomeContract.View> implements H
     private boolean isRefresh = true;
     private int mCurrentPage = 0;
     @Inject
-//    public HomePresenter() {
-//    }
+    public HomePresenter() {
+    }
     @Override
     public void onRefreshMore() {
         Observable observable = mRestService.getFeedArticleList(-1);
