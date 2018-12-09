@@ -4,7 +4,11 @@ import android.os.Bundle;
 
 import com.gaolei.mvpmodel.R;
 import com.gaolei.mvpmodel.base.fragment.BaseMvpFragment;
+import com.gaolei.mvpmodel.base.mmodel.ArticleListData;
+import com.gaolei.mvpmodel.base.mmodel.BannerListData;
 import com.gaolei.mvpmodel.base.mpresenter.BasePresenter;
+import com.gaolei.mvpmodel.mcontract.HomeContract;
+import com.gaolei.mvpmodel.mpresenter.HomePresenter;
 
 
 /**
@@ -12,7 +16,7 @@ import com.gaolei.mvpmodel.base.mpresenter.BasePresenter;
  * @date 2018/2/11
  */
 
-public class KnowledgeFragment extends BaseMvpFragment {
+public class KnowledgeFragment extends BaseMvpFragment<HomePresenter> implements HomeContract.View {
 
     @Override
     public void initData( Bundle bundle) {
@@ -40,6 +44,16 @@ public class KnowledgeFragment extends BaseMvpFragment {
 
     @Override
     protected void loadData() {
+
+    }
+
+    @Override
+    public void showArticleList(ArticleListData itemBeans, boolean isRefresh) {
+
+    }
+
+    @Override
+    public void showBannerList(BannerListData itemBeans) {
 
     }
 }

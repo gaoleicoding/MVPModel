@@ -60,7 +60,10 @@ android {
         api rootProject.ext.dependencies["rxandroid"]
         api rootProject.ext.dependencies["retrofit2:adapter-rxjava2"]
         // dagger2
-        api rootProject.ext.dependencies["dagger"]
+//       api rootProject.ext.dependencies["dagger"]
+        api rootProject.ext.dependencies["dagger-android"]
+        api rootProject.ext.dependencies["dagger-android-support"]
+        annotationProcessor rootProject.ext.dependencies["dagger-android-processor"]
         annotationProcessor rootProject.ext.dependencies["dagger-compiler"]
         // eventbus
         api rootProject.ext.dependencies["event-bus"]

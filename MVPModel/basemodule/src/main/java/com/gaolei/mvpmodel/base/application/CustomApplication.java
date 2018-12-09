@@ -1,27 +1,38 @@
 package com.gaolei.mvpmodel.base.application;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
+import android.support.v4.BuildConfig;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 
 import com.gaolei.mvpmodel.base.utils.LogUtil;
 import com.github.moduth.blockcanary.BlockCanary;
 import com.github.moduth.blockcanary.BlockCanaryContext;
-import com.github.moduth.blockcanary.BuildConfig;
 import com.squareup.leakcanary.LeakCanary;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.commonsdk.UMConfigure;
 
+import javax.inject.Inject;
+
 import cat.ereza.customactivityoncrash.CustomActivityOnCrash;
+import dagger.android.AndroidInjector;
+import dagger.android.DispatchingAndroidInjector;
+import dagger.android.HasActivityInjector;
+import dagger.android.support.HasSupportFragmentInjector;
 
 
 public class CustomApplication extends Application {
     public static ConnectivityManager connectivityManager;
     public static Context context;
-
+    @Inject
+    DispatchingAndroidInjector<Activity> mDispatchingAndroidInjector;
+    @Inject
+    DispatchingAndroidInjector<Fragment> mFragmentDispatchingAndroidInjector;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -32,7 +43,6 @@ public class CustomApplication extends Application {
         LeakCanary.install(this);
         BlockCanary.install(this, new AppContext()).start();
 
-
         UMConfigure.init(this, UMConfigure.DEVICE_TYPE_PHONE, "");
         MobclickAgent.onEvent(this, "enter", "CustomApplication");//前统计的事件ID
 
@@ -41,8 +51,6 @@ public class CustomApplication extends Application {
 //        crashHandler.init(getApplicationContext());
 
     }
-
-
     public class AppContext extends BlockCanaryContext {
         private static final String TAG = "AppContext";
 

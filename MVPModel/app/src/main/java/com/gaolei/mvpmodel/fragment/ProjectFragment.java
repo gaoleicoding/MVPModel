@@ -111,6 +111,7 @@ public class ProjectFragment extends BaseMvpFragment<ProjectPresenter> implement
 
     //初始化下拉刷新控件
     private void initSmartRefreshLayout() {
+
 //        smartRefreshLayout.setRefreshHeader(new MaterialHeader(getActivity()).setShowBezierWave(true));
 //        smartRefreshLayout.setRefreshFooter(new BallPulseFooter(getActivity()).setSpinnerStyle(SpinnerStyle.Scale));
         smartRefreshLayout.setEnableScrollContentWhenLoaded(true);//是否在加载完成时滚动列表显示新的内容

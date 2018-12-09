@@ -47,11 +47,9 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
         holder.itemView.setTag(position);
         FeedArticleData projectInfo = list.get(position);
 
-        holder.item_project_list_title_tv.setText(projectInfo.getTitle());
-        holder.item_project_list_content_tv.setText(projectInfo.getDesc());
-        holder.item_project_list_time_tv.setText(projectInfo.getNiceDate());
-        holder.item_project_list_author_tv.setText(context.getString(R.string.author) + projectInfo.getAuthor());
-        ImageLoader.getInstance().load(context, projectInfo.getEnvelopePic(), holder.item_project_list_iv);
+        holder.tv_item_title.setText(projectInfo.getTitle());
+        holder.tv_item_time.setText(projectInfo.getNiceDate());
+        holder.tv_item_author.setText(context.getString(R.string.author) + projectInfo.getAuthor());
 
     }
 
@@ -61,16 +59,13 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView item_project_list_title_tv, item_project_list_content_tv, item_project_list_time_tv, item_project_list_author_tv;
-        ImageView item_project_list_iv;
+        TextView tv_item_title, tv_item_author, tv_item_time;
 
         public MyViewHolder(View view) {
             super(view);
-            item_project_list_title_tv = view.findViewById(R.id.item_project_list_title_tv);
-            item_project_list_content_tv = view.findViewById(R.id.item_project_list_content_tv);
-            item_project_list_time_tv = view.findViewById(R.id.item_project_list_time_tv);
-            item_project_list_author_tv = view.findViewById(R.id.item_project_list_author_tv);
-            item_project_list_iv = view.findViewById(R.id.item_project_list_iv);
+            tv_item_title = view.findViewById(R.id.tv_item_title);
+            tv_item_author = view.findViewById(R.id.tv_item_author);
+            tv_item_time = view.findViewById(R.id.tv_item_time);
         }
     }
 

@@ -1,4 +1,4 @@
-package com.ldlywt.hello.dagger.scope;
+package com.gaolei.mvpmodel.dagger.scope;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;

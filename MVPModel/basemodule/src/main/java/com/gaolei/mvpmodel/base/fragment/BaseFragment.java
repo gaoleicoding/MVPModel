@@ -1,6 +1,8 @@
 package com.gaolei.mvpmodel.base.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,8 +18,8 @@ import com.gaolei.mvpmodel.base.utils.StatusBarUtil;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-
-
+import dagger.android.AndroidInjection;
+import dagger.android.support.AndroidSupportInjection;
 
 
 public abstract class BaseFragment extends Fragment implements View.OnClickListener {
@@ -33,6 +35,7 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
         View mParentView = inflater.inflate(R.layout.fragment_base, container, false);
         initBaseView(mParentView);
         addContentView(inflater);
+
         Bundle bundle = getActivity().getIntent().getExtras();
         if (bundle == null) {
             bundle = savedInstanceState;
@@ -41,12 +44,19 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
         initView();
         return mParentView;
     }
+    @Override
+    public void onAttach(Context context) {
+        AndroidSupportInjection.inject(this);
+        super.onAttach(context);
+    }
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+//        initView();
+//        initData();
+    }
+//    protected abstract void initData();
 
-    /**
-     * 用于布局加载完毕，子Fragment可以开始初始化数据
-     *
-     * @param bundle
-     */
     public abstract void initData(Bundle bundle);
     public abstract void initView();
 

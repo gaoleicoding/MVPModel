@@ -1,4 +1,4 @@
-package com.ldlywt.hello.dagger.scope;
+package com.gaolei.mvpmodel.dagger.scope;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
@@ -7,10 +7,10 @@ import java.lang.annotation.RetentionPolicy;
 import javax.inject.Scope;
 
 /**
- * Created by lw on 2017/1/19.
+ * @author woong
  */
 @Scope
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
-public @interface PerActivity {
+public @interface PerFragment {
 }

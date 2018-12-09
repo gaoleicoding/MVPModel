@@ -43,8 +43,8 @@ import butterknife.BindView;
 
 public class HomeFragment extends BaseMvpFragment<HomePresenter> implements HomeContract.View {
 
-    @BindView(R.id.project_recyclerview)
-    RecyclerView project_recyclerview;
+    @BindView(R.id.article_recyclerview)
+    RecyclerView article_recyclerview;
     @BindView(R.id.banner)
     Banner banner;
     @BindView(R.id.smartRefreshLayout_home)
@@ -60,16 +60,7 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
         Debug.startMethodTracing("traceview");
 
         Debug.stopMethodTracing();
-//        DaggerPresenterComponent.builder()
-//                .presenterModule(new PresenterModule(new HomePresenter()))
-//                .build()
-//                .inject(this);
-        //新添代码
-//        DaggerSampleComponent
-//                .builder()
-//                .sampleModule(new SampleModule())
-//                .create()
-//                .inject(this);
+
     }
 
     @Override
@@ -184,10 +175,17 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
     private void initRecyclerView() {
         articleDataList = new ArrayList<>();
         feedArticleAdapter = new ArticleListAdapter(getActivity(), articleDataList);
-        project_recyclerview.addItemDecoration(new DividerItemDecoration(getActivity(),
+        article_recyclerview.addItemDecoration(new DividerItemDecoration(getActivity(),
                 DividerItemDecoration.VERTICAL_LIST));
-        project_recyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
-        project_recyclerview.setAdapter(feedArticleAdapter);
+        article_recyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
+        article_recyclerview.setAdapter(feedArticleAdapter);
+        article_recyclerview.setLayoutManager(new LinearLayoutManager(getActivity()) {
+            public boolean canScrollVertically() {
+                //解决ScrollView里存在多个RecyclerView时滑动卡顿的问题
+                //如果你的RecyclerView是水平滑动的话可以重写canScrollHorizontally方法
+                return false;
+            }
+        });
     }
 
     //初始化下拉刷新控件
@@ -208,8 +206,9 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
             }
         });
     }
-    public void scrollToTop(){
-        project_recyclerview.scrollToPosition(0);
+
+    public void scrollToTop() {
+        article_recyclerview.scrollToPosition(0);
     }
 
     public void onResume() {
@@ -220,4 +219,10 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
     public void onDestroy() {
         super.onDestroy();
     }
+
+//    @Override
+//    protected void initData() {
+//        mPresenter.getFeedArticleList(0);
+//        mPresenter.getBannerInfo();
+//    }
 }

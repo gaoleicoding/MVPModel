@@ -20,6 +20,7 @@ public abstract class BaseMvpFragment<P extends BasePresenter> extends BaseFragm
     //Fragment对用户可见的标记
     private boolean isUIVisible;
     @Inject
+    @Nullable
     public P mPresenter;
 
     @Override
@@ -35,6 +36,7 @@ public abstract class BaseMvpFragment<P extends BasePresenter> extends BaseFragm
         lazyLoad();
     }
 
+
     @Override
     public void onDestroy() {
         if (mPresenter != null)
@@ -42,7 +44,7 @@ public abstract class BaseMvpFragment<P extends BasePresenter> extends BaseFragm
         super.onDestroy();
     }
 
-//    //实例presenter
+    //    //实例presenter
 //    public abstract P initPresenter();
 
 
@@ -50,7 +52,7 @@ public abstract class BaseMvpFragment<P extends BasePresenter> extends BaseFragm
     public void setUserVisibleHint(boolean isVisibleToUser) {
 
         super.setUserVisibleHint(isVisibleToUser);
-        //isVisibleToUser这个boolean值表示:该Fragment的UI 用户是否可见
+        // isVisibleToUser这个boolean值表示:该Fragment的UI 用户是否可见
         if (isVisibleToUser) {
             isUIVisible = true;
             lazyLoad();

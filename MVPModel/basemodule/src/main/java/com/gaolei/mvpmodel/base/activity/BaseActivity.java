@@ -26,6 +26,7 @@ import com.umeng.analytics.MobclickAgent;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import dagger.android.AndroidInjection;
 
 import static com.gaolei.mvpmodel.base.utils.PermissionUtil.PERMISSION_CODE;
 
@@ -43,7 +44,7 @@ public abstract class BaseActivity extends BasePermisssionActivity implements Vi
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
         ButterKnife.bind(this);
-
+//        AndroidInjection.inject(this);
         ExitAppUtils.getInstance().addActivity(this);
 
         context=this;
