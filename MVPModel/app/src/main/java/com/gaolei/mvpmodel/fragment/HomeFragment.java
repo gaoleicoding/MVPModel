@@ -31,8 +31,6 @@ import com.youth.banner.listener.OnBannerListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Inject;
-
 import butterknife.BindView;
 
 
@@ -97,7 +95,6 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
     public void showArticleList(ArticleListData listData, boolean isRefresh) {
         final List<FeedArticleData> newDataList = listData.data.getDatas();
         if (isRefresh) {
-//            mAdapter.replaceData(feedArticleListData.getDatas());
             smartRefreshLayout.finishRefresh(true);
         } else {
             articleDataList.addAll(newDataList);
@@ -190,8 +187,6 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
 
     //初始化下拉刷新控件
     private void initSmartRefreshLayout() {
-//        smartRefreshLayout.setRefreshHeader(new MaterialHeader(getActivity()).setShowBezierWave(true));
-//        smartRefreshLayout.setRefreshFooter(new BallPulseFooter(getActivity()).setSpinnerStyle(SpinnerStyle.Scale));
         smartRefreshLayout.setEnableScrollContentWhenLoaded(true);//是否在加载完成时滚动列表显示新的内容
         smartRefreshLayout.setEnableFooterFollowWhenLoadFinished(true);
         smartRefreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
@@ -220,9 +215,4 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
         super.onDestroy();
     }
 
-//    @Override
-//    protected void initData() {
-//        mPresenter.getFeedArticleList(0);
-//        mPresenter.getBannerInfo();
-//    }
 }

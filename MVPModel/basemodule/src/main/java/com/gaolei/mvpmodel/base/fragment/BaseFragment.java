@@ -2,7 +2,6 @@ package com.gaolei.mvpmodel.base.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +17,6 @@ import com.gaolei.mvpmodel.base.utils.StatusBarUtil;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import dagger.android.AndroidInjection;
 import dagger.android.support.AndroidSupportInjection;
 
 
@@ -46,16 +44,11 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
     }
     @Override
     public void onAttach(Context context) {
+        // 这一句很重要
         AndroidSupportInjection.inject(this);
         super.onAttach(context);
     }
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-//        initView();
-//        initData();
-    }
-//    protected abstract void initData();
+
 
     public abstract void initData(Bundle bundle);
     public abstract void initView();
