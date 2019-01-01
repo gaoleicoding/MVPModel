@@ -37,7 +37,6 @@ import static com.gaolei.mvpmodel.base.utils.PermissionUtil.PERMISSION_CODE;
 public abstract class BaseActivity extends BasePermisssionActivity implements View.OnClickListener {
     private PermissionUtil.RequestPermissionCallBack mRequestPermissionCallBack;
 
-    public static Activity context;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +45,6 @@ public abstract class BaseActivity extends BasePermisssionActivity implements Vi
 
         ExitAppUtils.getInstance().addActivity(this);
 
-        context=this;
         setStatusBarColor(R.color.app_color);
 
         Bundle bundle = getIntent().getExtras();
@@ -148,7 +146,6 @@ public abstract class BaseActivity extends BasePermisssionActivity implements Vi
     }
     protected void onDestroy() {
         super.onDestroy();
-        context=null;
         ExitAppUtils.getInstance().delActivity(this);
 
     }

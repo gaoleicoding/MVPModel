@@ -9,15 +9,18 @@ import android.view.View;
 import com.gaolei.mvpmodel.R;
 import com.gaolei.mvpmodel.activity.ArticleDetailActivity;
 import com.gaolei.mvpmodel.adapter.DividerItemDecoration;
-import com.gaolei.mvpmodel.adapter.ProductDetailImgAdapter;
 import com.gaolei.mvpmodel.adapter.ProjectListAdapter;
 import com.gaolei.mvpmodel.base.fragment.BaseMvpFragment;
 import com.gaolei.mvpmodel.base.mmodel.ProjectListData;
-import com.gaolei.mvpmodel.base.mpresenter.BasePresenter;
+import com.gaolei.mvpmodel.base.view.CustomProgressDialog;
 import com.gaolei.mvpmodel.mcontract.ProjectContract;
 import com.gaolei.mvpmodel.mpresenter.ProjectPresenter;
+import com.scwang.smartrefresh.header.MaterialHeader;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
+import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 
 import java.util.ArrayList;
@@ -26,10 +29,6 @@ import java.util.List;
 import butterknife.BindView;
 
 
-/**
- * @author quchao
- * @date 2018/2/11
- */
 
 public class ProjectFragment extends BaseMvpFragment<ProjectPresenter> implements ProjectContract.View {
 
@@ -37,7 +36,7 @@ public class ProjectFragment extends BaseMvpFragment<ProjectPresenter> implement
     RecyclerView project_recyclerview;
     @BindView(R.id.smartRefreshLayout_home)
     SmartRefreshLayout smartRefreshLayout;
-    ProductDetailImgAdapter projectAdapter;
+    ProjectListAdapter projectAdapter;
     private List<ProjectListData.ProjectData> projectDataList;
 
     @Override
@@ -72,7 +71,7 @@ public class ProjectFragment extends BaseMvpFragment<ProjectPresenter> implement
 
     @Override
     protected void loadData() {
-        if(mPresenter==null)return;
+        CustomProgressDialog.show(getActivity());
         mPresenter.getProjectInfo(1, 294);
     }
 
@@ -91,21 +90,21 @@ public class ProjectFragment extends BaseMvpFragment<ProjectPresenter> implement
             smartRefreshLayout.finishLoadMore();
         }
 
-//        projectAdapter.setOnItemClickListener(new ProjectListAdapter.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(View v, int position) {
-//                Intent intent = new Intent(getActivity(), ArticleDetailActivity.class);
-//                Bundle bundle = new Bundle();
-//                bundle.putString("url", projectDataList.get(position).getLink());
-//                intent.putExtras(bundle);
-//                startActivity(intent);
-//            }
-//        });
+        projectAdapter.setOnItemClickListener(new ProjectListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View v, int position) {
+                Intent intent = new Intent(getActivity(), ArticleDetailActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("url", projectDataList.get(position).getLink());
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
     }
 
     private void initRecyclerView() {
         projectDataList = new ArrayList<>();
-        projectAdapter = new ProductDetailImgAdapter(getActivity(), projectDataList);
+        projectAdapter = new ProjectListAdapter(getActivity(), projectDataList);
         project_recyclerview.addItemDecoration(new DividerItemDecoration(getActivity(),
                 DividerItemDecoration.VERTICAL_LIST));
         project_recyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -114,20 +113,17 @@ public class ProjectFragment extends BaseMvpFragment<ProjectPresenter> implement
 
     //初始化下拉刷新控件
     private void initSmartRefreshLayout() {
-//        smartRefreshLayout.setRefreshHeader(new MaterialHeader(getActivity()).setShowBezierWave(true));
-//        smartRefreshLayout.setRefreshFooter(new BallPulseFooter(getActivity()).setSpinnerStyle(SpinnerStyle.Scale));
+        smartRefreshLayout.setEnableRefresh(false);
+        smartRefreshLayout.setEnableLoadMore(true);
         smartRefreshLayout.setEnableScrollContentWhenLoaded(true);//是否在加载完成时滚动列表显示新的内容
         smartRefreshLayout.setEnableFooterFollowWhenLoadFinished(true);
-        smartRefreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
+        smartRefreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore(RefreshLayout refreshLayout) {
                 mPresenter.onLoadMore(294);
             }
 
-            @Override
-            public void onRefresh(RefreshLayout refreshLayout) {
-                mPresenter.onRefreshMore(294);
-            }
+
         });
     }
     public void scrollToTop(){

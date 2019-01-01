@@ -1,11 +1,7 @@
-package com.gaolei.mvpmodel.thirdframe.rxjava;
+package com.gaolei.mvpmodel.base.thirdframe.rxjava;
 
-import android.app.Dialog;
 import android.content.Context;
 
-import com.gaolei.mvpmodel.base.activity.BaseActivity;
-import com.gaolei.mvpmodel.base.application.CustomApplication;
-import com.gaolei.mvpmodel.base.mview.BaseView;
 import com.gaolei.mvpmodel.base.utils.NetUtils;
 import com.gaolei.mvpmodel.base.utils.Utils;
 import com.gaolei.mvpmodel.base.view.CustomProgressDialog;
@@ -20,19 +16,9 @@ public abstract class BaseObserver<T> extends ResourceObserver<T> {
     protected String errMsg = "";
     private boolean isShowError = true;
     private Context context;
-    Dialog prgressDialog;
 
     protected BaseObserver(boolean isShowDialog){
-        // context在CustomProgressDialog中用到
-        this.context=context;
-        if(isShowDialog) {
-            prgressDialog = CustomProgressDialog.createLoadingDialog(BaseActivity.context);
-            prgressDialog.setCancelable(true);//允许返回
-            prgressDialog.show();//显示
-        }
-    }
-    protected BaseObserver(BaseView view, boolean isShowError){
-        this.isShowError = isShowError;
+
     }
 
 
@@ -44,8 +30,7 @@ public abstract class BaseObserver<T> extends ResourceObserver<T> {
 
     @Override
     public void onError(Throwable e) {
-        if(prgressDialog!=null)
-      prgressDialog.cancel();
+        CustomProgressDialog.cancel();
         if (!NetUtils.isConnected()) {
             errMsg = "网络连接出错,请检查网络";
 
@@ -61,8 +46,7 @@ public abstract class BaseObserver<T> extends ResourceObserver<T> {
 
     @Override
     public void onComplete() {
-        if(prgressDialog!=null)
-        prgressDialog.cancel();
+        CustomProgressDialog.cancel();
     }
 
 }

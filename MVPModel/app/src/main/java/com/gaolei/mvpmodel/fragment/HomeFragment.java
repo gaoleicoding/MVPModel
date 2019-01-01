@@ -19,10 +19,15 @@ import com.gaolei.mvpmodel.base.mmodel.BannerListData;
 import com.gaolei.mvpmodel.base.mmodel.ArticleListData;
 import com.gaolei.mvpmodel.base.mmodel.ArticleListData.FeedArticleData;
 import com.gaolei.mvpmodel.base.mpresenter.BasePresenter;
+import com.gaolei.mvpmodel.base.view.CustomProgressDialog;
 import com.gaolei.mvpmodel.mcontract.HomeContract;
 import com.gaolei.mvpmodel.mpresenter.HomePresenter;
+import com.scwang.smartrefresh.header.MaterialHeader;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
+import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
@@ -35,10 +40,6 @@ import java.util.List;
 import butterknife.BindView;
 
 
-/**
- * @author quchao
- * @date 2018/2/11
- */
 
 public class HomeFragment extends BaseMvpFragment<HomePresenter> implements HomeContract.View {
 
@@ -85,7 +86,7 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
 
     @Override
     protected void loadData() {
-//        if(mPresenter==null)return;
+        CustomProgressDialog.show(getActivity());
         mPresenter.getFeedArticleList(0);
         mPresenter.getBannerInfo();
 
@@ -93,28 +94,14 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
 
 
     @Override
-    public void showArticleList(ArticleListData listData, boolean isRefresh) {
+    public void showArticleList(ArticleListData listData) {
         final List<FeedArticleData> newDataList = listData.data.getDatas();
-        if (isRefresh) {
-//            mAdapter.replaceData(feedArticleListData.getDatas());
-            smartRefreshLayout.finishRefresh(true);
-        } else {
+
             articleDataList.addAll(newDataList);
             feedArticleAdapter.notifyItemRangeInserted(articleDataList.size() - newDataList.size(), newDataList.size());
             feedArticleAdapter.notifyDataSetChanged();
             smartRefreshLayout.finishLoadMore();
-        }
 
-        feedArticleAdapter.setOnItemClickListener(new ArticleListAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(View v, int position) {
-                Intent intent = new Intent(getActivity(), ArticleDetailActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putString("url", articleDataList.get(position).getLink());
-                intent.putExtras(bundle);
-                startActivity(intent);
-            }
-        });
     }
 
     @Override
@@ -178,24 +165,30 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
                 DividerItemDecoration.VERTICAL_LIST));
         project_recyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
         project_recyclerview.setAdapter(feedArticleAdapter);
+        feedArticleAdapter.setOnItemClickListener(new ArticleListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View v, int position) {
+                Intent intent = new Intent(getActivity(), ArticleDetailActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("url", articleDataList.get(position).getLink());
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
     }
 
     //初始化下拉刷新控件
     private void initSmartRefreshLayout() {
-//        smartRefreshLayout.setRefreshHeader(new MaterialHeader(getActivity()).setShowBezierWave(true));
-//        smartRefreshLayout.setRefreshFooter(new BallPulseFooter(getActivity()).setSpinnerStyle(SpinnerStyle.Scale));
+        smartRefreshLayout.setEnableRefresh(false);
+        smartRefreshLayout.setEnableLoadMore(true);
         smartRefreshLayout.setEnableScrollContentWhenLoaded(true);//是否在加载完成时滚动列表显示新的内容
         smartRefreshLayout.setEnableFooterFollowWhenLoadFinished(true);
-        smartRefreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
+        smartRefreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore(RefreshLayout refreshLayout) {
                 mPresenter.onLoadMore();
             }
 
-            @Override
-            public void onRefresh(RefreshLayout refreshLayout) {
-                mPresenter.onRefreshMore();
-            }
         });
     }
     public void scrollToTop(){

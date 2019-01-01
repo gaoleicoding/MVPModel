@@ -4,10 +4,6 @@ import java.io.Serializable;
 import java.util.List;
 
 
-/**
- * @author quchao
- * @date 2018/2/24
- */
 
 public class ProjectListData {
 

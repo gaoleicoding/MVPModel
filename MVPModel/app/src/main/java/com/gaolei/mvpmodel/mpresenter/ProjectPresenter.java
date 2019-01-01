@@ -4,7 +4,7 @@ package com.gaolei.mvpmodel.mpresenter;
 import com.gaolei.mvpmodel.base.mmodel.ProjectListData;
 import com.gaolei.mvpmodel.base.mpresenter.BasePresenter;
 import com.gaolei.mvpmodel.mcontract.ProjectContract;
-import com.gaolei.mvpmodel.thirdframe.rxjava.BaseObserver;
+import com.gaolei.mvpmodel.base.thirdframe.rxjava.BaseObserver;
 
 import io.reactivex.Observable;
 
@@ -24,16 +24,7 @@ public class ProjectPresenter extends BasePresenter<ProjectContract.View> implem
         });
     }
 
-    @Override
-    public void onRefreshMore(int cid) {
-        Observable observable = mRestService.getProjectListData(-1, cid);
-        addSubscribe(observable, new BaseObserver<ProjectListData>(false) {
-            @Override
-            public void onNext(ProjectListData projectListData) {
-                mView.showProjectList(projectListData, true);
-            }
-        });
-    }
+
 
     @Override
     public void onLoadMore(int cid) {

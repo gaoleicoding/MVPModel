@@ -12,8 +12,6 @@ public class ProjectContract {
 
         void getProjectInfo(int page, int cid);
 
-        void onRefreshMore(int cid);
-
         void onLoadMore(int cid);
     }
 

@@ -3,10 +3,7 @@ package com.gaolei.mvpmodel.base.mmodel;
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * @author quchao
- * @date 2018/2/12
- */
+
 
 public class ArticleListData {
     public ListData data;

@@ -1,4 +1,4 @@
-package com.gaolei.mvpmodel.thirdframe.retrofit;
+package com.gaolei.mvpmodel.base.thirdframe.retrofit;
 
 
 import com.franmontiel.persistentcookiejar.PersistentCookieJar;
@@ -6,11 +6,11 @@ import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
 import com.gaolei.mvpmodel.base.api.ApiService;
 import com.gaolei.mvpmodel.base.application.CustomApplication;
-import com.gaolei.mvpmodel.thirdframe.retrofit.interceptor.GzipRequestInterceptor;
-import com.gaolei.mvpmodel.thirdframe.retrofit.interceptor.HttpLoggingInterceptor;
-import com.gaolei.mvpmodel.thirdframe.retrofit.interceptor.OfflineCacheInterceptor;
-import com.gaolei.mvpmodel.thirdframe.retrofit.interceptor.OnlineCacheInterceptor;
-import com.gaolei.mvpmodel.thirdframe.retrofit.interceptor.RetryIntercepter;
+import com.gaolei.mvpmodel.base.thirdframe.retrofit.interceptor.GzipRequestInterceptor;
+import com.gaolei.mvpmodel.base.thirdframe.retrofit.interceptor.HttpLoggingInterceptor;
+import com.gaolei.mvpmodel.base.thirdframe.retrofit.interceptor.OfflineCacheInterceptor;
+import com.gaolei.mvpmodel.base.thirdframe.retrofit.interceptor.OnlineCacheInterceptor;
+import com.gaolei.mvpmodel.base.thirdframe.retrofit.interceptor.RetryIntercepter;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -29,7 +29,7 @@ public final class RetrofitProvider {
     private static volatile RetrofitProvider sInstance;
     private ApiService restService;
     public static String netCachePath;
-
+    public final String BASE_URL = "http://www.wanandroid.com/";
     private RetrofitProvider() {
     }
 
@@ -60,7 +60,7 @@ public final class RetrofitProvider {
         if (mRetrofit == null) {
             mRetrofit = new Retrofit.Builder()
                     .client(mOkHttpClient)
-                    .baseUrl(com.gaolei.mvpmodel.thirdframe.retrofit.UrlConfig.BASE_URL)
+                    .baseUrl(BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .build();

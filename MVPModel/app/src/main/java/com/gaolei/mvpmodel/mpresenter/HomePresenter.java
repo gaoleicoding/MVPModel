@@ -5,7 +5,7 @@ import com.gaolei.mvpmodel.base.mmodel.BannerListData;
 import com.gaolei.mvpmodel.base.mmodel.ArticleListData;
 import com.gaolei.mvpmodel.base.mpresenter.BasePresenter;
 import com.gaolei.mvpmodel.mcontract.HomeContract;
-import com.gaolei.mvpmodel.thirdframe.rxjava.BaseObserver;
+import com.gaolei.mvpmodel.base.thirdframe.rxjava.BaseObserver;
 
 import io.reactivex.Observable;
 
@@ -16,26 +16,13 @@ public class HomePresenter extends BasePresenter<HomeContract.View> implements H
     private int mCurrentPage = 0;
 
     @Override
-    public void onRefreshMore() {
-        Observable observable = mRestService.getFeedArticleList(-1);
-        addSubscribe(observable, new BaseObserver<ArticleListData>(false) {
-            @Override
-            public void onNext(ArticleListData feedArticleListData) {
-                mView.showArticleList(feedArticleListData, true);
-            }
-        });
-
-
-    }
-
-    @Override
     public void onLoadMore() {
         ++mCurrentPage;
         Observable observable = mRestService.getFeedArticleList(mCurrentPage);
         addSubscribe(observable, new BaseObserver<ArticleListData>(false) {
             @Override
             public void onNext(ArticleListData feedArticleListData) {
-                mView.showArticleList(feedArticleListData, false);
+                mView.showArticleList(feedArticleListData);
             }
         });
     }
@@ -46,7 +33,7 @@ public class HomePresenter extends BasePresenter<HomeContract.View> implements H
         addSubscribe(observable, new BaseObserver<ArticleListData>(true) {
             @Override
             public void onNext(ArticleListData feedArticleListData) {
-                mView.showArticleList(feedArticleListData, false);
+                mView.showArticleList(feedArticleListData);
             }
         });
     }

@@ -18,14 +18,13 @@ public class HomeContract {
 
         void getBannerInfo();
 
-        void onRefreshMore();
 
         void onLoadMore();
     }
 
     public interface View {
 
-        void showArticleList(ArticleListData itemBeans, boolean isRefresh);
+        void showArticleList(ArticleListData itemBeans);
 
         void showBannerList(BannerListData itemBeans);
     }

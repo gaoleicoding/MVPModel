@@ -1,8 +1,8 @@
 package com.gaolei.mvpmodel.base.mpresenter;
 
 import com.gaolei.mvpmodel.base.api.ApiService;
-import com.gaolei.mvpmodel.thirdframe.retrofit.RetrofitProvider;
-import com.gaolei.mvpmodel.thirdframe.rxjava.BaseObserver;
+import com.gaolei.mvpmodel.base.thirdframe.retrofit.RetrofitProvider;
+import com.gaolei.mvpmodel.base.thirdframe.rxjava.BaseObserver;
 
 
 import io.reactivex.Observable;

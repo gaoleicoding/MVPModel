@@ -51,7 +51,6 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
         holder.item_project_list_content_tv.setText(projectInfo.getDesc());
         holder.item_project_list_time_tv.setText(projectInfo.getNiceDate());
         holder.item_project_list_author_tv.setText(context.getString(R.string.author) + projectInfo.getAuthor());
-        ImageLoader.getInstance().load(context, projectInfo.getEnvelopePic(), holder.item_project_list_iv);
 
     }
 
