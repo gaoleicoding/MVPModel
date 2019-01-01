@@ -1,19 +1,18 @@
 package com.gaolei.mvpmodel.mpresenter;
 
-import com.gaolei.mvpmodel.thirdframe.retrofit.RetrofitProvider;
+import com.gaolei.mvpmodel.base.thirdframe.retrofit.RetrofitProvider;
 import com.gaolei.mvpmodel.api.ApiService;
-import com.gaolei.mvpmodel.thirdframe.rxjava.BaseObserver;
-
+import com.gaolei.mvpmodel.base.thirdframe.rxjava.BaseObserver;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 
+
 public abstract class BasePresenter<V> {
 
     public V mView;
-//    public Observable observable;
     public ApiService mRestService = RetrofitProvider.getInstance().builder().getApiService();
     CompositeDisposable mCompositeDisposable ;
 
@@ -39,7 +38,7 @@ public abstract class BasePresenter<V> {
         }
     }
 
-    public void doSubscribe( Observable observable,BaseObserver observer){
+    public void doSubscribe(Observable observable, BaseObserver observer){
                 mCompositeDisposable.add(observer);
         observable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())

@@ -1,4 +1,4 @@
-package com.gaolei.mvpmodel.thirdframe.retrofit.interceptor;
+package com.gaolei.mvpmodel.base.thirdframe.retrofit.interceptor;
 
 import android.util.Log;
 

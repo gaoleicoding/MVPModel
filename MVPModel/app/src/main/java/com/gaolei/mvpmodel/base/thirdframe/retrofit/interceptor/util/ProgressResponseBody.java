@@ -1,8 +1,8 @@
-package com.gaolei.mvpmodel.thirdframe.retrofit.interceptor.util;
+package com.gaolei.mvpmodel.base.thirdframe.retrofit.interceptor.util;
 
 import android.util.Log;
 
-import com.gaolei.mvpmodel.thirdframe.retrofit.interceptor.ProgressInterceptor;
+import com.gaolei.mvpmodel.base.thirdframe.retrofit.interceptor.ProgressInterceptor;
 
 import java.io.IOException;
 

@@ -7,10 +7,6 @@ import com.gaolei.mvpmodel.base.fragment.BaseMvpFragment;
 import com.gaolei.mvpmodel.mpresenter.BasePresenter;
 
 
-/**
- * @author quchao
- * @date 2018/2/11
- */
 
 public class KnowledgeFragment extends BaseMvpFragment {
 

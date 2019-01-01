@@ -1,4 +1,4 @@
-package com.gaolei.mvpmodel.thirdframe.retrofit.interceptor.util;
+package com.gaolei.mvpmodel.base.thirdframe.retrofit.interceptor.util;
 
 /**
  * @author guolin

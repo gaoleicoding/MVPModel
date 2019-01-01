@@ -1,4 +1,4 @@
-package com.gaolei.mvpmodel.thirdframe.retrofit.interceptor;
+package com.gaolei.mvpmodel.base.thirdframe.retrofit.interceptor;
 
 import android.util.Log;
 
@@ -10,9 +10,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 
-/**
- * Created by liuhaiyang on 2016/9/6.
- */
+
 public class HttpLoggingInterceptor implements Interceptor {
     public Response intercept(Interceptor.Chain chain) throws IOException {
         //这个chain里面包含了request和response，所以你要什么都可以从这里拿

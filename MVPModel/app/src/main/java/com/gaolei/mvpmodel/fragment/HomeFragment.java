@@ -31,10 +31,6 @@ import java.util.List;
 import butterknife.BindView;
 
 
-/**
- * @author quchao
- * @date 2018/2/11
- */
 
 public class HomeFragment extends BaseMvpFragment< HomePresenter> implements ProjectListContract.View {
 

@@ -19,9 +19,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 
-/**
- * Created by liuhaiyang on 2017/1/2.
- */
+
 
 public abstract class BaseFragment extends Fragment implements View.OnClickListener {
     public FrameLayout mLlContent;
@@ -109,12 +107,6 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
         }
     }
 
-    /**
-     * 设置状态栏颜色
-     */
-    public void setStatusBarColor(int resColor) {
-        StatusBarUtil.setWindowStatusBarColor(getActivity(), resColor, true);
-    }
     public void onDestroyView() {
         super.onDestroyView();
         if (mBinder != null) {
