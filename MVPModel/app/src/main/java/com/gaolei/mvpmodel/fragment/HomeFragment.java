@@ -22,6 +22,7 @@ import com.gaolei.mvpmodel.mcontract.HomeContract;
 import com.gaolei.mvpmodel.mpresenter.HomePresenter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
@@ -34,10 +35,6 @@ import java.util.List;
 import butterknife.BindView;
 
 
-/**
- * @author quchao
- * @date 2018/2/11
- */
 
 public class HomeFragment extends BaseMvpFragment<HomePresenter> implements HomeContract.View {
 
@@ -187,18 +184,17 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
 
     //初始化下拉刷新控件
     private void initSmartRefreshLayout() {
+        smartRefreshLayout.setEnableRefresh(false);
+        smartRefreshLayout.setEnableLoadMore(true);
         smartRefreshLayout.setEnableScrollContentWhenLoaded(true);//是否在加载完成时滚动列表显示新的内容
         smartRefreshLayout.setEnableFooterFollowWhenLoadFinished(true);
-        smartRefreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
+        smartRefreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore(RefreshLayout refreshLayout) {
                 mPresenter.onLoadMore();
             }
 
-            @Override
-            public void onRefresh(RefreshLayout refreshLayout) {
-                mPresenter.onRefreshMore();
-            }
+
         });
     }
 

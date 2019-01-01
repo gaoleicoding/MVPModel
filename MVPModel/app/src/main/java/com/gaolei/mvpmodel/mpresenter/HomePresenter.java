@@ -19,18 +19,7 @@ public class HomePresenter extends BasePresenter<HomeContract.View> implements H
     @Inject
     public HomePresenter() {
     }
-    @Override
-    public void onRefreshMore() {
-        Observable observable = mRestService.getFeedArticleList(-1);
-        addSubscribe(observable, new BaseObserver<ArticleListData>(false) {
-            @Override
-            public void onNext(ArticleListData feedArticleListData) {
-                mView.showArticleList(feedArticleListData, true);
-            }
-        });
 
-
-    }
 
     @Override
     public void onLoadMore() {

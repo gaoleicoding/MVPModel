@@ -18,8 +18,6 @@ public class HomeContract {
 
         void getBannerInfo();
 
-        void onRefreshMore();
-
         void onLoadMore();
     }
 

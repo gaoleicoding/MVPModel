@@ -11,11 +11,6 @@ import com.gaolei.mvpmodel.mcontract.HomeContract;
 import com.gaolei.mvpmodel.mpresenter.HomePresenter;
 
 
-/**
- * @author quchao
- * @date 2018/2/11
- */
-
 public class NavigationFragment extends BaseMvpFragment<HomePresenter> implements HomeContract.View {
 
     @Override
