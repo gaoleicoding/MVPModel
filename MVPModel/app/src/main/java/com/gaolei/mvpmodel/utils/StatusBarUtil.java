@@ -1,8 +1,6 @@
 package com.gaolei.mvpmodel.utils;
 
-/**
- * Created by caiwancheng on 2017/7/24.
- */
+
 
 import android.app.Activity;
 import android.content.Context;

@@ -18,8 +18,6 @@ import com.gaolei.mvpmodel.mmodel.BannerListData;
 import com.gaolei.mvpmodel.mmodel.ProjectListData;
 import com.gaolei.mvpmodel.mpresenter.HomePresenter;
 import com.gaolei.mvpmodel.mview.ProjectListView;
-import com.gaolei.mvpmodel.net.RestService;
-import com.gaolei.mvpmodel.net.UrlConfig;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
@@ -29,19 +27,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 
-/**
- * @author quchao
- * @date 2018/2/11
- */
 
-public class HomeFragment extends BaseMvpFragment<ProjectListView, HomePresenter> implements ProjectListView {
+
+public class HomeFragment extends BaseMvpFragment<HomePresenter> implements ProjectListView {
 
     @BindView(R.id.project_recyclerview)
     RecyclerView project_recyclerview;

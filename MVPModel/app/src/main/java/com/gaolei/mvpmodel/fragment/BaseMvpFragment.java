@@ -11,7 +11,7 @@ import com.gaolei.mvpmodel.mpresenter.BasePresenter;
  */
 
 
-public abstract class BaseMvpFragment<V, P extends BasePresenter<V>> extends BaseFragment {
+public abstract class BaseMvpFragment<P extends BasePresenter> extends BaseFragment {
 
     public P mPresenter;
 
@@ -22,7 +22,7 @@ public abstract class BaseMvpFragment<V, P extends BasePresenter<V>> extends Bas
 
         mPresenter = initPresenter();
         if (mPresenter != null)
-            mPresenter.attach((V) this);
+            mPresenter.attach( this);
     }
 
     @Override

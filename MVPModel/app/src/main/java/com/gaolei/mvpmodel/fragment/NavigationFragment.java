@@ -9,10 +9,6 @@ import com.gaolei.mvpmodel.R;
 import com.gaolei.mvpmodel.mpresenter.BasePresenter;
 
 
-/**
- * @author quchao
- * @date 2018/2/11
- */
 
 public class NavigationFragment extends BaseMvpFragment {
 

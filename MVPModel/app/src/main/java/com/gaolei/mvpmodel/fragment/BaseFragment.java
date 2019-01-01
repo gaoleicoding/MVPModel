@@ -18,10 +18,6 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 
-/**
- * Created by liuhaiyang on 2017/1/2.
- */
-
 public abstract class BaseFragment extends Fragment implements View.OnClickListener {
     private FrameLayout mLlContent;
     View subFragmentView;
@@ -87,15 +83,6 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
     }
 
 
-    /**
-     * 显示/隐藏 错误页面
-     *
-     * @param isShow
-     */
-    public void showErrorPage(boolean isShow) {
-//        mErrorPageView.setVisibility(isShow ? View.VISIBLE : View.GONE);
-    }
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -107,16 +94,4 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
         }
     }
 
-    /**
-     * 设置状态栏颜色
-     */
-    public void setStatusBarColor(int resColor) {
-        StatusBarUtil.setWindowStatusBarColor(getActivity(), resColor, true);
-    }
-    public void onDestroyView() {
-        super.onDestroyView();
-        if (mBinder != null) {
-            mBinder.unbind();
-        }
-    }
 }
