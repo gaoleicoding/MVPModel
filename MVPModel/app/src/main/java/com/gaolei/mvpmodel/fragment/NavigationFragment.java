@@ -1,18 +1,12 @@
 package com.gaolei.mvpmodel.fragment;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.gaolei.mvpmodel.R;
 import com.gaolei.mvpmodel.mpresenter.BasePresenter;
 
 
-/**
- * @author quchao
- * @date 2018/2/11
- */
+
 
 public class NavigationFragment extends BaseMvpFragment {
 

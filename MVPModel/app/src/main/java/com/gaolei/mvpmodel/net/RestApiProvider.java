@@ -18,6 +18,7 @@ public final class RestApiProvider {
     private OkHttpClient mOkHttpClient;
     private static volatile RestApiProvider sInstance;
     private RestService restService;
+    public final String BASE_URL = "http://www.wanandroid.com/";
 
     private RestApiProvider() {
     }
@@ -37,7 +38,7 @@ public final class RestApiProvider {
         if (mRetrofit == null) {
             mRetrofit = new Retrofit.Builder()
                     .client(mOkHttpClient)
-                    .baseUrl(UrlConfig.BASE_URL)
+                    .baseUrl(BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .build();

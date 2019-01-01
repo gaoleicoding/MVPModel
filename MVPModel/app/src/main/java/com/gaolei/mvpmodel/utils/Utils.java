@@ -11,9 +11,10 @@ import java.security.MessageDigest;
 
 public class Utils {
 
-    public static void showToast(Context context,String content){
+    public static void showToast(Context context, String content) {
         Toast.makeText(context, content, Toast.LENGTH_SHORT).show();
     }
+
     /**
      * md5 加密
      *

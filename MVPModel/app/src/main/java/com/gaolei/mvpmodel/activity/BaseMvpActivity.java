@@ -6,11 +6,9 @@ import android.support.annotation.Nullable;
 import com.gaolei.mvpmodel.mpresenter.BasePresenter;
 
 
-/**
- * Created by liuhaiyang on 2017/8/2.
- */
 
-public abstract class BaseMvpActivity<V, P extends BasePresenter<V>> extends BaseActivity {
+
+public abstract class BaseMvpActivity<P extends BasePresenter> extends BaseActivity {
 
     public P mPresenter;
 
@@ -18,7 +16,7 @@ public abstract class BaseMvpActivity<V, P extends BasePresenter<V>> extends Bas
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPresenter = initPresenter();
-        mPresenter.attach((V) this);
+        mPresenter.attach( this);
     }
 
     @Override

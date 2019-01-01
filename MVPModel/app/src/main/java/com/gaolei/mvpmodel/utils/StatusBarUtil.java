@@ -1,8 +1,5 @@
 package com.gaolei.mvpmodel.utils;
 
-/**
- * Created by caiwancheng on 2017/7/24.
- */
 
 import android.app.Activity;
 import android.content.Context;
@@ -16,11 +13,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 
-
-
-/**
- * 状态栏相关工具类
- */
 public class StatusBarUtil {
 
     public static void setWindowStatusBarColor(Activity activity, int colorResId, boolean isChangeIconColor) {

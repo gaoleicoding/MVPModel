@@ -1,11 +1,7 @@
 package com.gaolei.mvpmodel.mmodel;
 
-import java.io.Serializable;
 import java.util.List;
 
-/**
- * Created by caiwancheng on 2017/8/29.
- */
 
 public class BannerListData {
 
