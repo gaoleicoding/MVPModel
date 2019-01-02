@@ -10,11 +10,10 @@ import com.gaolei.mvpmodel.base.thirdframe.rxjava.BaseObserver;
 import io.reactivex.Observable;
 
 
-
 public class HomePresenter extends BasePresenter<HomeContract.View> implements HomeContract.Presenter {
-    private boolean isRefresh = true;
     private int mCurrentPage = 0;
 
+    //加载更多
     @Override
     public void onLoadMore() {
         ++mCurrentPage;
@@ -27,6 +26,7 @@ public class HomePresenter extends BasePresenter<HomeContract.View> implements H
         });
     }
 
+    //获取文章列表数据
     @Override
     public void getFeedArticleList(int num) {
         Observable observable = mRestService.getFeedArticleList(num);
@@ -38,6 +38,7 @@ public class HomePresenter extends BasePresenter<HomeContract.View> implements H
         });
     }
 
+    //获取banner数据
     @Override
     public void getBannerInfo() {
         Observable observable = mRestService.getBannerListData();

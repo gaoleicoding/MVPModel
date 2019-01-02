@@ -13,9 +13,8 @@ import io.reactivex.schedulers.Schedulers;
 public abstract class BasePresenter<V> {
 
     public V mView;
-//    public Observable observable;
     public ApiService mRestService = RetrofitProvider.getInstance().builder().getApiService();
-    CompositeDisposable mCompositeDisposable ;
+    CompositeDisposable mCompositeDisposable;
 
     /**
      * 绑定View
@@ -34,13 +33,15 @@ public abstract class BasePresenter<V> {
      */
     public void dettach() {
         this.mView = null;
+        //避免内存泄漏，view销毁的时候解除，取消所有observer
         if (mCompositeDisposable != null) {
             mCompositeDisposable.clear();
         }
     }
 
-    public void addSubscribe( Observable observable,BaseObserver observer){
-                mCompositeDisposable.add(observer);
+    public void addSubscribe(Observable observable, BaseObserver observer) {
+        //把所有observer都放到一个集合中
+        mCompositeDisposable.add(observer);
         observable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
