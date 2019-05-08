@@ -209,7 +209,7 @@ dependencies {
 //    annotationProcessor rootProject.ext.dependencies["dagger-compiler"]
     annotationProcessor rootProject.ext.dependencies["dagger-android-processor"]
     annotationProcessor rootProject.ext.dependencies["dagger-compiler"]
-    provided 'javax.annotation:javax.annotation-api:1.2'
+    compileOnly 'javax.annotation:javax.annotation-api:1.2'
 
     api project(':basemodule')
 
