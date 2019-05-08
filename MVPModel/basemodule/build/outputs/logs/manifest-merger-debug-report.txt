@@ -1,0 +1,45 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/gl/gaolei/Android/GitHub/MVPModel/MVPModel/basemodule/src/main/AndroidManifest.xml:1:1-14:12
+INJECTED from /Users/gl/gaolei/Android/GitHub/MVPModel/MVPModel/basemodule/src/main/AndroidManifest.xml:1:1-14:12
+INJECTED from /Users/gl/gaolei/Android/GitHub/MVPModel/MVPModel/basemodule/src/main/AndroidManifest.xml:1:1-14:12
+	package
+		ADDED from /Users/gl/gaolei/Android/GitHub/MVPModel/MVPModel/basemodule/src/main/AndroidManifest.xml:3:5-36
+		INJECTED from /Users/gl/gaolei/Android/GitHub/MVPModel/MVPModel/basemodule/src/main/AndroidManifest.xml
+		INJECTED from /Users/gl/gaolei/Android/GitHub/MVPModel/MVPModel/basemodule/src/main/AndroidManifest.xml
+	xmlns:tools
+		ADDED from /Users/gl/gaolei/Android/GitHub/MVPModel/MVPModel/basemodule/src/main/AndroidManifest.xml:2:5-51
+	xmlns:android
+		ADDED from /Users/gl/gaolei/Android/GitHub/MVPModel/MVPModel/basemodule/src/main/AndroidManifest.xml:1:11-69
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from /Users/gl/gaolei/Android/GitHub/MVPModel/MVPModel/basemodule/src/main/AndroidManifest.xml:5:5-79
+	android:name
+		ADDED from /Users/gl/gaolei/Android/GitHub/MVPModel/MVPModel/basemodule/src/main/AndroidManifest.xml:5:22-76
+uses-permission#android.permission.ACCESS_WIFI_STATE
+ADDED from /Users/gl/gaolei/Android/GitHub/MVPModel/MVPModel/basemodule/src/main/AndroidManifest.xml:6:5-76
+	android:name
+		ADDED from /Users/gl/gaolei/Android/GitHub/MVPModel/MVPModel/basemodule/src/main/AndroidManifest.xml:6:22-73
+uses-permission#android.permission.INTERNET
+ADDED from /Users/gl/gaolei/Android/GitHub/MVPModel/MVPModel/basemodule/src/main/AndroidManifest.xml:7:5-67
+	android:name
+		ADDED from /Users/gl/gaolei/Android/GitHub/MVPModel/MVPModel/basemodule/src/main/AndroidManifest.xml:7:22-64
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from /Users/gl/gaolei/Android/GitHub/MVPModel/MVPModel/basemodule/src/main/AndroidManifest.xml:10:5-81
+	android:name
+		ADDED from /Users/gl/gaolei/Android/GitHub/MVPModel/MVPModel/basemodule/src/main/AndroidManifest.xml:10:22-78
+application
+ADDED from /Users/gl/gaolei/Android/GitHub/MVPModel/MVPModel/basemodule/src/main/AndroidManifest.xml:12:5-13:23
+uses-sdk
+INJECTED from /Users/gl/gaolei/Android/GitHub/MVPModel/MVPModel/basemodule/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/gl/gaolei/Android/GitHub/MVPModel/MVPModel/basemodule/src/main/AndroidManifest.xml
+INJECTED from /Users/gl/gaolei/Android/GitHub/MVPModel/MVPModel/basemodule/src/main/AndroidManifest.xml
+INJECTED from /Users/gl/gaolei/Android/GitHub/MVPModel/MVPModel/basemodule/src/main/AndroidManifest.xml
+INJECTED from /Users/gl/gaolei/Android/GitHub/MVPModel/MVPModel/basemodule/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /Users/gl/gaolei/Android/GitHub/MVPModel/MVPModel/basemodule/src/main/AndroidManifest.xml
+		ADDED from /Users/gl/gaolei/Android/GitHub/MVPModel/MVPModel/basemodule/src/main/AndroidManifest.xml
+		INJECTED from /Users/gl/gaolei/Android/GitHub/MVPModel/MVPModel/basemodule/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/gl/gaolei/Android/GitHub/MVPModel/MVPModel/basemodule/src/main/AndroidManifest.xml
+		ADDED from /Users/gl/gaolei/Android/GitHub/MVPModel/MVPModel/basemodule/src/main/AndroidManifest.xml
+		INJECTED from /Users/gl/gaolei/Android/GitHub/MVPModel/MVPModel/basemodule/src/main/AndroidManifest.xml
