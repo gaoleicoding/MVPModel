@@ -1,26 +1,30 @@
 package com.gaolei.mvpmodel.fragment;
 
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.gaolei.mvpmodel.R;
+import com.gaolei.mvpmodel.databinding.FragmentHomeBinding;
+import com.gaolei.mvpmodel.databinding.FragmentKnowledgeBinding;
 import com.gaolei.mvpmodel.mpresenter.BasePresenter;
-
-
 
 
 public class KnowledgeFragment extends BaseMvpFragment {
 
+    FragmentKnowledgeBinding binding;
+
     @Override
-    public void initData( Bundle bundle) {
+    public void initData(Bundle bundle) {
 
     }
 
     @Override
     public View getContentLayout(LayoutInflater inflater, ViewGroup container) {
-        return new View(getContext());
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_knowledge, container, false);
+        return binding.getRoot();
     }
 
 

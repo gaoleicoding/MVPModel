@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,17 +21,12 @@ import com.gaolei.mvpmodel.mmodel.BannerListData;
 import com.gaolei.mvpmodel.mmodel.ProjectListData;
 import com.gaolei.mvpmodel.mpresenter.HomePresenter;
 import com.gaolei.mvpmodel.mview.ProjectListView;
-import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
 import com.youth.banner.listener.OnBannerListener;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import butterknife.BindView;
-
-
 
 
 public class HomeFragment extends BaseMvpFragment<HomePresenter> implements ProjectListView {
@@ -137,7 +131,7 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Proj
         binding.banner.setImages(imageList);//设置图片源
         binding.banner.setBannerTitles(titleList);//设置标题源
 
-        binding. banner.start();
+        binding.banner.start();
 
 
         binding.banner.setOnBannerListener(new OnBannerListener() {

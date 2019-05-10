@@ -7,33 +7,26 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
 import com.gaolei.mvpmodel.R;
+import com.gaolei.mvpmodel.databinding.FragmentBaseBinding;
 import com.gaolei.mvpmodel.utils.NetworkUtil;
 
 
 public abstract class BaseFragment extends Fragment implements View.OnClickListener {
-    private FrameLayout mLlContent;
-    View fragmentView;
-    private RelativeLayout mLlLoading;
-    private Button bt_error_refresh;
-    public LinearLayout mErrorPageView;
+    FragmentBaseBinding binding;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View mParentView = inflater.inflate(R.layout.fragment_base, container, false);
-        initBaseView(mParentView);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_base, container, false);
+        initBaseView(binding);
         addContentView(inflater, container);
         Bundle bundle = getActivity().getIntent().getExtras();
         if (bundle == null) {
             bundle = savedInstanceState;
         }
         initData(bundle);
-        return mParentView;
+        return binding.getRoot();
     }
 
     /**
@@ -43,14 +36,10 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
      */
     public abstract void initData(Bundle bundle);
 
-    private void initBaseView(View view) {
-        mLlContent = view.findViewById(R.id.base_fragment_content);
-        mErrorPageView = view.findViewById(R.id.ll_base_error_content);
-        bt_error_refresh = view.findViewById(R.id.bt_error_refresh);
-        mLlLoading = view.findViewById(R.id.ll_loading);
+    private void initBaseView(FragmentBaseBinding binding) {
         if (!NetworkUtil.isNetworkAvailable(getActivity()))
-            mErrorPageView.setVisibility(View.VISIBLE);
-        bt_error_refresh.setOnClickListener(this);
+            binding.baseErrorLayout.llBaseErrorContent.setVisibility(View.VISIBLE);
+        binding.baseErrorLayout.btErrorRefresh.setOnClickListener(this);
     }
 
     /**
@@ -64,7 +53,7 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
      * 设置内容
      */
     public void addContentView(LayoutInflater inflater, ViewGroup container) {
-        mLlContent.addView(getContentLayout(inflater, container));
+        binding.baseFragmentContent.addView(getContentLayout(inflater, container));
     }
 
     /**
@@ -73,7 +62,7 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
      * @param isShow
      */
     public void setLoading(boolean isShow) {
-        mLlLoading.setVisibility(isShow ? View.VISIBLE : View.GONE);
+        binding.llLoading.setVisibility(isShow ? View.VISIBLE : View.GONE);
     }
 
 
@@ -82,7 +71,7 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
         switch (v.getId()) {
             case R.id.bt_error_refresh:
                 if (NetworkUtil.isNetworkAvailable(getActivity()))
-                    mErrorPageView.setVisibility(View.GONE);
+                    binding.baseErrorLayout.llBaseErrorContent.setVisibility(View.GONE);
                 reload();
                 break;
         }
