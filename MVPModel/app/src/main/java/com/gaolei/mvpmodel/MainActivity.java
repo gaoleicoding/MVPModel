@@ -4,56 +4,47 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gaolei.mvpmodel.activity.BaseActivity;
+import com.gaolei.mvpmodel.databinding.ActivityMainBinding;
 import com.gaolei.mvpmodel.fragment.BaseMvpFragment;
-import com.gaolei.mvpmodel.fragment.KnowledgeFragment;
 import com.gaolei.mvpmodel.fragment.HomeFragment;
+import com.gaolei.mvpmodel.fragment.KnowledgeFragment;
 import com.gaolei.mvpmodel.fragment.NavigationFragment;
 import com.gaolei.mvpmodel.fragment.ProjectFragment;
 
 import java.util.ArrayList;
 
-import butterknife.BindView;
-
 public class MainActivity extends BaseActivity {
 
     private ArrayList<BaseMvpFragment> mFragments;
     private int mLastFgIndex = 0;
-    TextView title;
     private static final int MY_PERMISSION_REQUEST_CODE = 10000;
-    //    BottomNavigationView bottomNavigationView;
-    @BindView(R.id.bottom_navigation_view)
-    BottomNavigationView bottomNavigationView;
+
     String[] permissionArray = new String[]{
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
     };
-
-    @Override
-    protected int setContentLayout() {
-        return R.layout.activity_main;
-    }
+    ActivityMainBinding binding;
 
     @Override
     protected void initData(Bundle bundle) {
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         // 取消BottomNavigation大于3个时，动画
-        BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
+        BottomNavigationViewHelper.disableShiftMode(binding.bottomNavigationView);
         mFragments = new ArrayList<BaseMvpFragment>();
-        title = findViewById(R.id.title);
         mFragments.add(new HomeFragment());
         mFragments.add(new KnowledgeFragment());
         mFragments.add(new NavigationFragment());
@@ -65,27 +56,27 @@ public class MainActivity extends BaseActivity {
             switchFragment(0);
         }
 
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+        binding.bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.tab_main_pager:
-                        title.setText(getString(R.string.home_pager));
+                        binding.title.setText(getString(R.string.home_pager));
                         switchFragment(0);
 
                         break;
                     case R.id.tab_knowledge_hierarchy:
-                        title.setText(getString(R.string.knowledge_hierarchy));
+                        binding.title.setText(getString(R.string.knowledge_hierarchy));
                         switchFragment(1);
 
                         break;
                     case R.id.tab_navigation:
-                        title.setText(getString(R.string.navigation));
+                        binding.title.setText(getString(R.string.navigation));
                         switchFragment(2);
 
                         break;
                     case R.id.tab_project:
-                        title.setText(getString(R.string.project));
+                        binding.title.setText(getString(R.string.project));
                         switchFragment(3);
                         break;
                 }
@@ -174,7 +165,7 @@ public class MainActivity extends BaseActivity {
             } else {
                 // 弹出对话框告诉用户需要权限的原因, 并引导用户去应用权限管理中手动打开权限按钮
                 getAppDetailSettingIntent(this);
-                toast("App正常使用需要授权" );
+                toast("App正常使用需要授权");
 
             }
         }

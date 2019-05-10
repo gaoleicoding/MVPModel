@@ -144,26 +144,28 @@ public class Html5Webview extends WebView {
     private class MyWebviewClient extends WebViewClient {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            Log.e("TTT", "shouldOverrideUrlLoading 0");
-            Uri uri = Uri.parse(url);
-            String scheme = uri.getScheme();
-            if (TextUtils.isEmpty(scheme)) return true;
-            if (scheme.equals("nativeapi")) {
-                //如定义nativeapi://showImg是用来查看大图，这里添加查看大图逻辑
-                return true;
-            } else if (scheme.equals("http") || scheme.equals("https")) {
-                //处理http协议
-                if (Uri.parse(url).getHost().equals("www.example.com")) {
-                    // 内部网址，不拦截，用自己的webview加载
-                    return false;
-                } else {
-                    //跳转外部浏览器
-                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                    context.startActivity(intent);
-                    return true;
-                }
-            }
-            return super.shouldOverrideUrlLoading(view, url);
+//            Log.e("TTT", "shouldOverrideUrlLoading 0");
+//            Uri uri = Uri.parse(url);
+//            String scheme = uri.getScheme();
+//            if (TextUtils.isEmpty(scheme)) return true;
+//            if (scheme.equals("nativeapi")) {
+//                //如定义nativeapi://showImg是用来查看大图，这里添加查看大图逻辑
+//                return true;
+//            } else if (scheme.equals("http") || scheme.equals("https")) {
+//                //处理http协议
+//                if (Uri.parse(url).getHost().equals("www.example.com")) {
+//                    // 内部网址，不拦截，用自己的webview加载
+//                    return false;
+//                } else {
+//                    //跳转外部浏览器
+//
+//                    return true;
+//                }
+//            }
+//            return super.shouldOverrideUrlLoading(view, url);
+            view.loadUrl(url);
+            //返回值为true时，在app内打开网页，flase为手机自带浏览器打开。
+            return true;
         }
 
         @Override

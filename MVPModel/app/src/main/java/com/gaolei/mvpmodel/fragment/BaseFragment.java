@@ -1,6 +1,8 @@
 package com.gaolei.mvpmodel.fragment;
 
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,25 +14,20 @@ import android.widget.RelativeLayout;
 
 import com.gaolei.mvpmodel.R;
 import com.gaolei.mvpmodel.utils.NetworkUtil;
-import com.gaolei.mvpmodel.utils.StatusBarUtil;
-
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 
 public abstract class BaseFragment extends Fragment implements View.OnClickListener {
     private FrameLayout mLlContent;
-    View subFragmentView;
+    View fragmentView;
     private RelativeLayout mLlLoading;
     private Button bt_error_refresh;
     public LinearLayout mErrorPageView;
-    private Unbinder mBinder;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View mParentView = inflater.inflate(R.layout.fragment_base, container, false);
         initBaseView(mParentView);
-        addContentView(inflater);
+        addContentView(inflater, container);
         Bundle bundle = getActivity().getIntent().getExtras();
         if (bundle == null) {
             bundle = savedInstanceState;
@@ -59,18 +56,15 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
     /**
      * 设置子布局layout
      */
-    public abstract int setContentLayout();
+    public abstract View getContentLayout(LayoutInflater inflater, ViewGroup container);
 
     public abstract void reload();
 
     /**
      * 设置内容
      */
-    public void addContentView(LayoutInflater inflater) {
-        subFragmentView = inflater.inflate(setContentLayout(), null);
-        mLlContent.addView(subFragmentView);
-        mBinder = ButterKnife.bind(this, subFragmentView);
-
+    public void addContentView(LayoutInflater inflater, ViewGroup container) {
+        mLlContent.addView(getContentLayout(inflater, container));
     }
 
     /**

@@ -2,11 +2,14 @@ package com.gaolei.mvpmodel.fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -14,6 +17,7 @@ import com.gaolei.mvpmodel.R;
 import com.gaolei.mvpmodel.activity.ArticleDetailActivity;
 import com.gaolei.mvpmodel.adapter.DividerItemDecoration;
 import com.gaolei.mvpmodel.adapter.ProjectAdapter;
+import com.gaolei.mvpmodel.databinding.FragmentHomeBinding;
 import com.gaolei.mvpmodel.mmodel.BannerListData;
 import com.gaolei.mvpmodel.mmodel.ProjectListData;
 import com.gaolei.mvpmodel.mpresenter.HomePresenter;
@@ -33,11 +37,15 @@ import butterknife.BindView;
 
 public class HomeFragment extends BaseMvpFragment<HomePresenter> implements ProjectListView {
 
-    @BindView(R.id.project_recyclerview)
-    RecyclerView project_recyclerview;
-    @BindView(R.id.banner)
-    Banner banner;
+
     ProjectAdapter projectAdapter;
+    FragmentHomeBinding binding;
+
+    @Override
+    public View getContentLayout(LayoutInflater inflater, ViewGroup container) {
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false);
+        return binding.getRoot();
+    }
 
     @Override
     public void initData(Bundle bundle) {
@@ -45,10 +53,6 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Proj
         mPresenter.getBannerInfo();
     }
 
-    @Override
-    public int setContentLayout() {
-        return R.layout.fragment_home;
-    }
 
     @Override
     public void reload() {
@@ -77,10 +81,10 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Proj
         final List<ProjectListData.FeedArticleData> articleDataList = listData.data.getDatas();
         projectAdapter = new ProjectAdapter(getActivity(), articleDataList);
 
-        project_recyclerview.addItemDecoration(new DividerItemDecoration(getActivity(),
+        binding.projectRecyclerview.addItemDecoration(new DividerItemDecoration(getActivity(),
                 DividerItemDecoration.VERTICAL_LIST));
-        project_recyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
-        project_recyclerview.setAdapter(projectAdapter);
+        binding.projectRecyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
+        binding.projectRecyclerview.setAdapter(projectAdapter);
         projectAdapter.setOnItemClickListener(new ProjectAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View v, int position) {
@@ -107,7 +111,7 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Proj
             titleList.add(itemBeans.data.get(i).getTitle());
             linkList.add(itemBeans.data.get(i).getUrl());
         }
-        banner.setImageLoader(new com.youth.banner.loader.ImageLoader() {
+        binding.banner.setImageLoader(new com.youth.banner.loader.ImageLoader() {
             @Override
             public void displayImage(Context context, Object path, ImageView imageView) {
                 Glide.with(getActivity()).load(path).into(imageView);
@@ -120,23 +124,23 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Proj
         //2. Banner.NUM_INDICATOR   显示数字指示器
         //3. Banner.NUM_INDICATOR_TITLE 显示数字指示器和标题
         //4. Banner.CIRCLE_INDICATOR_TITLE  显示圆形指示器和标题
-        banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);//设置圆形指示器与标题
+        binding.banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);//设置圆形指示器与标题
         //设置banner动画效果
 //        Tansformer.CubeIn
 //        Transformer.CubeOut
 //        Transformer.DepthPage
 //        Transformer.FlipHorizontal
 //        Transformer.FlipVertical
-        banner.setBannerAnimation(Transformer.FlipHorizontal);
-        banner.setIndicatorGravity(BannerConfig.CENTER);//设置指示器位置
-        banner.setDelayTime(3000);//设置轮播时间
-        banner.setImages(imageList);//设置图片源
-        banner.setBannerTitles(titleList);//设置标题源
+        binding.banner.setBannerAnimation(Transformer.FlipHorizontal);
+        binding.banner.setIndicatorGravity(BannerConfig.CENTER);//设置指示器位置
+        binding.banner.setDelayTime(3000);//设置轮播时间
+        binding.banner.setImages(imageList);//设置图片源
+        binding.banner.setBannerTitles(titleList);//设置标题源
 
-        banner.start();
+        binding. banner.start();
 
 
-        banner.setOnBannerListener(new OnBannerListener() {
+        binding.banner.setOnBannerListener(new OnBannerListener() {
             @Override
             public void OnBannerClick(int position) {
                 Intent intent = new Intent(getActivity(), ArticleDetailActivity.class);

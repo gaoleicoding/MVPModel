@@ -18,9 +18,10 @@ public class NavigationFragment extends BaseMvpFragment {
     }
 
     @Override
-    public int setContentLayout() {
-        return R.layout.fragment_navigation;
+    public View getContentLayout(LayoutInflater inflater, ViewGroup container) {
+        return new View(getContext());
     }
+
 
     @Override
     public void reload() {
