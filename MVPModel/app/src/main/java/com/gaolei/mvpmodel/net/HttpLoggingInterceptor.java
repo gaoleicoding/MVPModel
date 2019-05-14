@@ -1,8 +1,9 @@
 package com.gaolei.mvpmodel.net;
 
-import android.support.v4.BuildConfig;
 import android.util.Log;
 
+
+import com.gaolei.mvpmodel.BuildConfig;
 
 import java.io.IOException;
 

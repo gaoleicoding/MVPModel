@@ -19,7 +19,7 @@
             app:indicator_margin="6dp"
             app:indicator_width="8dp" />
 
-        <android.support.v7.widget.RecyclerView
+        <com.jcodecraeer.xrecyclerview.XRecyclerView
             android:id="@+id/project_recyclerview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
