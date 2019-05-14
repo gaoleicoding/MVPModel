@@ -4,16 +4,17 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+
+import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
 import androidx.core.app.ActivityCompat;
-import androidx.core.app.Fragment;
-import androidx.core.app.FragmentTransaction;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -24,6 +25,7 @@ import com.gaolei.mvpmodel.fragment.HomeFragment;
 import com.gaolei.mvpmodel.fragment.KnowledgeFragment;
 import com.gaolei.mvpmodel.fragment.NavigationFragment;
 import com.gaolei.mvpmodel.fragment.ProjectFragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 
@@ -43,7 +45,7 @@ public class MainActivity extends BaseActivity {
     protected void initData(Bundle bundle) {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         // 取消BottomNavigation大于3个时，动画
-        BottomNavigationViewHelper.disableShiftMode(binding.bottomNavigationView);
+//        BottomNavigationViewHelper.disableShiftMode(binding.bottomNavigationView);
         mFragments = new ArrayList<BaseMvpFragment>();
         mFragments.add(new HomeFragment());
         mFragments.add(new KnowledgeFragment());
@@ -61,22 +63,22 @@ public class MainActivity extends BaseActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.tab_main_pager:
-                        binding.title.setText(getString(R.string.home_pager));
+                        binding.title.setText(R.string.home_pager);
                         switchFragment(0);
 
                         break;
                     case R.id.tab_knowledge_hierarchy:
-                        binding.title.setText(getString(R.string.knowledge_hierarchy));
+                        binding.title.setText(R.string.knowledge_hierarchy);
                         switchFragment(1);
 
                         break;
                     case R.id.tab_navigation:
-                        binding.title.setText(getString(R.string.navigation));
+                        binding.title.setText(R.string.navigation);
                         switchFragment(2);
 
                         break;
                     case R.id.tab_project:
-                        binding.title.setText(getString(R.string.project));
+                        binding.title.setText(R.string.project);
                         switchFragment(3);
                         break;
                 }

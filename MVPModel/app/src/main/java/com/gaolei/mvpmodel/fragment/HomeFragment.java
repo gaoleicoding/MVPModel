@@ -2,7 +2,11 @@ package com.gaolei.mvpmodel.fragment;
 
 import android.content.Context;
 import android.content.Intent;
+
+import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.Bundle;
@@ -22,6 +26,7 @@ import com.gaolei.mvpmodel.mmodel.BannerListData;
 import com.gaolei.mvpmodel.mmodel.ProjectListData;
 import com.gaolei.mvpmodel.mpresenter.HomePresenter;
 import com.gaolei.mvpmodel.mview.ProjectListView;
+import com.gaolei.mvpmodel.viewmodel.ProjectViewModel;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
 import com.youth.banner.listener.OnBannerListener;
@@ -32,7 +37,7 @@ import java.util.List;
 
 public class HomeFragment extends BaseMvpFragment<HomePresenter> implements ProjectListView {
 
-
+    private static final String KEY_PROJECT_ID = "project_id";
     ProjectAdapter projectAdapter;
     FragmentHomeBinding binding;
 
@@ -44,8 +49,45 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Proj
 
     @Override
     public void initData(Bundle bundle) {
-        mPresenter.getProjectInfo(1, 294);
-        mPresenter.getBannerInfo();
+//        mPresenter.getProjectInfo(1, 294);
+//        mPresenter.getBannerInfo();
+        final ProjectViewModel viewModel = ViewModelProviders.of(this)
+                .get(ProjectViewModel.class);
+
+//        viewModel.setProjectParams(new ProjectViewModel.ProjectParams(1,294));
+
+//        binding.setProjectViewModel(viewModel);
+//        binding.setIsLoading(true);
+
+        observeViewModel(viewModel);
+    }
+    private void observeViewModel(final ProjectViewModel viewModel) {
+        // Observe project data
+        viewModel.getObservableProject().observe(this, new Observer<ProjectListData>() {
+            @Override
+            public void onChanged(@Nullable ProjectListData listData) {
+                if (listData != null) {
+//                    viewModel.setProject(project);
+                    final List<ProjectListData.FeedArticleData> articleDataList = listData.data.getDatas();
+                    projectAdapter = new ProjectAdapter(getActivity(), articleDataList);
+
+                    binding.projectRecyclerview.addItemDecoration(new DividerItemDecoration(getActivity(),
+                            DividerItemDecoration.VERTICAL_LIST));
+                    binding.projectRecyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
+                    binding.projectRecyclerview.setAdapter(projectAdapter);
+                    projectAdapter.setOnItemClickListener(new ProjectAdapter.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(View v, int position) {
+                            Intent intent = new Intent(getActivity(), ArticleDetailActivity.class);
+                            Bundle bundle = new Bundle();
+                            bundle.putString("url", articleDataList.get(position).getLink());
+                            intent.putExtras(bundle);
+                            startActivity(intent);
+                        }
+                    });
+                }
+            }
+        });
     }
 
 
@@ -73,23 +115,23 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Proj
 
     @Override
     public void requstProjectList(ProjectListData listData) {
-        final List<ProjectListData.FeedArticleData> articleDataList = listData.data.getDatas();
-        projectAdapter = new ProjectAdapter(getActivity(), articleDataList);
-
-        binding.projectRecyclerview.addItemDecoration(new DividerItemDecoration(getActivity(),
-                DividerItemDecoration.VERTICAL_LIST));
-        binding.projectRecyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
-        binding.projectRecyclerview.setAdapter(projectAdapter);
-        projectAdapter.setOnItemClickListener(new ProjectAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(View v, int position) {
-                Intent intent = new Intent(getActivity(), ArticleDetailActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putString("url", articleDataList.get(position).getLink());
-                intent.putExtras(bundle);
-                startActivity(intent);
-            }
-        });
+//        final List<ProjectListData.FeedArticleData> articleDataList = listData.data.getDatas();
+//        projectAdapter = new ProjectAdapter(getActivity(), articleDataList);
+//
+//        binding.projectRecyclerview.addItemDecoration(new DividerItemDecoration(getActivity(),
+//                DividerItemDecoration.VERTICAL_LIST));
+//        binding.projectRecyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
+//        binding.projectRecyclerview.setAdapter(projectAdapter);
+//        projectAdapter.setOnItemClickListener(new ProjectAdapter.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(View v, int position) {
+//                Intent intent = new Intent(getActivity(), ArticleDetailActivity.class);
+//                Bundle bundle = new Bundle();
+//                bundle.putString("url", articleDataList.get(position).getLink());
+//                intent.putExtras(bundle);
+//                startActivity(intent);
+//            }
+//        });
     }
 
     @Override

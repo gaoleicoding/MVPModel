@@ -1,14 +1,14 @@
 package com.gaolei.mvpmodel.activity;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import androidx.core.app.FragmentActivity;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.gaolei.mvpmodel.R;
 import com.gaolei.mvpmodel.utils.StatusBarUtil;
 
+import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentActivity;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
