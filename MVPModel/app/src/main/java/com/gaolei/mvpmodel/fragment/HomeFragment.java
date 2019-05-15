@@ -26,6 +26,7 @@ import com.gaolei.mvpmodel.mmodel.BannerListData;
 import com.gaolei.mvpmodel.mmodel.ProjectListData;
 import com.gaolei.mvpmodel.mpresenter.HomePresenter;
 import com.gaolei.mvpmodel.mview.ProjectListView;
+import com.gaolei.mvpmodel.viewmodel.BannerViewModel;
 import com.gaolei.mvpmodel.viewmodel.ProjectViewModel;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
@@ -35,7 +36,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class HomeFragment extends BaseMvpFragment<HomePresenter> implements ProjectListView {
+public class HomeFragment extends BaseFragment {
 
     private static final String KEY_PROJECT_ID = "project_id";
     ProjectAdapter projectAdapter;
@@ -48,28 +49,34 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Proj
     }
 
     @Override
+    public void reload() {
+
+    }
+
+    @Override
     public void initData(Bundle bundle) {
 //        mPresenter.getProjectInfo(1, 294);
 //        mPresenter.getBannerInfo();
         final ProjectViewModel viewModel = ViewModelProviders.of(this)
                 .get(ProjectViewModel.class);
 
-//        viewModel.setProjectParams(new ProjectViewModel.ProjectParams(1,294));
-
-//        binding.setProjectViewModel(viewModel);
-//        binding.setIsLoading(true);
+//        viewModel.setProjectParams(new ProjectViewModel.ProjectParams(1, 294));
 
         observeViewModel(viewModel);
+
+        final BannerViewModel bannerViewModel = ViewModelProviders.of(this)
+                .get(BannerViewModel.class);
+        observeBannerViewModel(bannerViewModel);
     }
+
     private void observeViewModel(final ProjectViewModel viewModel) {
         // Observe project data
         viewModel.getObservableProject().observe(this, new Observer<ProjectListData>() {
             @Override
             public void onChanged(@Nullable ProjectListData listData) {
                 if (listData != null) {
-//                    viewModel.setProject(project);
                     final List<ProjectListData.FeedArticleData> articleDataList = listData.data.getDatas();
-                    Log.d("gaolei","articleDataList.size():"+articleDataList.size());
+                    Log.d("gaolei", "articleDataList.size():" + articleDataList.size());
                     projectAdapter = new ProjectAdapter(getActivity(), articleDataList);
 
                     binding.projectRecyclerview.addItemDecoration(new DividerItemDecoration(getActivity(),
@@ -91,51 +98,18 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Proj
         });
     }
 
-
-    @Override
-    public void reload() {
-        mPresenter.getProjectInfo(1, 294);
-        mPresenter.getBannerInfo();
+    private void observeBannerViewModel(final BannerViewModel viewModel) {
+        // Observe project data
+        viewModel.getObservableProject().observe(this, new Observer<BannerListData>() {
+            @Override
+            public void onChanged(@Nullable BannerListData listData) {
+                if (listData != null) {
+                    requstBannerList(listData);
+                }
+            }
+        });
     }
 
-    @Override
-    public HomePresenter initPresenter() {
-        return new HomePresenter();
-    }
-
-    @Override
-    public void showLoading() {
-        setLoading(true);
-    }
-
-    @Override
-    public void hideLoading() {
-        setLoading(false);
-    }
-
-
-    @Override
-    public void requstProjectList(ProjectListData listData) {
-//        final List<ProjectListData.FeedArticleData> articleDataList = listData.data.getDatas();
-//        projectAdapter = new ProjectAdapter(getActivity(), articleDataList);
-//
-//        binding.projectRecyclerview.addItemDecoration(new DividerItemDecoration(getActivity(),
-//                DividerItemDecoration.VERTICAL_LIST));
-//        binding.projectRecyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
-//        binding.projectRecyclerview.setAdapter(projectAdapter);
-//        projectAdapter.setOnItemClickListener(new ProjectAdapter.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(View v, int position) {
-//                Intent intent = new Intent(getActivity(), ArticleDetailActivity.class);
-//                Bundle bundle = new Bundle();
-//                bundle.putString("url", articleDataList.get(position).getLink());
-//                intent.putExtras(bundle);
-//                startActivity(intent);
-//            }
-//        });
-    }
-
-    @Override
     public void requstBannerList(BannerListData itemBeans) {
 
         final List<String> linkList = new ArrayList<String>();
