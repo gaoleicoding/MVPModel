@@ -16,7 +16,6 @@ import retrofit2.Response;
 
 public class ProjectRepository {
     private RestService gitHubService = RestApiProvider.getInstance().builder().getApiService();
-    ;
 
 
     public LiveData<ProjectListData> getProjectInfo(int page, int cid) {

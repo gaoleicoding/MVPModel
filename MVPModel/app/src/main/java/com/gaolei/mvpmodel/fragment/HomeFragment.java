@@ -69,6 +69,7 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Proj
                 if (listData != null) {
 //                    viewModel.setProject(project);
                     final List<ProjectListData.FeedArticleData> articleDataList = listData.data.getDatas();
+                    Log.d("gaolei","articleDataList.size():"+articleDataList.size());
                     projectAdapter = new ProjectAdapter(getActivity(), articleDataList);
 
                     binding.projectRecyclerview.addItemDecoration(new DividerItemDecoration(getActivity(),

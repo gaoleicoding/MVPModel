@@ -18,12 +18,12 @@ public class ProjectViewModel extends AndroidViewModel {
     private static final MutableLiveData ABSENT = new MutableLiveData();
 
 
-    private final LiveData<ProjectListData> projectObservable;
+    private  LiveData<ProjectListData> projectObservable=null;
 //    private final MutableLiveData<ProjectParams > paramsLiveData;
 
     public ObservableField<ProjectListData> project = new ObservableField<>();
 
-    public ProjectViewModel(@NonNull ProjectRepository projectRepository, @NonNull Application application) {
+    public ProjectViewModel( Application application) {
         super(application);
 
 //        this.paramsLiveData = new MutableLiveData<>();
@@ -37,7 +37,7 @@ public class ProjectViewModel extends AndroidViewModel {
 //            Log.i(TAG, "ProjectViewMosetProjectdel projectID is " + paramsLiveData.getValue());
 //            ProjectParams params=paramsLiveData.getValue();
 
-        projectObservable = projectRepository.getProjectInfo(1, 294);
+        projectObservable = new ProjectRepository().getProjectInfo(1, 294);
 //        });
     }
 
@@ -45,9 +45,9 @@ public class ProjectViewModel extends AndroidViewModel {
         return projectObservable;
     }
 
-//    public void setProject(ProjectListData project) {
-//        this.project.set(project);
-//    }
+    public void setProject(ProjectListData project) {
+        this.project.set(project);
+    }
 //
 //    public void setProjectParams(ProjectParams params) {
 //        this.paramsLiveData.setValue(params);
