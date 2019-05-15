@@ -14,7 +14,7 @@ import com.gaolei.mvpmodel.databinding.FragmentBaseBinding;
 import com.gaolei.mvpmodel.utils.NetworkUtil;
 
 
-public abstract class BaseFragment extends LifecycleFragment implements View.OnClickListener {
+public abstract class BaseFragment extends Fragment implements View.OnClickListener {
     FragmentBaseBinding binding;
 
     @Override

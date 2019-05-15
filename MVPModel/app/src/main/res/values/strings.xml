@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_name">MVPModel</string>
+    <string name="app_name">MVVM</string>
     <string name="awesome_wan_android">Awesome WanAndroid</string>
 
     <string name="me">我的</string>
