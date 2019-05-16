@@ -55,8 +55,6 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     public void initData(Bundle bundle) {
-//        mPresenter.getProjectInfo(1, 294);
-//        mPresenter.getBannerInfo();
         final ProjectViewModel viewModel = ViewModelProviders.of(this)
                 .get(ProjectViewModel.class);
 
@@ -99,7 +97,7 @@ public class HomeFragment extends BaseFragment {
     }
 
     private void observeBannerViewModel(final BannerViewModel viewModel) {
-        // Observe project data
+        // Observe banner data
         viewModel.getObservableProject().observe(this, new Observer<BannerListData>() {
             @Override
             public void onChanged(@Nullable BannerListData listData) {
