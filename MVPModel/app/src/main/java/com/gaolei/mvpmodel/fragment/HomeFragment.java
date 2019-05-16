@@ -60,9 +60,9 @@ public class HomeFragment extends BaseFragment {
         final ProjectViewModel viewModel = ViewModelProviders.of(this)
                 .get(ProjectViewModel.class);
 
-//        viewModel.setProjectParams(new ProjectViewModel.ProjectParams(1, 294));
-
         observeViewModel(viewModel);
+        viewModel.setProjectParams(new ProjectViewModel.ProjectParams(1, 294));
+
 
         final BannerViewModel bannerViewModel = ViewModelProviders.of(this)
                 .get(BannerViewModel.class);

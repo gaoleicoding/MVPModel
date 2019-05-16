@@ -18,7 +18,7 @@ public class ProjectRepository {
     private RestService gitHubService = RestApiProvider.getInstance().builder().getApiService();
 
 
-    public LiveData<ProjectListData> getProjectInfo(int page, int cid) {
+    public MutableLiveData<ProjectListData> getProjectInfo(int page, int cid) {
         final MutableLiveData<ProjectListData> data = new MutableLiveData<>();
 
         gitHubService.getProjectListData(page, cid).enqueue(new Callback<ProjectListData>() {
